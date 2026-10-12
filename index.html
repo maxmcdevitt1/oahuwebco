@@ -21,7 +21,7 @@
 <style>
 *{box-sizing:border-box}
 :root{--navy:#102850;--navy-deep:#0A1C3A;--island:#173563;--cream:#F9F6ED;--mist:#EEF2F5;--ink:#14213A;--slate:#4B5A6E;--rule:#102850;
---space:clamp(72px,9vw,112px);--label:20px;--h3:22px;--body:18px}
+--space:clamp(64px,8vw,104px);--label:20px;--h3:22px;--body:18px}
 body{margin:0;background:var(--mist);color:var(--ink);font-family:'Archivo','Avenir Next','Segoe UI',sans-serif}
 .narrow{font-family:'Archivo','Avenir Next Condensed','Roboto Condensed','Arial Narrow',sans-serif;font-stretch:72%}
 .wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
@@ -29,7 +29,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .dark a:focus-visible,.dark button:focus-visible,.dark input:focus-visible,.dark textarea:focus-visible{outline-color:var(--cream)}
 
 /* Shared section pattern */
-.section{padding-top:var(--space);padding-bottom:var(--space)}
+.section{padding-top:var(--space);padding-bottom:0}
+.dark .section{padding-bottom:var(--space)}
+#contact{margin-top:var(--space)}
 .label{margin:0 0 24px;font-size:var(--label);font-weight:700;color:var(--slate)}
 .lead{margin:0;max-width:17em;font-size:clamp(32px,4.6vw,60px);line-height:1.04;font-weight:800;letter-spacing:-0.015em;color:var(--navy)}
 .lead.small{font-size:clamp(28px,3.4vw,44px);max-width:22em}
@@ -57,7 +59,7 @@ h3,.item{margin:0;font-size:var(--h3);font-weight:700;line-height:1.25;color:var
 .services li{padding:22px 0 24px;border-top:2px solid var(--rule)}
 
 /* Pricing dropdowns */
-.prices{margin:40px 0 0;border-bottom:2px solid var(--rule)}
+.prices{margin:0;border-bottom:2px solid var(--rule)}
 .prices details{border-top:2px solid var(--rule)}
 .prices summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 24px;padding:22px 44px 22px 0;position:relative}
 .prices summary::-webkit-details-marker{display:none}
@@ -65,6 +67,7 @@ h3,.item{margin:0;font-size:var(--h3);font-weight:700;line-height:1.25;color:var
 .prices details[open] summary::after{transform:translateY(-25%) rotate(-135deg)}
 @media (prefers-reduced-motion:reduce){.prices summary::after{transition:none}}
 .price{font-size:clamp(26px,3vw,36px);font-weight:800;color:var(--navy);white-space:nowrap}
+@media (max-width:600px){.prices summary{flex-direction:column;align-items:flex-start;gap:6px}}
 .price small{font-size:0.5em;font-weight:700;color:var(--slate);margin-left:4px}
 .price-body{padding:0 0 26px}
 .price-body .muted{margin-top:0}
@@ -120,7 +123,6 @@ footer strong{color:var(--ink)}
 
   <section class="section wrap" aria-labelledby="pricing-heading">
     <h2 class="label" id="pricing-heading">Pricing</h2>
-    <p class="lead small narrow">Start with a free review. If there’s work worth doing, you get a fixed price before anything starts.</p>
     <div class="prices">
       <details>
         <summary><span class="item">Free review</span><span class="price narrow">$0</span></summary>
@@ -140,15 +142,14 @@ footer strong{color:var(--ink)}
         </div>
       </details>
       <details>
-        <summary><span class="item">Monthly upkeep</span><span class="price narrow">$150–$250<small>/month</small></span></summary>
-        <div class="price-body"><p class="muted">Each month: a listing check and corrections, draft replies to new reviews, small website updates, and a short summary of what changed. Hours are capped and agreed up front. Month to month, no contract.</p></div>
+        <summary><span class="item">Monthly upkeep</span><span class="price narrow">$150–$250<small>/mo</small></span></summary>
+        <div class="price-body"><p class="muted">Each month: a listing check and corrections, draft replies to new reviews, small website updates, and a short summary of what changed. Hours are capped and agreed up front. Month to month, no contract. You keep every account and file if you stop.</p></div>
       </details>
       <details>
         <summary><span class="item">Websites</span><span class="price narrow">Quoted</span></summary>
         <div class="price-body"><p class="muted">New sites and repairs, priced after the free review.</p></div>
       </details>
     </div>
-    <p class="note">You own every account and file, and keep everything if you stop.</p>
   </section>
 
   <section class="section wrap" aria-labelledby="about-heading">
@@ -161,7 +162,7 @@ footer strong{color:var(--ink)}
     <div class="section wrap contact">
       <div class="contact-copy">
         <h2 class="lead small narrow">Get a free review</h2>
-        <p class="sub">Aloha. Send your business name and what you need help with, and we’ll write back with what to work on first. No cost, no obligation.</p>
+        <p class="sub">Aloha. Tell us about your business and we’ll get back to you.</p>
         <p class="email-line">Or email directly:</p>
         <p class="email narrow">max@oahuwebco.com</p>
       </div>
