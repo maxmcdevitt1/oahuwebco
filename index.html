@@ -20,46 +20,66 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-:root{--navy:#102850;--navy-deep:#0A1C3A;--island:#173563;--cream:#F9F6ED;--mist:#EEF2F5;--ink:#14213A;--slate:#4B5A6E;--rule:#C9D2DC}
+:root{--navy:#102850;--navy-deep:#0A1C3A;--island:#173563;--cream:#F9F6ED;--mist:#EEF2F5;--ink:#14213A;--slate:#4B5A6E;--rule:#102850;
+--space:clamp(72px,9vw,112px);--label:20px;--h3:22px;--body:18px}
 body{margin:0;background:var(--mist);color:var(--ink);font-family:'Archivo','Avenir Next','Segoe UI',sans-serif}
-.narrow{font-family:'Archivo','Avenir Next Condensed','Roboto Condensed','Arial Narrow',sans-serif}
+.narrow{font-family:'Archivo','Avenir Next Condensed','Roboto Condensed','Arial Narrow',sans-serif;font-stretch:72%}
 .wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
-.what a:focus-visible{outline-color:var(--navy)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+.dark a:focus-visible,.dark button:focus-visible,.dark input:focus-visible,.dark textarea:focus-visible{outline-color:var(--cream)}
+
+/* Shared section pattern */
+.section{padding-top:var(--space);padding-bottom:var(--space)}
+.label{margin:0 0 24px;font-size:var(--label);font-weight:700;color:var(--slate)}
+.lead{margin:0;max-width:17em;font-size:clamp(32px,4.6vw,60px);line-height:1.04;font-weight:800;letter-spacing:-0.015em;color:var(--navy)}
+.lead.small{font-size:clamp(28px,3.4vw,44px);max-width:22em}
+.sub{margin:20px 0 0;max-width:36em;font-size:20px;line-height:1.55;color:var(--slate)}
+h3,.item{margin:0;font-size:var(--h3);font-weight:700;line-height:1.25;color:var(--ink)}
+.muted{margin:8px 0 0;max-width:34em;font-size:var(--body);line-height:1.55;color:var(--slate)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:14px 28px;border-radius:6px;font:inherit;font-size:18px;font-weight:700;text-decoration:none;cursor:pointer;border:0;background:var(--cream);color:var(--navy)}
+.btn:hover{background:#FFFFFF}
 
 /* Hero */
 .hero{position:relative;overflow:hidden;background:var(--navy);color:var(--cream)}
 .hero-island{position:absolute;right:-2%;top:54%;transform:translateY(-50%);width:min(720px,58vw);height:auto;fill:var(--island);pointer-events:none}
 @media (max-width:700px){.hero-island{right:-30%;top:auto;bottom:-6%;transform:none;width:120vw}}
 .hero .wrap{position:relative}
-.brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--cream);font-weight:800;font-stretch:80%;font-size:26px;letter-spacing:-0.01em}
-.brand img{display:block;width:64px;height:64px;border-radius:50%;box-shadow:0 0 0 2px var(--cream)}
 .hero header{padding-top:28px;padding-bottom:28px}
-.hero h1{margin:0;max-width:12em;font-size:clamp(42px,6.8vw,92px);line-height:0.95;font-weight:800;font-stretch:68%;letter-spacing:-0.02em;color:#FFFFFF}
-.hero-row{margin-top:40px;display:flex;flex-wrap:wrap;gap:24px 40px;align-items:center}
-.hero-row p{margin:0;max-width:26em;font-size:21px;line-height:1.5;color:#D9E0EA}
-.btn{display:inline-flex;align-items:center;min-height:52px;padding:14px 28px;border-radius:6px;font:inherit;font-size:18px;font-weight:700;text-decoration:none;cursor:pointer;border:0}
-.btn-cream{background:var(--cream);color:var(--navy)}
-.btn-cream:hover{background:#FFFFFF}
+.brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--cream);font-weight:800;font-size:26px;letter-spacing:-0.01em}
+.brand img{display:block;width:64px;height:64px;border-radius:50%;box-shadow:0 0 0 2px var(--cream)}
 .hero-body{padding-top:40px;padding-bottom:clamp(96px,14vw,168px)}
+.hero h1{margin:0 0 40px;max-width:12em;font-size:clamp(42px,6.8vw,92px);line-height:0.95;font-weight:800;font-stretch:68%;letter-spacing:-0.02em;color:#FFFFFF}
 
 /* What we do */
-.what{padding-top:clamp(72px,10vw,120px);padding-bottom:clamp(72px,10vw,120px)}
-.what h2{margin:0 0 20px;font-size:20px;font-weight:700;color:var(--slate)}
-.what-statement{margin:0;max-width:17em;font-size:clamp(34px,5.2vw,68px);line-height:1.02;font-weight:800;font-stretch:72%;letter-spacing:-0.015em;color:var(--navy)}
-.how{margin:clamp(56px,7vw,88px) 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 56px}
-.how li{padding:22px 0 24px;border-top:2px solid var(--navy)}
-.how h3{margin:0;font-size:22px;font-weight:700;line-height:1.25;color:var(--ink)}
-.how p{margin:8px 0 0;max-width:30em;font-size:18px;line-height:1.55;color:var(--slate)}
+.services{margin:56px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 56px}
+.services li{padding:22px 0 24px;border-top:2px solid var(--rule)}
+
+/* Pricing dropdowns */
+.prices{margin:40px 0 0;border-bottom:2px solid var(--rule)}
+.prices details{border-top:2px solid var(--rule)}
+.prices summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 24px;padding:22px 44px 22px 0;position:relative}
+.prices summary::-webkit-details-marker{display:none}
+.prices summary::after{content:"";position:absolute;right:6px;top:50%;width:12px;height:12px;border-right:3px solid var(--navy);border-bottom:3px solid var(--navy);transform:translateY(-75%) rotate(45deg);transition:transform .15s ease}
+.prices details[open] summary::after{transform:translateY(-25%) rotate(-135deg)}
+@media (prefers-reduced-motion:reduce){.prices summary::after{transition:none}}
+.price{font-size:clamp(26px,3vw,36px);font-weight:800;color:var(--navy);white-space:nowrap}
+.price small{font-size:0.5em;font-weight:700;color:var(--slate);margin-left:4px}
+.price-body{padding:0 0 26px}
+.price-body .muted{margin-top:0}
+.includes{margin:10px 0 0;padding-left:1.2em;max-width:34em;font-size:var(--body);line-height:1.6;color:var(--slate)}
+.note{margin:20px 0 0;max-width:48em;font-size:17px;line-height:1.5;color:var(--slate)}
 
 /* Contact */
-#contact{background:var(--navy-deep);color:var(--cream)}
-#contact .wrap{padding-top:96px;padding-bottom:96px;display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start}
+.dark{background:var(--navy-deep);color:var(--cream)}
+.contact{display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start}
 .contact-copy{flex:1 1 340px;min-width:0}
-#contact h2{margin:0;font-size:clamp(30px,3.8vw,46px);line-height:1.05;font-weight:800;font-stretch:72%;color:#FFFFFF}
-.contact-copy p{margin:20px 0 0;max-width:24em;font-size:20px;line-height:1.55;color:#D9E0EA}
-.contact-copy .direct{margin-top:32px;font-size:16px}
-.contact-copy .email{margin-top:8px;color:#FFFFFF;font-size:clamp(20px,2.2vw,26px);font-weight:700;font-stretch:80%;overflow-wrap:anywhere}
+.dark .lead{color:#FFFFFF}
+.dark .sub{color:#D9E0EA}
+.email-line{margin:28px 0 0;font-size:16px;color:#D9E0EA}
+.email{margin:6px 0 0;color:#FFFFFF;font-size:clamp(20px,2.2vw,26px);font-weight:700;overflow-wrap:anywhere}
+.contact-form{flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px}
 .field{display:flex;flex-direction:column;gap:8px;font-size:17px;font-weight:600;color:#FFFFFF}
 .field input,.field textarea{font:inherit;font-weight:400;font-size:18px;color:var(--ink);background:#FFFFFF;border:2px solid #FFFFFF;border-radius:6px;padding:12px 14px;min-height:48px;width:100%}
 .field textarea{resize:vertical}
@@ -68,35 +88,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 footer{padding-top:40px;padding-bottom:56px;display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;font-size:16px;color:var(--slate)}
 footer strong{color:var(--ink)}
-
-/* How it works */
-.steps-band{background:#FFFFFF;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.steps{padding-top:clamp(64px,8vw,104px);padding-bottom:clamp(64px,8vw,104px)}
-.steps h2,.about h2{margin:0 0 28px;font-size:20px;font-weight:700;color:var(--slate)}
-.step-list{margin:0;padding:0;list-style:none;counter-reset:step;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:40px 56px}
-.step-list li{counter-increment:step}
-.step-list li::before{content:counter(step);display:block;font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:68%;font-weight:800;font-size:64px;line-height:1;color:var(--navy);margin-bottom:12px}
-.step-list h3{margin:0;font-size:22px;font-weight:700;color:var(--ink)}
-.step-list p{margin:8px 0 0;max-width:26em;font-size:18px;line-height:1.55;color:var(--slate)}
-
-/* About */
-.about{padding-top:clamp(64px,8vw,104px);padding-bottom:clamp(64px,8vw,104px)}
-.about-lead{margin:0;max-width:20em;font-size:clamp(28px,3.6vw,44px);line-height:1.08;font-weight:800;font-stretch:72%;letter-spacing:-0.01em;color:var(--navy)}
-.about-body{margin:20px 0 0;max-width:34em;font-size:20px;line-height:1.55;color:var(--slate)}
-
-/* Pricing */
-.pricing{padding-top:clamp(64px,8vw,104px);padding-bottom:0}
-.pricing h2{margin:0 0 28px;font-size:20px;font-weight:700;color:var(--slate)}
-.price-list{margin:0;padding:0;list-style:none;border-bottom:2px solid var(--navy)}
-.price-list li{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 48px;padding:24px 0;border-top:2px solid var(--navy)}
-.price-list li>div{flex:1 1 420px;min-width:0}
-.price-list h3{margin:0;font-size:22px;font-weight:700;color:var(--ink)}
-.price-list li>div p{margin:6px 0 0;max-width:34em;font-size:18px;line-height:1.5;color:var(--slate)}
-.price{margin:0;font-size:clamp(28px,3.2vw,40px);font-weight:800;font-stretch:72%;color:var(--navy);white-space:nowrap}
-.price span{font-size:0.5em;font-weight:700;color:var(--slate);margin-left:4px}
-.includes{margin:10px 0 0;padding-left:1.2em;font-size:18px;line-height:1.55;color:var(--slate)}
-.includes li{margin:2px 0;padding:0;border:0;display:list-item}
-.price-note{margin:20px 0 0;max-width:48em;font-size:17px;line-height:1.5;color:var(--slate)}
 </style>
 </head>
 <body>
@@ -109,70 +100,36 @@ footer strong{color:var(--ink)}
     </header>
     <section class="hero-body" id="top">
       <h1 class="narrow">We take the online side off your hands.</h1>
-      <div class="hero-row">
-        <p>We find what's keeping customers from reaching you and fix it, so more of them end up at your door.</p>
-        <a class="btn btn-cream" href="#contact">Get a free review</a>
-      </div>
+      <a class="btn" href="#contact">Get a free review</a>
     </section>
   </div>
 </div>
 
 <main>
 
-  <section class="what wrap" aria-labelledby="what-heading">
-    <h2 id="what-heading">What we do</h2>
-    <p class="what-statement narrow">We scale Oʻahu contractors and trade businesses: more of the right customers finding you, more calls, more jobs.</p>
-    <ul class="how">
-      <li>
-        <h3>Get in front of more people</h3>
-        <p>Websites, Google listings and local search, so people looking for what you do can find you.</p>
-      </li>
-      <li>
-        <h3>Turn attention into work</h3>
-        <p>Clear ways to call or message you, and follow-up so new leads don’t go cold.</p>
-      </li>
-      <li>
-        <h3>Build a name that brings work back</h3>
-        <p>A simple way to ask every customer for an honest review, so new customers can see who they’re hiring.</p>
-      </li>
-      <li>
-        <h3>Keep growing</h3>
-        <p>Upkeep and online marketing as you’re ready for more, so you don’t have to run it yourself.</p>
-      </li>
+  <section class="section wrap" aria-labelledby="what-heading">
+    <h2 class="label" id="what-heading">What we do</h2>
+    <p class="lead narrow">We scale Oʻahu contractors and trade businesses: more of the right customers finding you, more calls, more jobs.</p>
+    <ul class="services">
+      <li><h3>Get in front of more people</h3><p class="muted">Websites, Google listings and local search, so people looking for what you do can find you.</p></li>
+      <li><h3>Turn attention into work</h3><p class="muted">Clear ways to call or message you, and follow-up so new leads don’t go cold.</p></li>
+      <li><h3>Build a name that brings work back</h3><p class="muted">A simple way to ask every customer for an honest review, so new customers can see who they’re hiring.</p></li>
+      <li><h3>Keep growing</h3><p class="muted">Upkeep and online marketing as you’re ready for more, so you don’t have to run it yourself.</p></li>
     </ul>
   </section>
 
-
-  <section class="steps-band" aria-labelledby="steps-heading">
-    <div class="wrap steps">
-      <h2 id="steps-heading">How it works</h2>
-      <ol class="step-list">
-        <li>
-          <h3>Free review</h3>
-          <p>I look at how customers find you and reach you online, and tell you what’s worth working on.</p>
-        </li>
-        <li>
-          <h3>Do the work</h3>
-          <p>We agree on the work and a fixed price up front. I handle it and show you what changed.</p>
-        </li>
-        <li>
-          <h3>Keep it running</h3>
-          <p>If you want, I keep things current month to month. No contract. Stop any time.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-
-  <section class="pricing wrap" aria-labelledby="pricing-heading">
-    <h2 id="pricing-heading">Pricing</h2>
-    <ul class="price-list">
-      <li>
-        <div><h3>Free review</h3><p>One Google listing and one website, with a short written summary of what I’d work on first.</p></div>
-        <p class="price narrow">$0</p>
-      </li>
-      <li>
-        <div><h3>Starter fix-up</h3><p>One-time. Includes:</p>
+  <section class="section wrap" aria-labelledby="pricing-heading">
+    <h2 class="label" id="pricing-heading">Pricing</h2>
+    <p class="lead small narrow">Start with a free review. If there’s work worth doing, you get a fixed price before anything starts.</p>
+    <div class="prices">
+      <details>
+        <summary><span class="item">Free review</span><span class="price narrow">$0</span></summary>
+        <div class="price-body"><p class="muted">We look at one Google listing and one website, then send a short written summary of what to work on first.</p></div>
+      </details>
+      <details>
+        <summary><span class="item">Starter fix-up</span><span class="price narrow">$350–$500</span></summary>
+        <div class="price-body">
+          <p class="muted">One-time. Includes:</p>
           <ul class="includes">
             <li>Correct your Google listing: hours, phone, category, services and photos</li>
             <li>A review link and QR code you can hand to every customer</li>
@@ -181,35 +138,34 @@ footer strong{color:var(--ink)}
             <li>Screenshots of everything that changed</li>
           </ul>
         </div>
-        <p class="price narrow">$350–$500</p>
-      </li>
-      <li>
-        <div><h3>Monthly upkeep</h3><p>Keeps the fix-up from going stale. Each month: a listing check and corrections, draft replies to new reviews, small website updates, and a short summary of what changed. Hours are capped and agreed up front.</p></div>
-        <p class="price narrow">$150–$250<span>/month</span></p>
-      </li>
-      <li>
-        <div><h3>Websites</h3><p>New sites and repairs. Priced after the free review, and you know the price before any work starts.</p></div>
-        <p class="price narrow">Quoted</p>
-      </li>
-    </ul>
-    <p class="price-note">Fixed price before any work starts. Monthly work is month to month, with no contract. You own every account and file, and keep everything if you stop.</p>
+      </details>
+      <details>
+        <summary><span class="item">Monthly upkeep</span><span class="price narrow">$150–$250<small>/month</small></span></summary>
+        <div class="price-body"><p class="muted">Each month: a listing check and corrections, draft replies to new reviews, small website updates, and a short summary of what changed. Hours are capped and agreed up front. Month to month, no contract.</p></div>
+      </details>
+      <details>
+        <summary><span class="item">Websites</span><span class="price narrow">Quoted</span></summary>
+        <div class="price-body"><p class="muted">New sites and repairs, priced after the free review.</p></div>
+      </details>
+    </div>
+    <p class="note">You own every account and file, and keep everything if you stop.</p>
   </section>
 
-  <section class="about wrap" aria-labelledby="about-heading">
-    <h2 id="about-heading">Who you’re working with</h2>
-    <p class="about-lead narrow">I’m Max, an Army veteran and data science student living in Kāneʻohe.</p>
-    <p class="about-body">I’ve been programming for a while, and I enjoy supporting local businesses.</p>
+  <section class="section wrap" aria-labelledby="about-heading">
+    <h2 class="label" id="about-heading">About</h2>
+    <p class="lead small narrow">I’m Max, an Army veteran and data science student living in Kāneʻohe.</p>
+    <p class="sub">I’ve been programming for a while, and I enjoy supporting local businesses.</p>
   </section>
 
-  <section id="contact">
-    <div class="wrap">
+  <section id="contact" class="dark">
+    <div class="section wrap contact">
       <div class="contact-copy">
-        <h2 class="narrow">Get a free review of how your business shows up online</h2>
-        <p>Aloha. Send your business name and what you need help with. I’ll look at how customers find and reach you, and write back with what I’d work on first. No cost, no obligation.</p>
-        <p class="direct">Or email directly:</p>
+        <h2 class="lead small narrow">Get a free review</h2>
+        <p class="sub">Aloha. Send your business name and what you need help with, and we’ll write back with what to work on first. No cost, no obligation.</p>
+        <p class="email-line">Or email directly:</p>
         <p class="email narrow">max@oahuwebco.com</p>
       </div>
-        <form name="contact" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="company-website" style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+      <form name="contact" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="company-website" class="contact-form">
           <input type="hidden" name="form-name" value="contact">
           <p style="display: none;"><label>Leave this empty <input name="company-website" tabindex="-1" autocomplete="off"></label></p>
           <label class="field">Your name
