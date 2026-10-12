@@ -20,59 +20,107 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#F6F7F4;color:#1D2A27;font-family:'Archivo',system-ui,sans-serif}
-[style*="font-stretch"]{font-family:'Archivo','Avenir Next Condensed','Roboto Condensed','Arial Narrow',sans-serif}
-a{color:#1D3DAE}a:hover{color:#132A7A}
-a:focus-visible{outline:3px solid #1D3DAE;outline-offset:3px}
-#contact a:focus-visible,#contact button:focus-visible,#contact input:focus-visible,#contact textarea:focus-visible{outline:3px solid #FFFFFF;outline-offset:3px}
+:root{--navy:#102850;--navy-deep:#0A1C3A;--island:#173563;--cream:#F9F6ED;--mist:#EEF2F5;--ink:#14213A;--slate:#4B5A6E;--rule:#C9D2DC}
+body{margin:0;background:var(--mist);color:var(--ink);font-family:'Archivo','Avenir Next','Segoe UI',sans-serif}
+.narrow{font-family:'Archivo','Avenir Next Condensed','Roboto Condensed','Arial Narrow',sans-serif}
+.wrap{max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+.what a:focus-visible{outline-color:var(--navy)}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:var(--navy);color:var(--cream)}
+.hero-island{position:absolute;right:-2%;top:54%;transform:translateY(-50%);width:min(720px,58vw);height:auto;fill:var(--island);pointer-events:none}
+@media (max-width:700px){.hero-island{right:-30%;top:auto;bottom:-6%;transform:none;width:120vw}}
+.hero .wrap{position:relative}
+.brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--cream);font-weight:800;font-stretch:80%;font-size:26px;letter-spacing:-0.01em}
+.brand img{display:block;width:64px;height:64px;border-radius:50%;box-shadow:0 0 0 2px var(--cream)}
+.hero header{padding-top:28px;padding-bottom:28px}
+.hero h1{margin:0;max-width:12em;font-size:clamp(42px,6.8vw,92px);line-height:0.95;font-weight:800;font-stretch:68%;letter-spacing:-0.02em;color:#FFFFFF}
+.hero-row{margin-top:40px;display:flex;flex-wrap:wrap;gap:24px 40px;align-items:center}
+.hero-row p{margin:0;max-width:26em;font-size:21px;line-height:1.5;color:#D9E0EA}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:14px 28px;border-radius:6px;font:inherit;font-size:18px;font-weight:700;text-decoration:none;cursor:pointer;border:0}
+.btn-cream{background:var(--cream);color:var(--navy)}
+.btn-cream:hover{background:#FFFFFF}
+.hero-body{padding-top:40px;padding-bottom:clamp(96px,14vw,168px)}
+
+/* What we do */
+.what{padding-top:clamp(72px,10vw,120px);padding-bottom:clamp(72px,10vw,120px)}
+.what h2{margin:0 0 20px;font-size:20px;font-weight:700;color:var(--slate)}
+.what-statement{margin:0;max-width:17em;font-size:clamp(34px,5.2vw,68px);line-height:1.02;font-weight:800;font-stretch:72%;letter-spacing:-0.015em;color:var(--navy)}
+.how{margin:clamp(56px,7vw,88px) 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 56px}
+.how li{padding:22px 0 24px;border-top:2px solid var(--navy)}
+.how h3{margin:0;font-size:22px;font-weight:700;line-height:1.25;color:var(--ink)}
+.how p{margin:8px 0 0;max-width:30em;font-size:18px;line-height:1.55;color:var(--slate)}
+
+/* Contact */
+#contact{background:var(--navy-deep);color:var(--cream)}
+#contact .wrap{padding-top:96px;padding-bottom:96px;display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start}
+.contact-copy{flex:1 1 340px;min-width:0}
+#contact h2{margin:0;font-size:clamp(30px,3.8vw,46px);line-height:1.05;font-weight:800;font-stretch:72%;color:#FFFFFF}
+.contact-copy p{margin:20px 0 0;max-width:24em;font-size:20px;line-height:1.55;color:#D9E0EA}
+.contact-copy .direct{margin-top:32px;font-size:16px}
+.contact-copy .email{margin-top:8px;color:#FFFFFF;font-size:clamp(20px,2.2vw,26px);font-weight:700;font-stretch:80%;overflow-wrap:anywhere}
 .field{display:flex;flex-direction:column;gap:8px;font-size:17px;font-weight:600;color:#FFFFFF}
-.field input,.field textarea{font:inherit;font-weight:400;font-size:18px;color:#1D2A27;background:#FFFFFF;border:2px solid #FFFFFF;border-radius:6px;padding:12px 14px;min-height:48px;width:100%}
+.field input,.field textarea{font:inherit;font-weight:400;font-size:18px;color:var(--ink);background:#FFFFFF;border:2px solid #FFFFFF;border-radius:6px;padding:12px 14px;min-height:48px;width:100%}
 .field textarea{resize:vertical}
-.solid-btn{align-self:flex-start;font:inherit;font-size:18px;font-weight:700;color:#1D2A27;background:#FFFFFF;border:0;border-radius:6px;padding:14px 32px;min-height:52px;cursor:pointer}
-.solid-btn:hover{background:#E4E8E5}
+.solid-btn{align-self:flex-start;font:inherit;font-size:18px;font-weight:700;color:var(--navy);background:var(--cream);border:0;border-radius:6px;padding:14px 32px;min-height:52px;cursor:pointer}
+.solid-btn:hover{background:#FFFFFF}
+
+footer{padding-top:40px;padding-bottom:56px;display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;font-size:16px;color:var(--slate)}
+footer strong{color:var(--ink)}
 </style>
 </head>
 <body>
-<div style="min-height: 100vh; background: #F6F7F4; color: #1D2A27;">
 
-  <header style="max-width: 1200px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center;">
-    <a href="#top" style="text-decoration: none; color: #1D2A27; font-weight: 800; font-stretch: 80%; font-size: 26px; letter-spacing: -0.01em; display: inline-flex; align-items: center; gap: 14px;"><img src="logo-240.png" width="64" height="64" alt="" style="display: block; width: 64px; height: 64px;">Oahu Web Co.</a>
-  </header>
-
-  <main id="top">
-
-    <section style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 120px;">
-      <h1 style="margin: 0; max-width: 12em; font-size: clamp(40px, 6.5vw, 88px); line-height: 0.95; font-weight: 800; font-stretch: 68%; letter-spacing: -0.02em;">We take the online side off your hands and turn it into revenue.</h1>
-      <div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 24px 40px; align-items: center;">
-        <p style="margin: 0; max-width: 26em; font-size: 21px; line-height: 1.5; color: #33413D;">We find what's keeping customers from reaching you and fix it, so more of them end up at your door.</p>
-        <a href="#contact" style="text-decoration: none; background: #1D3DAE; color: #FFFFFF; font-size: 18px; font-weight: 700; padding: 16px 26px; border-radius: 6px; min-height: 44px; display: inline-flex; align-items: center;">Get in touch</a>
+<div class="hero">
+  <svg class="hero-island" viewBox="-160 -120 320 250" aria-hidden="true" focusable="false"><path d="M121.7,72.4 L126.7,80.3 L137.0,87.2 L146.9,92.5 L150.0,95.6 L144.4,102.0 L132.6,112.8 L128.1,117.9 L123.0,119.5 L121.3,116.4 L121.7,111.6 L117.6,108.2 L104.9,111.4 L94.6,112.6 L86.0,117.0 L79.8,122.0 L72.3,122.3 L68.9,120.5 L66.5,116.0 L62.8,110.5 L47.2,103.8 L39.4,99.9 L34.3,92.3 L32.3,87.5 L32.4,82.7 L28.9,84.4 L22.7,90.5 L27.5,96.0 L7.6,97.5 L8.0,95.1 L10.7,93.4 L7.0,90.3 L-0.5,90.5 L-0.8,85.4 L-2.1,81.3 L-1.0,77.9 L-2.4,74.4 L2.8,72.1 L7.6,69.8 L12.7,66.8 L14.8,62.3 L9.1,57.8 L4.3,55.7 L1.0,53.6 L-1.2,55.6 L-2.9,62.1 L-7.0,60.0 L-10.7,55.5 L-13.4,52.4 L-13.1,59.3 L-10.2,67.2 L-12.6,68.9 L-23.1,59.8 L-27.1,56.4 L-23.8,64.6 L-16.0,72.9 L-10.3,77.8 L-5.9,81.6 L-8.3,89.4 L-16.9,93.1 L-28.2,95.0 L-45.7,98.9 L-54.6,99.9 L-62.3,102.1 L-64.5,101.2 L-66.6,99.3 L-72.3,96.3 L-76.5,79.1 L-81.5,65.4 L-87.9,57.5 L-92.3,50.6 L-101.1,46.1 L-103.4,32.4 L-106.4,25.1 L-114.9,17.9 L-120.0,14.4 L-125.6,5.5 L-125.9,-5.1 L-126.4,-19.8 L-129.6,-24.4 L-150.0,-41.6 L-146.9,-43.3 L-129.8,-46.5 L-109.6,-47.7 L-96.2,-46.9 L-88.4,-47.1 L-82.4,-48.7 L-75.0,-47.0 L-73.4,-53.2 L-71.2,-56.2 L-62.6,-61.2 L-52.6,-69.0 L-48.8,-72.4 L-49.5,-75.3 L-46.1,-81.0 L-41.6,-90.6 L-34.3,-96.8 L-24.4,-106.0 L-9.3,-110.3 L-3.1,-109.9 L0.3,-107.8 L3.0,-104.7 L6.1,-100.4 L13.8,-94.0 L14.1,-88.5 L18.2,-86.4 L18.5,-81.9 L22.6,-77.4 L20.4,-68.2 L26.5,-59.6 L32.9,-53.4 L35.9,-44.4 L41.0,-41.7 L42.3,-38.6 L43.6,-32.7 L47.2,-33.7 L52.0,-31.9 L55.6,-27.7 L60.1,-20.6 L60.2,-12.7 L60.1,-8.9 L56.4,-9.0 L53.9,-5.9 L54.8,2.6 L55.8,8.1 L57.4,16.7 L61.9,18.1 L67.7,20.6 L72.1,26.5 L75.8,33.0 L83.0,35.5 L83.9,39.3 L88.7,41.1 L91.9,37.3 L96.4,30.9 L89.2,26.0 L90.0,20.2 L95.2,17.9 L106.8,19.4 L112.7,17.8 L114.0,21.5 L107.0,28.6 L105.7,37.9 L106.5,45.1 L114.4,50.0 L120.5,56.2 L122.2,60.7 L120.0,66.5 L121.7,72.4Z"/></svg>
+  <div class="wrap">
+    <header>
+      <a class="brand narrow" href="#top"><img src="logo-240.png" width="64" height="64" alt="">Oahu Web Co.</a>
+    </header>
+    <section class="hero-body" id="top">
+      <h1 class="narrow">We take the online side off your hands and turn it into revenue.</h1>
+      <div class="hero-row">
+        <p>We find what's keeping customers from reaching you and fix it, so more of them end up at your door.</p>
+        <a class="btn btn-cream" href="#contact">Get in touch</a>
       </div>
     </section>
+  </div>
+</div>
 
-    <section style="border-top: 2px solid #1D2A27;">
-      <div style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 104px; display: flex; flex-wrap: wrap; gap: 32px 72px;">
-        <div style="flex: 1 1 280px; min-width: 0;">
-          <h2 style="margin: 0; font-size: 22px; font-weight: 700;">What we do</h2>
-          <p style="margin: 12px 0 0; max-width: 18em; font-size: 18px; line-height: 1.5; color: #4A5753;">We scale Oʻahu contractors and trade businesses: more of the right customers finding you, more calls, more jobs.</p>
-        </div>
-        <ul style="flex: 2 1 560px; min-width: 0; margin: 0; padding: 0; list-style: none; font-size: clamp(26px, 3.4vw, 42px); line-height: 1.1; font-weight: 700; font-stretch: 75%; letter-spacing: -0.01em;">
-          <li style="padding: 0 0 18px; border-bottom: 1px solid #C8CEC9;">Websites</li>
-          <li style="padding: 18px 0; border-bottom: 1px solid #C8CEC9;">Google listings</li>
-          <li style="padding: 18px 0; border-bottom: 1px solid #C8CEC9;">Customer reviews</li>
-          <li style="padding: 18px 0; border-bottom: 1px solid #C8CEC9;">Ads and online marketing</li>
-          <li style="padding: 18px 0 0;">Call and quote follow-up</li>
-        </ul>
+<main>
+
+  <section class="what wrap" aria-labelledby="what-heading">
+    <h2 id="what-heading">What we do</h2>
+    <p class="what-statement narrow">We scale Oʻahu contractors and trade businesses: more of the right customers finding you, more calls, more jobs.</p>
+    <ul class="how">
+      <li>
+        <h3>Get in front of more people</h3>
+        <p>Make sure the customers already searching for what you do can find you.</p>
+      </li>
+      <li>
+        <h3>Turn attention into work</h3>
+        <p>Make it easy to reach you, and make sure nobody who does slips through.</p>
+      </li>
+      <li>
+        <h3>Build a name that brings work back</h3>
+        <p>A reputation people can see, so past customers and their referrals return.</p>
+      </li>
+      <li>
+        <h3>Keep growing</h3>
+        <p>Add reach as the business is ready for more, without you running the online side yourself.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-copy">
+        <h2 class="narrow">Tell us about your business</h2>
+        <p>Aloha. Send your business name and what you need help with. We'll write back.</p>
+        <p class="direct">Or email directly:</p>
+        <p class="email narrow">max@oahuwebco.com</p>
       </div>
-    </section>
-
-    <section id="contact" style="background: #1D2A27; color: #F6F7F4;">
-      <div style="max-width: 1200px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start;">
-        <div style="flex: 1 1 340px; min-width: 0;">
-          <h2 style="margin: 0; font-size: clamp(30px, 3.8vw, 46px); line-height: 1.05; font-weight: 800; font-stretch: 72%; color: #FFFFFF;">Tell us about your business</h2>
-          <p style="margin: 20px 0 0; max-width: 24em; font-size: 20px; line-height: 1.55; color: #D6DCD8;">Aloha. Send your business name and what you need help with. We'll write back.</p>
-          <p style="margin: 32px 0 0; font-size: 16px; color: #D6DCD8;">Or email directly:</p>
-          <p style="margin: 8px 0 0; color: #FFFFFF; font-size: clamp(20px, 2.2vw, 26px); font-weight: 700; font-stretch: 80%; overflow-wrap: anywhere;">max@oahuwebco.com</p>
-        </div>
         <form name="contact" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="company-website" style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
           <input type="hidden" name="form-name" value="contact">
           <p style="display: none;"><label>Leave this empty <input name="company-website" tabindex="-1" autocomplete="off"></label></p>
@@ -90,16 +138,15 @@ a:focus-visible{outline:3px solid #1D3DAE;outline-offset:3px}
           </label>
           <button type="submit" class="solid-btn">Send</button>
         </form>
-      </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+</main>
 
-  <footer style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 56px; display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; font-size: 16px; color: #4A5753;">
-    <span><strong style="color: #1D2A27;">Oahu Web Co.</strong> The online side, handled.</span>
-    <span>Kāneʻohe, Oʻahu</span>
-  </footer>
+<footer class="wrap">
+  <span><strong>Oahu Web Co.</strong> The online side, handled.</span>
+  <span>Kāneʻohe, Oʻahu</span>
+</footer>
 
-</div>
 </body>
 </html>
