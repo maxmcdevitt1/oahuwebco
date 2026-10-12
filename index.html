@@ -83,6 +83,18 @@ footer strong{color:var(--ink)}
 .about{padding-top:clamp(64px,8vw,104px);padding-bottom:clamp(64px,8vw,104px)}
 .about-lead{margin:0;max-width:20em;font-size:clamp(28px,3.6vw,44px);line-height:1.08;font-weight:800;font-stretch:72%;letter-spacing:-0.01em;color:var(--navy)}
 .about-body{margin:20px 0 0;max-width:34em;font-size:20px;line-height:1.55;color:var(--slate)}
+
+/* Pricing */
+.pricing{padding-top:clamp(64px,8vw,104px);padding-bottom:0}
+.pricing h2{margin:0 0 28px;font-size:20px;font-weight:700;color:var(--slate)}
+.price-list{margin:0;padding:0;list-style:none;border-bottom:2px solid var(--navy)}
+.price-list li{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 48px;padding:24px 0;border-top:2px solid var(--navy)}
+.price-list li>div{flex:1 1 420px;min-width:0}
+.price-list h3{margin:0;font-size:22px;font-weight:700;color:var(--ink)}
+.price-list li>div p{margin:6px 0 0;max-width:34em;font-size:18px;line-height:1.5;color:var(--slate)}
+.price{margin:0;font-size:clamp(28px,3.2vw,40px);font-weight:800;font-stretch:72%;color:var(--navy);white-space:nowrap}
+.price span{font-size:0.5em;font-weight:700;color:var(--slate);margin-left:4px}
+.price-note{margin:20px 0 0;font-size:17px;color:var(--slate)}
 </style>
 </head>
 <body>
@@ -147,6 +159,34 @@ footer strong{color:var(--ink)}
         </li>
       </ol>
     </div>
+  </section>
+
+
+  <section class="pricing wrap" aria-labelledby="pricing-heading">
+    <h2 id="pricing-heading">Pricing</h2>
+    <ul class="price-list">
+      <li>
+        <div><h3>Free review</h3><p>A look at how customers find and reach you, and what I’d work on first.</p></div>
+        <p class="price narrow">$0</p>
+      </li>
+      <li>
+        <div><h3>Starter fix-up</h3><p>One-time. Correct your Google listing, set up an easy way to ask for reviews, and make sure customers can reach you.</p></div>
+        <p class="price narrow">$350–$500</p>
+      </li>
+      <li>
+        <div><h3>Monthly upkeep</h3><p>Keep your listing current, answer reviews and handle small updates.</p></div>
+        <p class="price narrow">$150–$250<span>/month</span></p>
+      </li>
+      <li>
+        <div><h3>Lead follow-up</h3><p>Make sure missed calls and quote requests get a response.</p></div>
+        <p class="price narrow">$400–$600<span>/month</span></p>
+      </li>
+      <li>
+        <div><h3>Websites</h3><p>New sites and repairs, priced after the free review.</p></div>
+        <p class="price narrow">Quoted</p>
+      </li>
+    </ul>
+    <p class="price-note">You get a fixed price before any work starts. Monthly work is month to month, with no contract.</p>
   </section>
 
   <section class="about wrap" aria-labelledby="about-heading">
