@@ -12,23 +12,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#F6F7F4;color:#1D2A27;font-family:'Archivo',system-ui,sans-serif}
-[style*="font-stretch"]{font-family:'Archivo','Avenir Next Condensed','Roboto Condensed','Arial Narrow',sans-serif}
-a:focus-visible{outline:3px solid #1D3DAE;outline-offset:3px}
+:root{--navy:#102850;--island:#173563;--cream:#F9F6ED;--mist:#EEF2F5;--ink:#14213A;--slate:#4B5A6E}
+body{margin:0;background:var(--navy);color:var(--cream);font-family:'Archivo','Avenir Next','Segoe UI',sans-serif}
+.narrow{font-family:'Archivo','Avenir Next Condensed','Roboto Condensed','Arial Narrow',sans-serif}
+.page{position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column}
+.hero-island{position:absolute;right:-2%;top:54%;transform:translateY(-50%);width:min(720px,58vw);height:auto;fill:var(--island);pointer-events:none}
+@media (max-width:700px){.hero-island{right:-30%;top:auto;bottom:-6%;transform:none;width:120vw}}
+.wrap{position:relative;width:100%;max-width:1200px;margin:0 auto;padding-left:24px;padding-right:24px}
+header{padding-top:28px;padding-bottom:28px}
+.brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--cream);font-weight:800;font-stretch:80%;font-size:26px;letter-spacing:-0.01em}
+.brand img{display:block;width:64px;height:64px;border-radius:50%;box-shadow:0 0 0 2px var(--cream)}
+main{flex:1;padding-top:48px;padding-bottom:96px}
+h1{margin:0;max-width:12em;font-size:clamp(40px,6vw,80px);line-height:0.98;font-weight:800;font-stretch:68%;letter-spacing:-0.02em;color:#FFFFFF}
+main p{margin:28px 0 0;max-width:28em;font-size:21px;line-height:1.5;color:#D9E0EA}
+.btn{margin-top:36px;display:inline-flex;align-items:center;min-height:52px;padding:14px 28px;border-radius:6px;font-size:18px;font-weight:700;text-decoration:none;background:var(--cream);color:var(--navy)}
+.btn:hover{background:#FFFFFF}
+a:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+footer{padding-top:40px;padding-bottom:56px;font-size:16px;color:#C3CCD8}
+footer strong{color:#FFFFFF}
 </style>
 </head>
 <body>
-<div style="min-height: 100vh; display: flex; flex-direction: column;">
-  <header style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 28px 24px;">
-    <a href="/" style="text-decoration: none; color: #1D2A27; font-weight: 800; font-stretch: 80%; font-size: 26px; letter-spacing: -0.01em; display: inline-flex; align-items: center; gap: 14px;"><img src="logo-240.png" width="64" height="64" alt="" style="display: block; width: 64px; height: 64px;">Oahu Web Co.</a>
+<div class="page">
+  <svg class="hero-island" viewBox="-160 -120 320 250" aria-hidden="true" focusable="false"><path d="M121.7,72.4 L126.7,80.3 L137.0,87.2 L146.9,92.5 L150.0,95.6 L144.4,102.0 L132.6,112.8 L128.1,117.9 L123.0,119.5 L121.3,116.4 L121.7,111.6 L117.6,108.2 L104.9,111.4 L94.6,112.6 L86.0,117.0 L79.8,122.0 L72.3,122.3 L68.9,120.5 L66.5,116.0 L62.8,110.5 L47.2,103.8 L39.4,99.9 L34.3,92.3 L32.3,87.5 L32.4,82.7 L28.9,84.4 L22.7,90.5 L27.5,96.0 L7.6,97.5 L8.0,95.1 L10.7,93.4 L7.0,90.3 L-0.5,90.5 L-0.8,85.4 L-2.1,81.3 L-1.0,77.9 L-2.4,74.4 L2.8,72.1 L7.6,69.8 L12.7,66.8 L14.8,62.3 L9.1,57.8 L4.3,55.7 L1.0,53.6 L-1.2,55.6 L-2.9,62.1 L-7.0,60.0 L-10.7,55.5 L-13.4,52.4 L-13.1,59.3 L-10.2,67.2 L-12.6,68.9 L-23.1,59.8 L-27.1,56.4 L-23.8,64.6 L-16.0,72.9 L-10.3,77.8 L-5.9,81.6 L-8.3,89.4 L-16.9,93.1 L-28.2,95.0 L-45.7,98.9 L-54.6,99.9 L-62.3,102.1 L-64.5,101.2 L-66.6,99.3 L-72.3,96.3 L-76.5,79.1 L-81.5,65.4 L-87.9,57.5 L-92.3,50.6 L-101.1,46.1 L-103.4,32.4 L-106.4,25.1 L-114.9,17.9 L-120.0,14.4 L-125.6,5.5 L-125.9,-5.1 L-126.4,-19.8 L-129.6,-24.4 L-150.0,-41.6 L-146.9,-43.3 L-129.8,-46.5 L-109.6,-47.7 L-96.2,-46.9 L-88.4,-47.1 L-82.4,-48.7 L-75.0,-47.0 L-73.4,-53.2 L-71.2,-56.2 L-62.6,-61.2 L-52.6,-69.0 L-48.8,-72.4 L-49.5,-75.3 L-46.1,-81.0 L-41.6,-90.6 L-34.3,-96.8 L-24.4,-106.0 L-9.3,-110.3 L-3.1,-109.9 L0.3,-107.8 L3.0,-104.7 L6.1,-100.4 L13.8,-94.0 L14.1,-88.5 L18.2,-86.4 L18.5,-81.9 L22.6,-77.4 L20.4,-68.2 L26.5,-59.6 L32.9,-53.4 L35.9,-44.4 L41.0,-41.7 L42.3,-38.6 L43.6,-32.7 L47.2,-33.7 L52.0,-31.9 L55.6,-27.7 L60.1,-20.6 L60.2,-12.7 L60.1,-8.9 L56.4,-9.0 L53.9,-5.9 L54.8,2.6 L55.8,8.1 L57.4,16.7 L61.9,18.1 L67.7,20.6 L72.1,26.5 L75.8,33.0 L83.0,35.5 L83.9,39.3 L88.7,41.1 L91.9,37.3 L96.4,30.9 L89.2,26.0 L90.0,20.2 L95.2,17.9 L106.8,19.4 L112.7,17.8 L114.0,21.5 L107.0,28.6 L105.7,37.9 L106.5,45.1 L114.4,50.0 L120.5,56.2 L122.2,60.7 L120.0,66.5 L121.7,72.4Z"/></svg>
+  <header class="wrap">
+    <a class="brand narrow" href="index.html"><img src="logo-240.png" width="64" height="64" alt="">Oahu Web Co.</a>
   </header>
-  <main style="flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 48px 24px 96px;">
-    <h1 style="margin: 0; font-size: clamp(38px, 5.5vw, 72px); line-height: 1; font-weight: 800; font-stretch: 68%; letter-spacing: -0.02em;">Got it. Mahalo.</h1>
-    <p style="margin: 28px 0 0; max-width: 28em; font-size: 21px; line-height: 1.5; color: #33413D;">Your message came through. We will get back to you as soon as possible.</p>
-    <a href="/" style="margin-top: 36px; text-decoration: none; background: #1D3DAE; color: #FFFFFF; font-size: 18px; font-weight: 700; padding: 16px 26px; border-radius: 6px; min-height: 44px; display: inline-flex; align-items: center;">Back to the home page</a>
+  <main class="wrap">
+    <h1 class="narrow">Got it. Mahalo.</h1>
+    <p>Your message came through. We will get back to you as soon as possible.</p>
+    <a class="btn" href="index.html">Back to the home page</a>
   </main>
-  <footer style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 24px 56px; font-size: 16px; color: #4A5753;">
-    <strong style="color: #1D2A27;">Oahu Web Co.</strong> The online side, handled. · Kāneʻohe, Oʻahu
+  <footer class="wrap">
+    <strong>Oahu Web Co.</strong> The online side, handled. Kāneʻohe, Oʻahu.
   </footer>
 </div>
 </body>
