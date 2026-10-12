@@ -68,6 +68,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 footer{padding-top:40px;padding-bottom:56px;display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;font-size:16px;color:var(--slate)}
 footer strong{color:var(--ink)}
+
+/* How it works */
+.steps-band{background:#FFFFFF;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.steps{padding-top:clamp(64px,8vw,104px);padding-bottom:clamp(64px,8vw,104px)}
+.steps h2,.about h2{margin:0 0 28px;font-size:20px;font-weight:700;color:var(--slate)}
+.step-list{margin:0;padding:0;list-style:none;counter-reset:step;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:40px 56px}
+.step-list li{counter-increment:step}
+.step-list li::before{content:counter(step);display:block;font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:68%;font-weight:800;font-size:64px;line-height:1;color:var(--navy);margin-bottom:12px}
+.step-list h3{margin:0;font-size:22px;font-weight:700;color:var(--ink)}
+.step-list p{margin:8px 0 0;max-width:26em;font-size:18px;line-height:1.55;color:var(--slate)}
+
+/* About */
+.about{padding-top:clamp(64px,8vw,104px);padding-bottom:clamp(64px,8vw,104px)}
+.about-lead{margin:0;max-width:20em;font-size:clamp(28px,3.6vw,44px);line-height:1.08;font-weight:800;font-stretch:72%;letter-spacing:-0.01em;color:var(--navy)}
+.about-body{margin:20px 0 0;max-width:34em;font-size:20px;line-height:1.55;color:var(--slate)}
 </style>
 </head>
 <body>
@@ -82,7 +97,7 @@ footer strong{color:var(--ink)}
       <h1 class="narrow">We take the online side off your hands and turn it into revenue.</h1>
       <div class="hero-row">
         <p>We find what's keeping customers from reaching you and fix it, so more of them end up at your door.</p>
-        <a class="btn btn-cream" href="#contact">Get in touch</a>
+        <a class="btn btn-cream" href="#contact">Get a free review</a>
       </div>
     </section>
   </div>
@@ -96,28 +111,55 @@ footer strong{color:var(--ink)}
     <ul class="how">
       <li>
         <h3>Get in front of more people</h3>
-        <p>Make sure the customers already searching for what you do can find you.</p>
+        <p>Websites, Google listings and local search, so people looking for what you do can find you.</p>
       </li>
       <li>
         <h3>Turn attention into work</h3>
-        <p>Make it easy to reach you, and make sure nobody who does slips through.</p>
+        <p>Clear ways to call or message you, and follow-up so new leads don’t go cold.</p>
       </li>
       <li>
         <h3>Build a name that brings work back</h3>
-        <p>A reputation people can see, so past customers and their referrals return.</p>
+        <p>A simple way to ask every customer for an honest review, so new customers can see who they’re hiring.</p>
       </li>
       <li>
         <h3>Keep growing</h3>
-        <p>Add reach as the business is ready for more, without you running the online side yourself.</p>
+        <p>Upkeep and online marketing as you’re ready for more, so you don’t have to run it yourself.</p>
       </li>
     </ul>
+  </section>
+
+
+  <section class="steps-band" aria-labelledby="steps-heading">
+    <div class="wrap steps">
+      <h2 id="steps-heading">How it works</h2>
+      <ol class="step-list">
+        <li>
+          <h3>Free review</h3>
+          <p>I look at your Google listing, your website and how customers reach you, and tell you what’s worth fixing.</p>
+        </li>
+        <li>
+          <h3>Fix it</h3>
+          <p>We agree on the work and a fixed price up front. I make the changes and show you what changed.</p>
+        </li>
+        <li>
+          <h3>Keep it running</h3>
+          <p>If you want, I keep things current month to month. No contract. Stop any time.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="about wrap" aria-labelledby="about-heading">
+    <h2 id="about-heading">Who you’re working with</h2>
+    <p class="about-lead narrow">I’m Max McDevitt, an Army veteran and data science student living in Kāneʻohe.</p>
+    <p class="about-body">Oahu Web Co. is one person. I look at how customers find your business, fix what’s in the way, and you deal with me directly from start to finish.</p>
   </section>
 
   <section id="contact">
     <div class="wrap">
       <div class="contact-copy">
-        <h2 class="narrow">Tell us about your business</h2>
-        <p>Aloha. Send your business name and what you need help with. We'll write back.</p>
+        <h2 class="narrow">Get a free look at your Google listing and website</h2>
+        <p>Aloha. Send your business name and what you need help with. I’ll look at your Google listing and website and write back with what I’d fix first. No cost, no obligation.</p>
         <p class="direct">Or email directly:</p>
         <p class="email narrow">max@oahuwebco.com</p>
       </div>
@@ -136,7 +178,7 @@ footer strong{color:var(--ink)}
           <label class="field">What do you need help with?
             <textarea name="message" rows="5"></textarea>
           </label>
-          <button type="submit" class="solid-btn">Send</button>
+          <button type="submit" class="solid-btn">Request my free review</button>
         </form>
     </div>
   </section>
