@@ -94,7 +94,9 @@ footer strong{color:var(--ink)}
 .price-list li>div p{margin:6px 0 0;max-width:34em;font-size:18px;line-height:1.5;color:var(--slate)}
 .price{margin:0;font-size:clamp(28px,3.2vw,40px);font-weight:800;font-stretch:72%;color:var(--navy);white-space:nowrap}
 .price span{font-size:0.5em;font-weight:700;color:var(--slate);margin-left:4px}
-.price-note{margin:20px 0 0;font-size:17px;color:var(--slate)}
+.includes{margin:10px 0 0;padding-left:1.2em;font-size:18px;line-height:1.55;color:var(--slate)}
+.includes li{margin:2px 0;padding:0;border:0;display:list-item}
+.price-note{margin:20px 0 0;max-width:48em;font-size:17px;line-height:1.5;color:var(--slate)}
 </style>
 </head>
 <body>
@@ -166,27 +168,31 @@ footer strong{color:var(--ink)}
     <h2 id="pricing-heading">Pricing</h2>
     <ul class="price-list">
       <li>
-        <div><h3>Free review</h3><p>A look at how customers find and reach you, and what I’d work on first.</p></div>
+        <div><h3>Free review</h3><p>One Google listing and one website, with a short written summary of what I’d work on first.</p></div>
         <p class="price narrow">$0</p>
       </li>
       <li>
-        <div><h3>Starter fix-up</h3><p>One-time. Correct your Google listing, set up an easy way to ask for reviews, and make sure customers can reach you.</p></div>
+        <div><h3>Starter fix-up</h3><p>One-time. Includes:</p>
+          <ul class="includes">
+            <li>Correct your Google listing: hours, phone, category, services and photos</li>
+            <li>A review link and QR code you can hand to every customer</li>
+            <li>Simple wording for asking customers to leave a review</li>
+            <li>A check that every way customers reach you actually works</li>
+            <li>Screenshots of everything that changed</li>
+          </ul>
+        </div>
         <p class="price narrow">$350–$500</p>
       </li>
       <li>
-        <div><h3>Monthly upkeep</h3><p>Keep your listing current, answer reviews and handle small updates.</p></div>
+        <div><h3>Monthly upkeep</h3><p>Keeps the fix-up from going stale. Each month: a listing check and corrections, draft replies to new reviews, small website updates, and a short summary of what changed. Hours are capped and agreed up front.</p></div>
         <p class="price narrow">$150–$250<span>/month</span></p>
       </li>
       <li>
-        <div><h3>Lead follow-up</h3><p>Make sure missed calls and quote requests get a response.</p></div>
-        <p class="price narrow">$400–$600<span>/month</span></p>
-      </li>
-      <li>
-        <div><h3>Websites</h3><p>New sites and repairs, priced after the free review.</p></div>
+        <div><h3>Websites</h3><p>New sites and repairs. Priced after the free review, and you know the price before any work starts.</p></div>
         <p class="price narrow">Quoted</p>
       </li>
     </ul>
-    <p class="price-note">You get a fixed price before any work starts. Monthly work is month to month, with no contract.</p>
+    <p class="price-note">Fixed price before any work starts. Monthly work is month to month, with no contract. You own every account and file, and keep everything if you stop.</p>
   </section>
 
   <section class="about wrap" aria-labelledby="about-heading">
