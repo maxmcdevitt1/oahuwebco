@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Oahu Web Co. · The online side, handled.</title>
 <meta name="description" content="Oahu Web Co. helps Oʻahu small businesses grow online: websites, local search, reviews, marketing and follow-up. Based in Kāneʻohe.">
@@ -152,9 +154,12 @@ footer strong{color:var(--ink)}
         <p class="email-line">Or email directly:</p>
         <p class="email narrow">max@oahuwebco.com</p>
       </div>
-      <form name="contact" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="company-website" class="contact-form">
-          <input type="hidden" name="form-name" value="contact">
-          <p style="display: none;"><label>Leave this empty <input name="company-website" tabindex="-1" autocomplete="off"></label></p>
+      <form method="POST" action="https://formsubmit.co/max@oahuwebco.com" class="contact-form">
+          <input type="hidden" name="_subject" value="New request from oahuwebco.com">
+          <input type="hidden" name="_next" value="https://oahuwebco.com/thanks.html">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <p style="display: none;"><label>Leave this empty <input name="_honey" tabindex="-1" autocomplete="off"></label></p>
           <label class="field">Your name
             <input type="text" name="name" autocomplete="name" required>
           </label>
