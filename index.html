@@ -24,6 +24,7 @@
       "@type": "ProfessionalService",
       "@id": "https://oahuwebco.com/#business",
       "name": "Oahu Web Co.",
+      "alternateName": ["Oahu Webco", "OahuWebCo", "oahuwebco"],
       "slogan": "The online side, handled.",
       "description": "Oahu Web Co. takes the online side off your hands. Based in Kāneʻohe.",
       "url": "https://oahuwebco.com/",
@@ -37,13 +38,18 @@
         "addressCountry": "US"
       },
       "areaServed": { "@type": "Place", "name": "Oʻahu, Hawaii" },
-      "priceRange": "$$"
+      "priceRange": "$$",
+      "sameAs": [
+        "https://www.instagram.com/oahuwebco/",
+        "https://www.facebook.com/profile.php?id=61594976416835"
+      ]
     },
     {
       "@type": "WebSite",
       "@id": "https://oahuwebco.com/#website",
       "url": "https://oahuwebco.com/",
       "name": "Oahu Web Co.",
+      "alternateName": "Oahu Webco",
       "publisher": { "@id": "https://oahuwebco.com/#business" }
     }
   ]
@@ -129,6 +135,8 @@ h3,.item{margin:0;font-size:var(--h3);font-weight:700;line-height:1.25;color:var
 
 footer{padding-top:40px;padding-bottom:56px;display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;font-size:16px;color:var(--slate)}
 footer strong{color:var(--ink)}
+footer .social a{color:var(--slate);text-decoration:underline;text-underline-offset:3px}
+footer .social a:hover{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -218,6 +226,7 @@ footer strong{color:var(--ink)}
 <footer class="wrap">
   <span><strong>Oahu Web Co.</strong> The online side, handled.</span>
   <span>Kāneʻohe, Oʻahu</span>
+  <span class="social"><a href="https://www.instagram.com/oahuwebco/" rel="me">Instagram @oahuwebco</a> · <a href="https://www.facebook.com/profile.php?id=61594976416835" rel="me">Facebook</a></span>
 </footer>
 
 </body>
