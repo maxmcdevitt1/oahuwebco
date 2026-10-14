@@ -5,13 +5,13 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reviews, Service Reminders and Referrals on Oʻahu · Oahu Web Co.</title>
-<meta name="description" content="Reviews, service reminders and referrals for Oʻahu businesses, so past customers come back and send new ones. Based in Kāneʻohe.">
+<title>Bring Customers Back and Earn More Reviews and Referrals on Oʻahu · Oahu Web Co.</title>
+<meta name="description" content="Past customers forget, reviews go stale and referrals are left to chance. We help Oʻahu businesses win repeat work and word of mouth. Based in Kāneʻohe.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Oahu Web Co.">
-<meta property="og:title" content="Reviews, Service Reminders and Referrals on Oʻahu · Oahu Web Co.">
-<meta property="og:description" content="Reviews, service reminders and referrals for Oʻahu businesses, so past customers come back and send new ones. Based in Kāneʻohe.">
+<meta property="og:title" content="Bring Customers Back and Earn More Reviews and Referrals on Oʻahu · Oahu Web Co.">
+<meta property="og:description" content="Past customers forget, reviews go stale and referrals are left to chance. We help Oʻahu businesses win repeat work and word of mouth. Based in Kāneʻohe.">
 <meta property="og:url" content="https://oahuwebco.com/build-repeat-business/">
 <meta property="og:image" content="https://oahuwebco.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -23,8 +23,9 @@
     {
       "@type": "Service",
       "@id": "https://oahuwebco.com/build-repeat-business/#service",
-      "name": "Review management, service reminders, referrals and customer retention",
-      "description": "Reviews, service reminders and referrals for Oʻahu businesses, so past customers come back and send new ones. Based in Kāneʻohe.",
+      "name": "Customer retention, reviews and referrals for local businesses",
+      "serviceType": "Customer retention, reviews and referrals for local businesses",
+      "description": "Past customers forget, reviews go stale and referrals are left to chance. We help Oʻahu businesses win repeat work and word of mouth. Based in Kāneʻohe.",
       "url": "https://oahuwebco.com/build-repeat-business/",
       "provider": {
         "@id": "https://oahuwebco.com/#business"
@@ -35,7 +36,18 @@
       }
     },
     {
+      "@type": "WebPage",
+      "@id": "https://oahuwebco.com/build-repeat-business/#webpage",
+      "url": "https://oahuwebco.com/build-repeat-business/",
+      "name": "Bring Customers Back and Earn More Reviews and Referrals on Oʻahu · Oahu Web Co.",
+      "description": "Past customers forget, reviews go stale and referrals are left to chance. We help Oʻahu businesses win repeat work and word of mouth. Based in Kāneʻohe.",
+      "isPartOf": {"@id": "https://oahuwebco.com/#website"},
+      "about": {"@id": "https://oahuwebco.com/build-repeat-business/#service"},
+      "breadcrumb": {"@id": "https://oahuwebco.com/build-repeat-business/#breadcrumb"}
+    },
+    {
       "@type": "BreadcrumbList",
+      "@id": "https://oahuwebco.com/build-repeat-business/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -48,6 +60,44 @@
           "position": 2,
           "name": "Build repeat business",
           "item": "https://oahuwebco.com/build-repeat-business/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://oahuwebco.com/build-repeat-business/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "We already get referrals. Why do we need this?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That’s a good sign. Plenty of happy customers still never think to recommend you, and we help more of them do it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Isn’t asking for reviews pushy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not when it’s done well. Customers hear from you at the right time, in a way that feels like good service."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will you write reviews for us?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Every review comes from a real customer, in their own words."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My customer list is a mess.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That’s common. You don’t need a perfect list to start, and we work with what you have."
+          }
         }
       ]
     }
@@ -70,8 +120,7 @@
     </header>
     <section class="hero-body">
       <p class="crumb"><a href="/#what-heading">What we do</a></p>
-      <h1 class="narrow">Build repeat business</h1>
-      <p class="hero-sub">You worked hard to earn their business. Don’t let the next job go to somebody else.</p>
+      <h1 class="narrow">Bring customers back and earn more referrals</h1>
     </section>
   </div>
 </div>
@@ -79,16 +128,26 @@
 <main>
 
   <section class="section wrap">
-    <p class="lead narrow">Getting a customer to choose you takes time and money. Once the job is finished, that relationship often goes quiet. When they need help again, your competitors get another chance to win them over.</p>
+    <p class="lead narrow">Winning a new customer takes time and money. Once the job is done, the relationship often goes quiet, and the next time they need help they search and find someone else. We help your past customers remember you, come back and send others your way.</p>
   </section>
 
-  <section class="section wrap" aria-labelledby="work-heading">
-    <h2 class="label" id="work-heading">Don’t let good work go forgotten</h2>
+  <section class="section wrap" aria-labelledby="problem-heading">
+    <h2 class="label" id="problem-heading">What quiet customers cost you</h2>
     <ul class="services">
-      <li><h3>Reviews</h3><p class="muted">You can do excellent work every day, but new customers can’t see it for themselves. When competitors have more recent reviews, they can look like the safer choice.</p></li>
-      <li><h3>Service reminders</h3><p class="muted">When another service comes due, customers have plenty of other things on their minds. If they forget who helped them last time, they start searching again.</p></li>
-      <li><h3>Referrals</h3><p class="muted">Satisfied customers are a strong source of new business. But doing a great job doesn’t automatically make your name come up when someone asks for a recommendation.</p></li>
-      <li><h3>Past customers</h3><p class="muted">Every past customer is a relationship you’ve already invested in. Letting those relationships go quiet means constantly working to win new ones.</p></li>
+      <li><h3>Too few recent reviews</h3><p class="muted">New customers can’t see your good work. A competitor with more recent reviews can look like the safer call.</p></li>
+      <li><h3>Forgotten return visits</h3><p class="muted">When the next service comes due, customers who can’t remember your name start searching again.</p></li>
+      <li><h3>Referrals left to chance</h3><p class="muted">Happy customers mean to recommend you, but your name doesn’t always come up when a friend asks.</p></li>
+      <li><h3>Past customers going cold</h3><p class="muted">Every past customer is a relationship you already paid to earn. Letting it fade means always starting over.</p></li>
+    </ul>
+  </section>
+
+  <section class="section wrap" aria-labelledby="benefit-heading">
+    <h2 class="label" id="benefit-heading">What changes</h2>
+    <ul class="services">
+      <li><h3>A reputation that shows your work</h3><p class="muted">More of your happy customers leave reviews, so new ones see a business they can trust.</p></li>
+      <li><h3>Customers who come back</h3><p class="muted">Past customers hear from you when it’s time for the next job, before they think to search.</p></li>
+      <li><h3>More word of mouth</h3><p class="muted">Satisfied customers find it easy to send friends and family your way.</p></li>
+      <li><h3>Steadier work</h3><p class="muted">More of your jobs come from people who already know you, so you depend less on finding new customers.</p></li>
     </ul>
   </section>
 
@@ -97,15 +156,19 @@
     <div class="prices">
       <details>
         <summary><span class="item">We already get referrals. Why do we need this?</span></summary>
-        <div class="price-body"><p class="muted">That’s a good start. The question is how many more opportunities you’re missing from customers who were happy with your work but haven’t thought about your business since.</p></div>
+        <div class="price-body"><p class="muted">That’s a good sign. Plenty of happy customers still never think to recommend you, and we help more of them do it.</p></div>
       </details>
       <details>
-        <summary><span class="item">Isn’t asking for reviews or more business pushy?</span></summary>
-        <div class="price-body"><p class="muted">It shouldn’t be. Staying in touch should feel natural and useful, not like another sales pitch.</p></div>
+        <summary><span class="item">Isn’t asking for reviews pushy?</span></summary>
+        <div class="price-body"><p class="muted">Not when it’s done well. Customers hear from you at the right time, in a way that feels like good service.</p></div>
+      </details>
+      <details>
+        <summary><span class="item">Will you write reviews for us?</span></summary>
+        <div class="price-body"><p class="muted">No. Every review comes from a real customer, in their own words.</p></div>
       </details>
       <details>
         <summary><span class="item">My customer list is a mess.</span></summary>
-        <div class="price-body"><p class="muted">That’s common. You don’t need a perfect system to start.</p></div>
+        <div class="price-body"><p class="muted">That’s common. You don’t need a perfect list to start, and we work with what you have.</p></div>
       </details>
     </div>
   </section>
@@ -121,8 +184,7 @@
 
   <section class="dark cta">
     <div class="section wrap">
-      <h2 class="lead small narrow">Your last job shouldn’t be the end of the relationship.</h2>
-      <p class="sub">Your past customers already know your work. Let’s make sure they remember you when they need it again.</p>
+      <h2 class="lead small narrow">Your last job shouldn’t be your last with that customer</h2>
       <a class="btn" href="/#contact">Request my free review</a>
     </div>
   </section>
