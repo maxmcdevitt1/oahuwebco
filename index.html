@@ -149,6 +149,13 @@ footer{padding-top:40px;padding-bottom:56px;display:flex;flex-wrap:wrap;gap:12px
 footer strong{color:var(--ink)}
 footer .social a{color:var(--slate);text-decoration:underline;text-underline-offset:3px}
 footer .social a:hover{color:var(--ink)}
+/* Keep the footer readable and links intact on phones */
+@media (max-width:700px){
+  footer{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:12px;padding-top:30px;padding-bottom:40px;font-size:15px;line-height:1.5}
+  footer .social{font-size:0;line-height:1.5}
+  footer .social a{display:inline-block;margin-right:18px;font-size:15px;line-height:1.5;white-space:nowrap}
+  footer .social a:last-child{margin-right:0}
+}
 </style>
 </head>
 <body>

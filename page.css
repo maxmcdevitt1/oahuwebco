@@ -69,3 +69,15 @@ footer{padding-top:40px;padding-bottom:56px;display:flex;flex-wrap:wrap;gap:12px
 footer strong{color:var(--ink)}
 footer .social a{color:var(--slate);text-decoration:underline;text-underline-offset:3px}
 footer .social a:hover{color:var(--ink)}
+
+/* Compact mobile call-to-action and readable footer links */
+@media (max-width:700px){
+  .cta{margin-top:44px}
+  .cta .section{padding-top:48px;padding-bottom:52px}
+  .cta .sub{margin-top:16px;font-size:18px;line-height:1.45}
+  .cta .btn{margin-top:24px;min-height:48px;padding:12px 22px;font-size:16px}
+  footer{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:12px;padding-top:30px;padding-bottom:40px;font-size:15px;line-height:1.5}
+  footer .social{font-size:0;line-height:1.5}
+  footer .social a{display:inline-block;margin-right:18px;font-size:15px;line-height:1.5;white-space:nowrap}
+  footer .social a:last-child{margin-right:0}
+}
