@@ -82,6 +82,13 @@
 .rg-val{font:700 14px 'Archivo','Avenir Next','Segoe UI',sans-serif;fill:#14213A}
 .rg-path{fill:none;stroke:var(--navy);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
 .rg-dot{fill:var(--navy);stroke:#FFFFFF;stroke-width:2}
+@supports (animation-timeline:view()){
+  .rg-bar{transform-origin:left;animation:grow linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
+  .rg-path{stroke-dasharray:600;animation:draw linear both;animation-timeline:view();animation-range:entry 10% cover 45%}
+  @keyframes grow{from{transform:scaleX(0)}to{transform:none}}
+  @keyframes draw{from{stroke-dashoffset:600}to{stroke-dashoffset:0}}
+}
+@media (prefers-reduced-motion:reduce){.rg-bar,.rg-path{animation:none!important;transform:none;stroke-dashoffset:0}}
 @media (max-width:520px){.rg-bars li{grid-template-columns:110px 1fr 24px;font-size:14px}}
 </style>
 </head>
@@ -103,23 +110,29 @@
 
 <main>
 
-  <section class="section wrap">
+  <section class="section wrap hook">
     <p class="lead narrow">Stop guessing which marketing brings in your jobs.</p>
+    <div class="phone" aria-hidden="true">
+      <div class="phone-bar"></div>
+      <div class="ping"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#4B5A6E"/><path d="M10 12h16v10h-9l-4 3v-3h-3z" fill="#F9F6ED"/></svg><div><b>New inquiry</b><span>From your Google listing</span></div></div>
+      <div class="ping"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#4B5A6E"/><circle cx="15" cy="15" r="3.4" fill="#F9F6ED"/><circle cx="22.5" cy="16" r="2.8" fill="#F9F6ED"/><path d="M8.8 25c.6-3.6 3.2-5.6 6.2-5.6s5.6 2 6.2 5.6zM20.5 25c.3-2.2 1-3.6 2.2-4.4 2.4.1 4.2 1.7 4.6 4.4z" fill="#F9F6ED"/></svg><div><b>New inquiry</b><span>Referred by a neighbor</span></div></div>
+      <div class="ping"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#102850"/><path d="M11 18.5l4.5 4.5L25 13.5" fill="none" stroke="#F9F6ED" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Job booked</b><span>From your website</span></div></div>
+    </div>
   </section>
 
   <section class="section wrap" aria-labelledby="work-heading">
-    <h2 class="label" id="work-heading">The work</h2>
-    <ul class="services">
-      <li><h3>Tracking</h3><p class="muted">We track where calls, forms and messages come from: your Google listing, website, ads and referrals. That means tracking numbers where they make sense, and asking every new customer how they heard about you.</p></li>
-      <li><h3>Monthly report</h3><p class="muted">One page each month in plain words: what we did, inquiries and booked jobs by source, what each cost where the data allows, and what comes next. Jobs and revenue are the numbers that count; clicks and views are background.</p></li>
-      <li><h3>Automation</h3><p class="muted">When a task repeats every week, such as a review request, a reminder or a follow-up, we automate it so it happens without anyone having to remember.</p></li>
-      <li><h3>Your accounts, your data</h3><p class="muted">Search Console, Google Business Profile insights and website analytics are set up in your own accounts, so the numbers stay yours.</p></li>
-    </ul>
+    <h2 class="label big-label narrow" id="work-heading">The work</h2>
+    <ol class="leak-list">
+      <li class="reveal"><h3>Tracking</h3><p class="muted">We track where calls, forms and messages come from: your Google listing, website, ads and referrals. That means tracking numbers where they make sense, and asking every new customer how they heard about you.</p></li>
+      <li class="reveal"><h3>Monthly report</h3><p class="muted">One page each month in plain words: what we did, inquiries and booked jobs by source, what each cost where the data allows, and what comes next. Jobs and revenue are the numbers that count; clicks and views are background.</p></li>
+      <li class="reveal"><h3>Automation</h3><p class="muted">When a task repeats every week, such as a review request, a reminder or a follow-up, we automate it so it happens without anyone having to remember.</p></li>
+      <li class="reveal"><h3>Your accounts, your data</h3><p class="muted">Search Console, Google Business Profile insights and website analytics are set up in your own accounts, so the numbers stay yours.</p></li>
+    </ol>
   </section>
 
   <section class="section wrap" aria-labelledby="report-heading">
-    <h2 class="label" id="report-heading">What a monthly report looks like</h2>
-    <article class="report" aria-label="Example monthly report with made-up numbers">
+    <h2 class="label big-label narrow" id="report-heading">What a monthly report looks like</h2>
+    <article class="report reveal" aria-label="Example monthly report with made-up numbers">
       <header class="rg-head">
         <div><p class="rg-kicker">Monthly report · September</p><h3>Example Roofing Co.</h3></div>
       </header>
@@ -177,7 +190,6 @@
   <section class="dark cta">
     <div class="section wrap">
       <h2 class="lead small narrow">Get a free review</h2>
-      <p class="sub">Tell us about your business and we’ll show you where the room to grow is.</p>
       <a class="btn" href="/#contact">Request my free review</a>
     </div>
   </section>
