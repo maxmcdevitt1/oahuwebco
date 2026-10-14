@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bring Customers Back and Earn More Reviews and Referrals on Oʻahu · Oahu Web Co.</title>
@@ -105,9 +105,8 @@
 }
 </script>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:'Archivo';font-style:normal;font-weight:400 800;font-stretch:62% 125%;font-display:swap;src:url(/fonts/archivo-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Archivo';font-style:normal;font-weight:400 800;font-stretch:62% 125%;font-display:swap;src:url(/fonts/archivo-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
 <link rel="stylesheet" href="/page.css">
 </head>
 <body>
@@ -116,7 +115,7 @@
   <svg class="hero-island" viewBox="-160 -120 320 250" aria-hidden="true" focusable="false"><path d="M121.7,72.4 L126.7,80.3 L137.0,87.2 L146.9,92.5 L150.0,95.6 L144.4,102.0 L132.6,112.8 L128.1,117.9 L123.0,119.5 L121.3,116.4 L121.7,111.6 L117.6,108.2 L104.9,111.4 L94.6,112.6 L86.0,117.0 L79.8,122.0 L72.3,122.3 L68.9,120.5 L66.5,116.0 L62.8,110.5 L47.2,103.8 L39.4,99.9 L34.3,92.3 L32.3,87.5 L32.4,82.7 L28.9,84.4 L22.7,90.5 L27.5,96.0 L7.6,97.5 L8.0,95.1 L10.7,93.4 L7.0,90.3 L-0.5,90.5 L-0.8,85.4 L-2.1,81.3 L-1.0,77.9 L-2.4,74.4 L2.8,72.1 L7.6,69.8 L12.7,66.8 L14.8,62.3 L9.1,57.8 L4.3,55.7 L1.0,53.6 L-1.2,55.6 L-2.9,62.1 L-7.0,60.0 L-10.7,55.5 L-13.4,52.4 L-13.1,59.3 L-10.2,67.2 L-12.6,68.9 L-23.1,59.8 L-27.1,56.4 L-23.8,64.6 L-16.0,72.9 L-10.3,77.8 L-5.9,81.6 L-8.3,89.4 L-16.9,93.1 L-28.2,95.0 L-45.7,98.9 L-54.6,99.9 L-62.3,102.1 L-64.5,101.2 L-66.6,99.3 L-72.3,96.3 L-76.5,79.1 L-81.5,65.4 L-87.9,57.5 L-92.3,50.6 L-101.1,46.1 L-103.4,32.4 L-106.4,25.1 L-114.9,17.9 L-120.0,14.4 L-125.6,5.5 L-125.9,-5.1 L-126.4,-19.8 L-129.6,-24.4 L-150.0,-41.6 L-146.9,-43.3 L-129.8,-46.5 L-109.6,-47.7 L-96.2,-46.9 L-88.4,-47.1 L-82.4,-48.7 L-75.0,-47.0 L-73.4,-53.2 L-71.2,-56.2 L-62.6,-61.2 L-52.6,-69.0 L-48.8,-72.4 L-49.5,-75.3 L-46.1,-81.0 L-41.6,-90.6 L-34.3,-96.8 L-24.4,-106.0 L-9.3,-110.3 L-3.1,-109.9 L0.3,-107.8 L3.0,-104.7 L6.1,-100.4 L13.8,-94.0 L14.1,-88.5 L18.2,-86.4 L18.5,-81.9 L22.6,-77.4 L20.4,-68.2 L26.5,-59.6 L32.9,-53.4 L35.9,-44.4 L41.0,-41.7 L42.3,-38.6 L43.6,-32.7 L47.2,-33.7 L52.0,-31.9 L55.6,-27.7 L60.1,-20.6 L60.2,-12.7 L60.1,-8.9 L56.4,-9.0 L53.9,-5.9 L54.8,2.6 L55.8,8.1 L57.4,16.7 L61.9,18.1 L67.7,20.6 L72.1,26.5 L75.8,33.0 L83.0,35.5 L83.9,39.3 L88.7,41.1 L91.9,37.3 L96.4,30.9 L89.2,26.0 L90.0,20.2 L95.2,17.9 L106.8,19.4 L112.7,17.8 L114.0,21.5 L107.0,28.6 L105.7,37.9 L106.5,45.1 L114.4,50.0 L120.5,56.2 L122.2,60.7 L120.0,66.5 L121.7,72.4Z"/></svg>
   <div class="wrap">
     <header>
-      <a class="brand narrow" href="/"><img src="/logo-240.png" width="64" height="64" alt="">Oahu Web Co.</a>
+      <a class="brand narrow" href="/"><img src="/logo-128.png" width="64" height="64" alt="">Oahu Web Co.</a>
     </header>
     <section class="hero-body">
       <p class="crumb"><a href="/#what-heading">What we do</a></p>
