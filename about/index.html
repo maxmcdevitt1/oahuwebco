@@ -52,10 +52,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/page.css">
 <style>
-.story p{margin:0 0 24px;max-width:34em;font-size:20px;line-height:1.6;color:var(--ink)}
+.story-band{position:relative;overflow:hidden;padding:var(--space) 0;background-color:var(--navy-deep);border-top:6px solid var(--cream);color:#D9E0EA}
+.story-grid{position:relative;display:grid;grid-template-columns:260px minmax(0,1fr);gap:72px;align-items:start}
+.portrait{margin:0}
+.frame{max-width:260px;padding:8px;background:var(--cream);border-radius:8px;box-shadow:0 0 0 2px var(--cream),0 18px 40px rgba(5,14,30,.45)}
+.frame img{display:block;width:100%;height:auto;border-radius:3px}
+.story p{margin:0 0 24px;max-width:34em;font-size:20px;line-height:1.65;color:#D9E0EA}
+.story p:first-child{font-size:23px;line-height:1.55;color:#FFFFFF;font-weight:600}
+.story em{color:#FFFFFF}
 .story p:last-child{margin-bottom:0}
-.photo{margin-top:0;margin-bottom:0}
-.photo img{display:block;width:100%;max-width:220px;height:auto;border-radius:6px}
+.story-band + .section{padding-top:var(--space)}
+@media (max-width:760px){
+  .story-grid{grid-template-columns:1fr;gap:48px}
+  .frame{max-width:200px}
+  .story p:first-child{font-size:21px}
+  }
 </style>
 </head>
 <body>
@@ -75,14 +86,17 @@
 
 <main>
 
-  <figure class="section wrap photo">
-    <img src="/about/max-photo.jpg" width="849" height="1853" alt="Max in a navy suit and red tie, walking and smiling" loading="eager">
-  </figure>
-
-  <section class="section wrap story">
-    <p>My name is Max, and I am the creator of Oahu Web Co. I am a veteran of the United States Army, and I created this company because I’ve seen the small businesses on the island, and I’ve seen the same problem again and again: companies have a great business and do great work, but the money comes in slow.</p>
-    <p>The truth is, to be able to succeed as a small business in today’s world, you need to be <em>convenient</em>. People don’t want to go through two Google pages and have to rely on a business that has no information and two reviews. And you don’t want to be the company stuck on the third page while all the companies on the first are getting jobs.</p>
-    <p>That’s why I created Oahu Web Co.: to serve the small businesses of Oʻahu and assist them with their online presence, from searchability, to professional web pages, or to something else. I am here to assist you and your business in today’s digital world, and together we will convert your company into a top performer!</p>
+  <section class="story-band" aria-label="About Max">
+    <div class="wrap story-grid">
+      <figure class="portrait">
+        <div class="frame"><img src="/about/max-photo.jpg" width="849" height="1853" alt="Max in a navy suit and red tie, walking and smiling" loading="eager"></div>
+      </figure>
+      <div class="story">
+      <p>My name is Max, and I am the creator of Oahu Web Co. I am a veteran of the United States Army, and I created this company because I’ve seen the small businesses on the island, and I’ve seen the same problem again and again: companies have a great business and do great work, but the money comes in slow.</p>
+      <p>The truth is, to be able to succeed as a small business in today’s world, you need to be <em>convenient</em>. People don’t want to go through two Google pages and have to rely on a business that has no information and two reviews. And you don’t want to be the company stuck on the third page while all the companies on the first are getting jobs.</p>
+      <p>That’s why I created Oahu Web Co.: to serve the small businesses of Oʻahu and assist them with their online presence, from searchability, to professional web pages, or to something else. I am here to assist you and your business in today’s digital world, and together we will convert your company into a top performer!</p>
+      </div>
+    </div>
   </section>
 
   <section class="section wrap" aria-labelledby="more-heading">
