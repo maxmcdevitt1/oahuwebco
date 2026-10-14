@@ -59,6 +59,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/page.css">
+<style>
+.report{max-width:960px;background:#FFFFFF;border:2px solid var(--rule);border-radius:8px;padding:clamp(20px,3vw,36px)}
+.rg-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:12px 24px;padding-bottom:20px;border-bottom:2px solid var(--mist)}
+.rg-kicker{margin:0 0 4px;font-size:15px;font-weight:700;color:var(--slate)}
+.rg-head h3{font-size:24px}
+.rg-tiles{margin:0;padding:24px 0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;border-bottom:2px solid var(--mist)}
+.rg-tiles li{display:flex;flex-direction:column;gap:2px}
+.rg-big{font-size:clamp(34px,4vw,44px);font-weight:800;line-height:1.05;color:var(--navy);letter-spacing:-0.01em}
+.rg-lbl{font-size:16px;font-weight:700;color:var(--ink)}
+.rg-chg{font-size:15px;color:var(--slate)}
+.rg-charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:32px 48px;padding:24px 0 0}
+.rg-charts figure{margin:0}
+.rg-charts figcaption{margin:0 0 14px;font-size:16px;font-weight:700;color:var(--ink)}
+.rg-bars{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.rg-bars li{display:grid;grid-template-columns:132px 1fr 28px;align-items:center;gap:10px;font-size:15px;color:var(--slate)}
+.rg-track{display:block;height:18px}
+.rg-bar{display:block;height:100%;background:var(--navy);border-radius:0 4px 4px 0;min-width:4px}
+.rg-num{font-weight:700;color:var(--ink);text-align:right}
+.rg-line{display:block;width:100%;height:auto}
+.rg-grid{stroke:#D9E0EA;stroke-width:1}
+.rg-tick{font:13px 'Archivo','Avenir Next','Segoe UI',sans-serif;fill:#4B5A6E}
+.rg-val{font:700 14px 'Archivo','Avenir Next','Segoe UI',sans-serif;fill:#14213A}
+.rg-path{fill:none;stroke:var(--navy);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.rg-dot{fill:var(--navy);stroke:#FFFFFF;stroke-width:2}
+@media (max-width:520px){.rg-bars li{grid-template-columns:110px 1fr 24px;font-size:14px}}
+</style>
 </head>
 <body>
 
@@ -90,6 +116,31 @@
       <li><h3>Automation</h3><p class="muted">When a task repeats every week, such as a review request, a reminder or a follow-up, we automate it so it happens without anyone having to remember.</p></li>
       <li><h3>Your accounts, your data</h3><p class="muted">Search Console, Google Business Profile insights and website analytics are set up in your own accounts, so the numbers stay yours.</p></li>
     </ul>
+  </section>
+
+  <section class="section wrap" aria-labelledby="report-heading">
+    <h2 class="label" id="report-heading">What a monthly report looks like</h2>
+    <article class="report" aria-label="Example monthly report with made-up numbers">
+      <header class="rg-head">
+        <div><p class="rg-kicker">Monthly report · September</p><h3>Example Roofing Co.</h3></div>
+      </header>
+      <ul class="rg-tiles">
+        <li><span class="rg-big">34</span><span class="rg-lbl">Inquiries</span><span class="rg-chg">Up 4 from August</span></li>
+        <li><span class="rg-big">17</span><span class="rg-lbl">Booked jobs</span><span class="rg-chg">Up 3 from August</span></li>
+        <li><span class="rg-big">12 min</span><span class="rg-lbl">Typical reply time</span><span class="rg-chg">Was about 3 hours</span></li>
+      </ul>
+      <div class="rg-charts">
+        <figure>
+          <figcaption>Booked jobs by source</figcaption>
+          <ul class="rg-bars"><li><span class="rg-name">Google listing</span><span class="rg-track"><span class="rg-bar" style="width:100%"></span></span><span class="rg-num">7</span></li><li><span class="rg-name">Referrals</span><span class="rg-track"><span class="rg-bar" style="width:57%"></span></span><span class="rg-num">4</span></li><li><span class="rg-name">Website</span><span class="rg-track"><span class="rg-bar" style="width:43%"></span></span><span class="rg-num">3</span></li><li><span class="rg-name">Repeat customers</span><span class="rg-track"><span class="rg-bar" style="width:29%"></span></span><span class="rg-num">2</span></li><li><span class="rg-name">Google ads</span><span class="rg-track"><span class="rg-bar" style="width:14%"></span></span><span class="rg-num">1</span></li></ul>
+        </figure>
+        <figure>
+          <figcaption>Inquiries per month</figcaption>
+          <svg class="rg-line" viewBox="0 0 520 220" role="img" aria-label="Example: inquiries per month rose from 19 in April to 34 in September"><line x1="36" x2="496" y1="186.0" y2="186.0" class="rg-grid"/><text x="28" y="190.0" class="rg-tick" text-anchor="end">0</text><line x1="36" x2="496" y1="144.5" y2="144.5" class="rg-grid"/><text x="28" y="148.5" class="rg-tick" text-anchor="end">10</text><line x1="36" x2="496" y1="103.0" y2="103.0" class="rg-grid"/><text x="28" y="107.0" class="rg-tick" text-anchor="end">20</text><line x1="36" x2="496" y1="61.5" y2="61.5" class="rg-grid"/><text x="28" y="65.5" class="rg-tick" text-anchor="end">30</text><line x1="36" x2="496" y1="20.0" y2="20.0" class="rg-grid"/><text x="28" y="24.0" class="rg-tick" text-anchor="end">40</text><text x="36.0" y="210" class="rg-tick" text-anchor="middle">Apr</text><text x="128.0" y="210" class="rg-tick" text-anchor="middle">May</text><text x="220.0" y="210" class="rg-tick" text-anchor="middle">Jun</text><text x="312.0" y="210" class="rg-tick" text-anchor="middle">Jul</text><text x="404.0" y="210" class="rg-tick" text-anchor="middle">Aug</text><text x="496.0" y="210" class="rg-tick" text-anchor="middle">Sep</text><path d="M36.0 107.2 L128.0 94.7 L220.0 98.8 L312.0 73.9 L404.0 61.5 L496.0 44.9" class="rg-path"/><circle cx="36.0" cy="107.2" r="4.5" class="rg-dot"><title>Apr: 19 inquiries</title></circle><circle cx="128.0" cy="94.7" r="4.5" class="rg-dot"><title>May: 22 inquiries</title></circle><circle cx="220.0" cy="98.8" r="4.5" class="rg-dot"><title>Jun: 21 inquiries</title></circle><circle cx="312.0" cy="73.9" r="4.5" class="rg-dot"><title>Jul: 27 inquiries</title></circle><circle cx="404.0" cy="61.5" r="4.5" class="rg-dot"><title>Aug: 30 inquiries</title></circle><circle cx="496.0" cy="44.9" r="4.5" class="rg-dot"><title>Sep: 34 inquiries</title></circle><text x="486.0" y="32.9" class="rg-val" text-anchor="end">34</text><text x="46.0" y="95.2" class="rg-val">19</text></svg>
+        </figure>
+      </div>
+    </article>
+    <p class="note">Your report uses your own numbers, from your own accounts.</p>
   </section>
 
   <section class="section wrap" aria-labelledby="start-heading">
