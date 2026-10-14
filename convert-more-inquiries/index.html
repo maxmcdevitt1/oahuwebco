@@ -116,13 +116,13 @@
 @keyframes fade{from{opacity:1;transform:none}to{opacity:.5;transform:none}}
 @keyframes glow{0%{box-shadow:0 0 0 0 rgba(249,246,237,.55)}70%,100%{box-shadow:0 0 0 14px rgba(249,246,237,0)}}
 
-.leaks{margin-top:var(--space)}
-.leaks .label{margin:0 0 32px;font-size:clamp(34px,4.4vw,60px);line-height:1;font-weight:800;font-stretch:68%;letter-spacing:-0.02em;color:#FFFFFF}
+.leaks{margin-top:0}
+.leaks .label{margin:0 0 32px;font-size:clamp(34px,4.4vw,60px);line-height:1;font-weight:800;font-stretch:68%;letter-spacing:-0.02em;color:var(--navy)}
 .leak-list{margin:0;padding:0;list-style:none;counter-reset:leak;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 56px}
-.leak-list li{counter-increment:leak;display:grid;grid-template-columns:64px 1fr;gap:4px 18px;padding:26px 0 30px;border-top:2px solid rgba(249,246,237,.3)}
-.leak-list li::before{content:counter(leak,decimal-leading-zero);grid-row:span 2;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:800;font-size:64px;line-height:.9;color:var(--cream);opacity:.35}
-.leak-list h3{color:#FFFFFF}
-.leak-list .muted{margin:6px 0 0;color:#D9E0EA}
+.leak-list li{counter-increment:leak;display:grid;grid-template-columns:64px 1fr;gap:4px 18px;padding:26px 0 30px;border-top:2px solid var(--rule)}
+.leak-list li::before{content:counter(leak,decimal-leading-zero);grid-row:span 2;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:800;font-size:64px;line-height:.9;color:var(--navy);opacity:.3}
+.leak-list h3{color:var(--ink)}
+.leak-list .muted{margin:6px 0 0}
 
 .changes{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:start}
 .changes .label{position:sticky;top:32px;margin:0;font-size:clamp(34px,4.4vw,60px);line-height:1;font-weight:800;font-stretch:68%;letter-spacing:-0.02em;color:var(--navy)}
@@ -176,7 +176,7 @@
     <p class="lead narrow">Every missed call is a job for someone else.</p>
   </section>
 
-  <section class="dark leaks" aria-labelledby="problem-heading">
+  <section class="leaks" aria-labelledby="problem-heading">
     <div class="section wrap">
       <h2 class="label narrow" id="problem-heading">Where jobs slip away</h2>
       <ol class="leak-list">
