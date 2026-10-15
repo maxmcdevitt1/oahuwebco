@@ -123,3 +123,4 @@ footer .social a:hover{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){
   .ping,.ping:nth-child(n),.reveal{animation:none!important;opacity:1;transform:none}
 }
+footer .tel{color:inherit;text-decoration:none}
