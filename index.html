@@ -50,10 +50,14 @@
           { "@type": "Offer", "itemOffered": { "@id": "https://oahuwebco.com/reach-more-customers/#service", "@type": "Service", "name": "Reach more customers", "url": "https://oahuwebco.com/reach-more-customers/" } },
           { "@type": "Offer", "itemOffered": { "@id": "https://oahuwebco.com/convert-more-inquiries/#service", "@type": "Service", "name": "Convert more inquiries", "url": "https://oahuwebco.com/convert-more-inquiries/" } },
           { "@type": "Offer", "itemOffered": { "@id": "https://oahuwebco.com/build-repeat-business/#service", "@type": "Service", "name": "Build repeat business", "url": "https://oahuwebco.com/build-repeat-business/" } },
-          { "@type": "Offer", "itemOffered": { "@id": "https://oahuwebco.com/measure-and-improve/#service", "@type": "Service", "name": "Measure and improve", "url": "https://oahuwebco.com/measure-and-improve/" } }
+          { "@type": "Offer", "itemOffered": { "@id": "https://oahuwebco.com/measure-and-improve/#service", "@type": "Service", "name": "Measure and improve", "url": "https://oahuwebco.com/measure-and-improve/" } },
+          { "@type": "Offer", "itemOffered": { "@id": "https://oahuwebco.com/local-seo/#service", "@type": "Service", "name": "Local SEO", "url": "https://oahuwebco.com/local-seo/" } },
+          { "@type": "Offer", "itemOffered": { "@id": "https://oahuwebco.com/websites/#service", "@type": "Service", "name": "Websites", "url": "https://oahuwebco.com/websites/" } },
+          { "@type": "Offer", "name": "30-day missed-call trial", "price": "0", "priceCurrency": "USD", "url": "https://oahuwebco.com/convert-more-inquiries/", "itemOffered": { "@id": "https://oahuwebco.com/convert-more-inquiries/#service" } }
         ]
       },
       "sameAs": [
+        "https://www.google.com/maps?cid=17207144462533879275",
         "https://www.instagram.com/oahuwebco/",
         "https://www.facebook.com/profile.php?id=61594976416835"
       ]
@@ -92,6 +96,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .sub{margin:20px 0 0;max-width:36em;font-size:20px;line-height:1.55;color:var(--slate)}
 h3,.item{margin:0;font-size:var(--h3);font-weight:700;line-height:1.25;color:var(--ink)}
 .muted{margin:8px 0 0;max-width:34em;font-size:var(--body);line-height:1.55;color:var(--slate)}
+.muted a{color:var(--navy);font-weight:700;text-underline-offset:3px}
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;min-height:52px;padding:14px 28px;border-radius:6px;font:inherit;font-size:18px;font-weight:700;text-decoration:none;cursor:pointer;border:0;background:var(--cream);color:var(--navy)}
@@ -144,6 +149,12 @@ h3,.item{margin:0;font-size:var(--h3);font-weight:700;line-height:1.25;color:var
 .field{display:flex;flex-direction:column;gap:8px;font-size:17px;font-weight:600;color:#FFFFFF}
 .field input,.field textarea{font:inherit;font-weight:400;font-size:18px;color:var(--ink);background:#FFFFFF;border:2px solid #FFFFFF;border-radius:6px;padding:12px 14px;min-height:48px;width:100%}
 .field textarea{resize:vertical}
+.offer{margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:10px}
+.offer legend{padding:0;margin-bottom:10px;font-size:17px;font-weight:600;color:#FFFFFF}
+.choice{display:flex;align-items:center;gap:12px;min-height:48px;padding:10px 14px;border:2px solid #D9E0EA;border-radius:6px;font-size:18px;color:#FFFFFF;cursor:pointer;scroll-margin-top:96px}
+.choice input{width:20px;height:20px;margin:0;accent-color:var(--cream);flex:none}
+.choice:has(input:checked){border-color:var(--cream);background:rgba(249,246,237,.08)}
+.dark .choice input:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
 .solid-btn{align-self:flex-start;font:inherit;font-size:18px;font-weight:700;color:var(--navy);background:var(--cream);border:0;border-radius:6px;padding:14px 32px;min-height:52px;cursor:pointer}
 .solid-btn:hover{background:#FFFFFF}
 .privacy-note{margin:0;color:#D9E0EA;font-size:14px;line-height:1.5}
@@ -173,7 +184,7 @@ footer .tel{color:inherit;text-decoration:none}
     </header>
     <section class="hero-body" id="top">
       <h1 class="narrow">We take the online side off your hands.</h1>
-      <a class="btn" href="#contact">Start free</a>
+      <a class="btn" href="#contact">Try it free for 30 days</a>
     </section>
   </div>
 </div>
@@ -184,7 +195,7 @@ footer .tel{color:inherit;text-decoration:none}
     <h2 class="label" id="what-heading">What we do</h2>
     <p class="lead narrow">We help local businesses improve their online performance: more of the right customers finding you, more calls, more jobs.</p>
     <ul class="services">
-      <li><h3><a href="/reach-more-customers/">Reach more customers</a></h3><p class="muted">Local search, Google Business Profiles, websites and ads that put you in front of the people looking for your work.</p></li>
+      <li><h3><a href="/reach-more-customers/">Reach more customers</a></h3><p class="muted"><a href="/local-seo/">Local search</a>, Google Business Profiles, <a href="/websites/">websites</a> and ads that put you in front of the people looking for your work.</p></li>
       <li><h3><a href="/convert-more-inquiries/">Convert more inquiries</a></h3><p class="muted">Call handling, fast replies and estimate follow-up that turn interest into booked jobs.</p></li>
       <li><h3><a href="/build-repeat-business/">Build repeat business</a></h3><p class="muted">Reviews, service reminders and referrals that bring customers back and send new ones your way.</p></li>
       <li><h3><a href="/measure-and-improve/">Measure and improve</a></h3><p class="muted">Analytics, tracking and automation that show what’s working and where to invest next.</p></li>
@@ -196,7 +207,7 @@ footer .tel{color:inherit;text-decoration:none}
     <div class="prices">
       <details>
         <summary><span class="item">30-day missed-call trial</span><span class="price narrow">$0</span></summary>
-        <div class="price-body"><p class="muted">We catch the calls you can’t pick up and show you how many turned into jobs. Free for 30 days, then month to month from $300 a month, estimated. It stops on its own if you don’t continue.</p></div>
+        <div class="price-body"><p class="muted">We catch the calls you can’t pick up and show you how many turned into jobs. Free for 30 days, then month to month from $300 a month, estimated. If your average job is $400, one caught call a month covers it. It stops on its own if you don’t continue.</p></div>
       </details>
       <details>
         <summary><span class="item">Free review</span><span class="price narrow">$0</span></summary>
@@ -212,7 +223,7 @@ footer .tel{color:inherit;text-decoration:none}
       </details>
       <details>
         <summary><span class="item">Websites</span><span class="price narrow">$500<small>est.</small></span></summary>
-        <div class="price-body"><p class="muted">Built to bring in work. Estimated price; your exact price is quoted after the review.</p></div>
+        <div class="price-body"><p class="muted"><a href="/websites/">Built to bring in work.</a> Estimated price; your exact price is quoted after the review.</p></div>
       </details>
     </div>
   </section>
@@ -233,6 +244,11 @@ footer .tel{color:inherit;text-decoration:none}
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
           <p style="display: none;"><label>Leave this empty <input name="_honey" tabindex="-1" autocomplete="off"></label></p>
+          <fieldset class="offer">
+            <legend>What would you like?</legend>
+            <label class="choice" id="free-trial"><input type="radio" name="offer" value="Free 30-day missed-call trial" checked>Free 30-day missed-call trial</label>
+            <label class="choice" id="free-review"><input type="radio" name="offer" value="Free review">Free review of how customers find you</label>
+          </fieldset>
           <label class="field">Your name
             <input type="text" name="name" autocomplete="name" required>
           </label>
@@ -241,6 +257,9 @@ footer .tel{color:inherit;text-decoration:none}
           </label>
           <label class="field">Email or phone
             <input type="text" name="contact" required>
+          </label>
+          <label class="field">The phone number customers call
+            <input type="tel" name="business_line" autocomplete="tel">
           </label>
           <label class="field">What do you need help with?
             <textarea name="message" rows="5"></textarea>
@@ -260,5 +279,6 @@ footer .tel{color:inherit;text-decoration:none}
   <span class="social"><a href="https://www.instagram.com/oahuwebco/" rel="me">Instagram @oahuwebco</a> · <a href="https://www.facebook.com/profile.php?id=61594976416835" rel="me">Facebook</a> · <a href="/privacy/">Privacy policy</a></span>
 </footer>
 
+<script src="/form.js" defer></script>
 </body>
 </html>
