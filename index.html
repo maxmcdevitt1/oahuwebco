@@ -184,7 +184,7 @@ footer .tel{color:inherit;text-decoration:none}
     </header>
     <section class="hero-body" id="top">
       <h1 class="narrow">We take the online side off your hands.</h1>
-      <a class="btn" href="#contact">Try it free for 30 days</a>
+      <a class="btn" href="#free-trial">Try it free for 30 days</a>
     </section>
   </div>
 </div>
@@ -245,9 +245,12 @@ footer .tel{color:inherit;text-decoration:none}
           <input type="hidden" name="_template" value="table">
           <p style="display: none;"><label>Leave this empty <input name="_honey" tabindex="-1" autocomplete="off"></label></p>
           <fieldset class="offer">
-            <legend>What would you like?</legend>
-            <label class="choice" id="free-trial"><input type="radio" name="offer" value="Free 30-day missed-call trial" checked>Free 30-day missed-call trial</label>
-            <label class="choice" id="free-review"><input type="radio" name="offer" value="Free review">Free review of how customers find you</label>
+            <legend>What do you need most?</legend>
+            <label class="choice" id="free-trial"><input type="radio" name="offer" value="Missed calls" required>Stop missing calls</label>
+            <label class="choice" id="free-review"><input type="radio" name="offer" value="Get found">Get found by more customers</label>
+            <label class="choice" id="website"><input type="radio" name="offer" value="Website">A website that brings in work</label>
+            <label class="choice" id="repeat-business"><input type="radio" name="offer" value="Reviews and repeat customers">More reviews, more repeat work</label>
+            <label class="choice" id="not-sure"><input type="radio" name="offer" value="Not sure">Not sure yet, let’s talk</label>
           </fieldset>
           <label class="field">Your name
             <input type="text" name="name" autocomplete="name" required>
@@ -261,7 +264,7 @@ footer .tel{color:inherit;text-decoration:none}
           <label class="field">The phone number customers call
             <input type="tel" name="business_line" autocomplete="tel">
           </label>
-          <label class="field">What do you need help with?
+          <label class="field">Anything else we should know?
             <textarea name="message" rows="5"></textarea>
           </label>
           <button type="submit" class="solid-btn">Get started free</button>
