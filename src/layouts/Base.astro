@@ -1,0 +1,76 @@
+---
+import "../styles/global.css";
+import "lenis/dist/lenis.css";
+import { site } from "../lib/site";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** schema.org nodes for this page; the business node is added by pages that need it */
+  schema?: Record<string, unknown>[];
+  noindex?: boolean;
+  /** extra form-action origins for the Content-Security-Policy (the contact form posts off-site) */
+  formAction?: string[];
+  /** body class, e.g. "notice" for the full-screen 404 and thanks pages */
+  bodyClass?: string;
+}
+const { title, description = site.description, schema, noindex = false, formAction = [], bodyClass } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+const ogImage = `${site.url}/og-image.jpg`;
+
+// Same policy the static site shipped, assembled per page. Sent only in production builds: the dev
+// server injects inline scripts for hot reload that the policy would block.
+const ga = "https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com";
+const csp = [
+  "default-src 'self'",
+  "script-src 'self' https://www.googletagmanager.com",
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self'",
+  `img-src 'self' data: ${ga}`,
+  `connect-src 'self' ${ga}`,
+  ["form-action 'self'", ...formAction].join(" "),
+  "base-uri 'self'",
+  "object-src 'none'",
+  "upgrade-insecure-requests",
+].join("; ");
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+{import.meta.env.PROD && <meta http-equiv="Content-Security-Policy" content={csp}>}
+<!-- Google tag (gtag.js) -->
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${site.gaId}`}></script>
+<script is:inline src="/ga.js"></script>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content={description}>
+{noindex && <meta name="robots" content="noindex">}
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content={site.name}>
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={ogImage}>
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href={canonical}>
+{schema && <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": schema })} />}
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<slot name="head" />
+</head>
+<body class={bodyClass}>
+<slot />
+<script>
+  // Smoothed wheel scrolling. Touch stays native; reduced-motion users get the browser's own scroll.
+  import Lenis from "lenis";
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: false, anchors: true });
+    const raf = (t: number) => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+</script>
+</body>
+</html>

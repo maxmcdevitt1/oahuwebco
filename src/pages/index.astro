@@ -1,0 +1,91 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+import ContactForm, { formSubmitOrigin } from "../components/ContactForm.astro";
+import { site, services, businessSchema } from "../lib/site";
+
+const title = `${site.name} · ${site.tagline}`;
+const offers = services.map((s) => ({
+  "@type": "Offer",
+  itemOffered: { "@id": `${site.url}/${s.slug}/#service`, "@type": "Service", name: s.name, url: `${site.url}/${s.slug}/` },
+}));
+const schema = [
+  {
+    ...businessSchema,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Services",
+      itemListElement: [
+        ...offers,
+        { "@type": "Offer", name: "30-day missed-call trial", price: "0", priceCurrency: "USD", url: `${site.url}/convert-more-inquiries/`, itemOffered: { "@id": `${site.url}/convert-more-inquiries/#service` } },
+      ],
+    },
+  },
+  { "@type": "WebSite", "@id": `${site.url}/#website`, url: `${site.url}/`, name: site.name, alternateName: "Oahu Webco", publisher: { "@id": businessSchema["@id"] } },
+];
+---
+<Base title={title} schema={schema} formAction={[formSubmitOrigin]}>
+
+<Hero home id="top">
+  <h1 class="narrow">We take the online side off your hands.</h1>
+  <a class="btn" href="#free-trial">Try it free for 30 days</a>
+</Hero>
+
+<main>
+
+  <section class="section wrap" aria-labelledby="what-heading">
+    <h2 class="label" id="what-heading">What we do</h2>
+    <p class="lead narrow">We help local businesses improve their online performance: more of the right customers finding you, more calls, more jobs.</p>
+    <ul class="services">
+      <li><h3><a href="/reach-more-customers/">Reach more customers</a></h3><p class="muted"><a href="/local-seo/">Local search</a>, Google Business Profiles, <a href="/websites/">websites</a> and ads that put you in front of the people looking for your work.</p></li>
+      <li><h3><a href="/convert-more-inquiries/">Convert more inquiries</a></h3><p class="muted">Call handling, fast replies and estimate follow-up that turn interest into booked jobs.</p></li>
+      <li><h3><a href="/build-repeat-business/">Build repeat business</a></h3><p class="muted">Reviews, service reminders and referrals that bring customers back and send new ones your way.</p></li>
+      <li><h3><a href="/measure-and-improve/">Measure and improve</a></h3><p class="muted">Analytics, tracking and automation that show what’s working and where to invest next.</p></li>
+    </ul>
+  </section>
+
+  <section class="section wrap" aria-labelledby="pricing-heading">
+    <h2 class="label" id="pricing-heading">Pricing</h2>
+    <div class="prices">
+      <details>
+        <summary><span class="item">30-day missed-call trial</span><span class="price narrow">$0</span></summary>
+        <div class="price-body"><p class="muted">We catch the calls you can’t pick up and show you how many turned into jobs. Free for 30 days, then month to month from $300 a month, estimated. If your average job is $400, one caught call a month covers it. It stops on its own if you don’t continue.</p></div>
+      </details>
+      <details>
+        <summary><span class="item">Free review</span><span class="price narrow">$0</span></summary>
+        <div class="price-body"><p class="muted">Where your business stands online, and where the room to grow is.</p></div>
+      </details>
+      <details>
+        <summary><span class="item">Foundation</span><span class="price narrow">$750–$1,500<small>est.</small></span></summary>
+        <div class="price-body"><p class="muted">One-time. Close the gaps holding you back and set up what growth is built on. Done in ten business days, and you pay when it’s done. Estimated range; your exact price is quoted after the review.</p></div>
+      </details>
+      <details>
+        <summary><span class="item">Ongoing growth</span><span class="price narrow">$300–$750<small>/mo est.</small></span></summary>
+        <div class="price-body"><p class="muted">Steady monthly work on what grows your business. Month to month; you keep everything if you stop. Estimated range; your exact price is quoted after the review.</p></div>
+      </details>
+      <details>
+        <summary><span class="item">Websites</span><span class="price narrow">$500<small>est.</small></span></summary>
+        <div class="price-body"><p class="muted"><a href="/websites/">Built to bring in work.</a> Estimated price; your exact price is quoted after the review.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <section id="contact" class="dark">
+    <div class="section wrap contact">
+      <div class="contact-copy">
+        <h2 class="lead small narrow">Start free</h2>
+        <p class="sub">Aloha. Tell us about your business and we’ll get back to you.</p>
+        <p class="email-line">Or call, text or email directly:</p>
+        <p class="email narrow"><a class="tel" href={site.phone.href}>{site.phone.display}</a></p>
+        <p class="email narrow">{site.email}</p>
+      </div>
+      <ContactForm />
+    </div>
+  </section>
+
+</main>
+
+<Footer />
+
+</Base>

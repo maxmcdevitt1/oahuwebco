@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oahuwebco.com/sitemap-index.xml

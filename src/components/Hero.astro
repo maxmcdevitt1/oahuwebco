@@ -1,0 +1,18 @@
+---
+// Navy hero with the island behind it. The home page passes `home`; inner pages get the shorter
+// variant with a breadcrumb back to the home page.
+import Island from "./Island.astro";
+import Brand from "./Brand.astro";
+interface Props { home?: boolean; id?: string }
+const { home = false, id } = Astro.props;
+---
+<div class:list={["hero", { inner: !home }]}>
+  <Island />
+  <div class="wrap">
+    <header><Brand href={home ? "#top" : "/"} /></header>
+    <section class="hero-body" id={id}>
+      {!home && <p class="crumb"><a href="/">Home</a></p>}
+      <slot />
+    </section>
+  </div>
+</div>

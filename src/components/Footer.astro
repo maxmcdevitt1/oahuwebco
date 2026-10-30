@@ -1,0 +1,9 @@
+---
+import { site } from "../lib/site";
+---
+<footer class="site wrap">
+  <span><strong>{site.name}</strong> {site.tagline}</span>
+  <span>{site.town}, {site.island} · <a class="tel" href={site.phone.href}>{site.phone.display}</a></span>
+  <span class="social"><a href="/about/">Who’s behind it</a> · <a href="/review/">Leave a review</a></span>
+  <span class="social"><a href={site.social.instagram} rel="me">Instagram @oahuwebco</a> · <a href={site.social.facebook} rel="me">Facebook</a> · <a href="/privacy/">Privacy policy</a></span>
+</footer>

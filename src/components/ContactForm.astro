@@ -1,0 +1,81 @@
+---
+// The home-page request form. Still posts to FormSubmit; the Worker + D1 + Resend handler replaces
+// the action when the forms database lands. The hash (#free-trial, #website, …) preselects a choice.
+import { site } from "../lib/site";
+export const formSubmitOrigin = "https://formsubmit.co";
+const action = `${formSubmitOrigin}/fb8cebd8c1539f62797a93bde36203e9`;
+const choices = [
+  { id: "free-trial", value: "Missed calls", label: "Stop missing calls", required: true },
+  { id: "free-review", value: "Get found", label: "Get found by more customers", required: false },
+  { id: "website", value: "Website", label: "A website that brings in work", required: false },
+  { id: "repeat-business", value: "Reviews and repeat customers", label: "More reviews, more repeat work", required: false },
+  { id: "not-sure", value: "Not sure", label: "Not sure yet, let’s talk", required: false },
+];
+---
+<form method="POST" action={action} class="contact-form">
+  <input type="hidden" name="_subject" value="New request from oahuwebco.com">
+  <input type="hidden" name="_next" value={`${site.url}/thanks/`}>
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <p style="display: none;"><label>Leave this empty <input name="_honey" tabindex="-1" autocomplete="off"></label></p>
+  <fieldset class="offer">
+    <legend>What do you need most?</legend>
+    {choices.map((c) => (
+      <label class="choice" id={c.id}><input type="radio" name="offer" value={c.value} required={c.required}>{c.label}</label>
+    ))}
+  </fieldset>
+  <label class="field">Your name
+    <input type="text" name="name" autocomplete="name" required>
+  </label>
+  <label class="field">Business name
+    <input type="text" name="business" autocomplete="organization" required>
+  </label>
+  <label class="field">Email or phone
+    <input type="text" name="contact" required>
+  </label>
+  <label class="field">The phone number customers call
+    <input type="tel" name="business_line" autocomplete="tel">
+  </label>
+  <label class="field">Anything else we should know?
+    <textarea name="message" rows="5"></textarea>
+  </label>
+  <button type="submit" class="solid-btn">Get started free</button>
+  <p class="privacy-note">We use the information you send to respond to your inquiry. <a href="/privacy/">Privacy policy</a>.</p>
+</form>
+
+<script>
+  // Port of the old form.js: the email subject follows the chosen need, and a hash in the URL
+  // (from a "Try it free" button, say) picks the matching choice.
+  const form = document.querySelector<HTMLFormElement>(".contact-form");
+  if (form) {
+    const subject = form.querySelector<HTMLInputElement>('input[name="_subject"]');
+    const subjects: Record<string, string> = {
+      "Missed calls": "Missed-call trial request from oahuwebco.com",
+      "Get found": "Free review request from oahuwebco.com",
+      "Website": "Website request from oahuwebco.com",
+      "Reviews and repeat customers": "Repeat business request from oahuwebco.com",
+      "Not sure": "New request from oahuwebco.com",
+    };
+    const byHash: Record<string, string> = {
+      "#free-trial": "Missed calls",
+      "#free-review": "Get found",
+      "#website": "Website",
+      "#repeat-business": "Reviews and repeat customers",
+    };
+    const sync = () => {
+      const picked = form.querySelector<HTMLInputElement>('input[name="offer"]:checked');
+      if (picked && subject && subjects[picked.value]) subject.value = subjects[picked.value];
+    };
+    const fromHash = () => {
+      const target = byHash[location.hash];
+      if (!target) return;
+      const input = form.querySelector<HTMLInputElement>(`input[name="offer"][value="${target}"]`);
+      if (input) input.checked = true;
+      sync();
+    };
+    form.addEventListener("change", sync);
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
+    sync();
+  }
+</script>

@@ -1,0 +1,20 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "oahuwebco",
+	"compatibility_date": "2026-10-19",
+	"compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
+	// Every page prerenders today, so the Worker is assets-only. When server routes land (the forms
+	// API, staff pages) add "main": "@astrojs/cloudflare/entrypoints/server" and deploy with the
+	// config the build writes to dist/server/wrangler.json.
+	"assets": {
+		"directory": "./dist/client",
+		"binding": "ASSETS",
+		"not_found_handling": "404-page"
+	},
+	"workers_dev": false,
+	"preview_urls": false,
+	"observability": {
+		"enabled": true
+	}
+	// D1 (form submissions), Access (staff pages), Turnstile and Resend bindings are added when those features land.
+}

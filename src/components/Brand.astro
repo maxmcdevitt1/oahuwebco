@@ -1,0 +1,6 @@
+---
+import { site } from "../lib/site";
+interface Props { href?: string }
+const { href = "/" } = Astro.props;
+---
+<a class="brand narrow" href={href}><img src="/logo-128.png" width="64" height="64" alt="">{site.name}</a>
