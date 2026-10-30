@@ -12,6 +12,8 @@ export default defineConfig({
   build: { format: 'directory' },
   vite: {
     plugins: [tailwindcss()],
+    // Let a cloudflared quick tunnel (random *.trycloudflare.com name) reach the dev server for phone checks
+    server: { allowedHosts: ['.trycloudflare.com'] },
   },
   // Pages prerender to static HTML; the Worker only serves assets until forms and staff pages land
   adapter: cloudflare({ imageService: 'compile' }),
