@@ -2,21 +2,26 @@
 // without network access: stylesheets, fonts and images inlined as data URIs, scripts and the CSP
 // removed, media queries resolved for a fixed width, and vw/vh units converted to pixels.
 //
-//   node tools/figma-export.mjs <outDir>
+//   node tools/figma-export.mjs <outDir>                      current site (dist/client + legacy/)
+//   node tools/figma-export.mjs <outDir> --design             redesign kit (design/redesign/pages.mjs)
+//   node tools/figma-export.mjs <outDir> --design --preview   redesign kit as plain HTML for a browser
 //
 // Astro pages are read from dist/client (run `npm run build` first); pages not yet ported come
-// from legacy/. Output: <outDir>/<slug>.<desktop|mobile>.html
+// from legacy/. Output: <outDir>/<slug>.<desktop|mobile>.html (preview: <outDir>/<slug>.html)
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, extname, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const outDir = process.argv[2];
-if (!outDir) throw new Error("usage: node tools/figma-export.mjs <outDir>");
+const args = process.argv.slice(2);
+const outDir = args.find((a) => !a.startsWith("--"));
+const design = args.includes("--design");
+const preview = args.includes("--preview");
+if (!outDir) throw new Error("usage: node tools/figma-export.mjs <outDir> [--design] [--preview]");
 mkdirSync(outDir, { recursive: true });
 
-const pages = [
+const sitePages = [
   { slug: "home", title: "Home", file: "dist/client/index.html" },
   { slug: "about", title: "About", file: "legacy/about/index.html" },
   { slug: "reach-more-customers", title: "Reach more customers", file: "legacy/reach-more-customers/index.html" },
@@ -41,7 +46,7 @@ const mime = {
   ".jpeg": "image/jpeg", ".svg": "image/svg+xml", ".webp": "image/webp", ".css": "text/css",
 };
 
-/** Map a site URL to a file on disk across the three source trees. */
+/** Map a site URL to a file on disk across the source trees (public, build, legacy, repo root). */
 function resolveAsset(url) {
   const clean = url.replace(/^["']|["']$/g, "").split(/[?#]/)[0];
   const path = clean.startsWith("/") ? clean : "/" + clean;
@@ -49,6 +54,7 @@ function resolveAsset(url) {
     join(root, "public", path),
     join(root, "dist/client", path),
     join(root, "legacy", path),
+    join(root, path), // /design/… and /node_modules/… (redesign kit)
   ];
   return candidates.find((p) => existsSync(p));
 }
@@ -152,20 +158,30 @@ function processHtml(html, vp) {
     const d = dataUri(src);
     return d ? `<img${attrs} src="${d}"` : whole;
   });
-  // Fixed width, no scripts, and every entrance animation already finished
-  const override = `<style>
-html,body{width:${vp.w}px!important;min-width:${vp.w}px;max-width:${vp.w}px;margin:0;overflow-x:hidden}
+  // Fixed width and no scripts; the current site also needs every entrance animation finished
+  const legacy = design ? "" : `
 .ping,.reveal,.hero-island,.hero *{animation:none!important;transition:none!important;opacity:1!important}
-.ping,.reveal{transform:none!important}
+.ping,.reveal{transform:none!important}`;
+  const override = `<style>
+html,body{width:${vp.w}px!important;min-width:${vp.w}px;max-width:${vp.w}px;margin:0;overflow-x:hidden}${legacy}
 </style>`;
   return html.replace(/<\/head>/i, `${override}</head>`);
 }
 
+const pages = design
+  ? (await import("../design/redesign/pages.mjs")).pages.map((p) => ({ slug: p.slug, title: p.title, html: p.html(preview ? "/public" : "") }))
+  : sitePages.map((p) => ({ slug: p.slug, title: p.title, html: readFileSync(join(root, p.file), "utf8") }));
+
 const results = [];
 for (const page of pages) {
-  const src = readFileSync(join(root, page.file), "utf8");
+  if (preview) {
+    const file = join(outDir, `${page.slug}.html`);
+    writeFileSync(file, page.html);
+    results.push({ page: page.title, file, kb: Math.round(page.html.length / 1024) });
+    continue;
+  }
   for (const [name, vp] of Object.entries(viewports)) {
-    const out = processHtml(src, vp);
+    const out = processHtml(page.html, vp);
     const file = join(outDir, `${page.slug}.${name}.html`);
     writeFileSync(file, out);
     results.push({ page: page.title, viewport: name, file, kb: Math.round(out.length / 1024) });
