@@ -1,0 +1,174 @@
+// Turns each site page into a self-contained HTML document that Figma's html_to_figma can render
+// without network access: stylesheets, fonts and images inlined as data URIs, scripts and the CSP
+// removed, media queries resolved for a fixed width, and vw/vh units converted to pixels.
+//
+//   node tools/figma-export.mjs <outDir>
+//
+// Astro pages are read from dist/client (run `npm run build` first); pages not yet ported come
+// from legacy/. Output: <outDir>/<slug>.<desktop|mobile>.html
+
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { join, extname, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const outDir = process.argv[2];
+if (!outDir) throw new Error("usage: node tools/figma-export.mjs <outDir>");
+mkdirSync(outDir, { recursive: true });
+
+const pages = [
+  { slug: "home", title: "Home", file: "dist/client/index.html" },
+  { slug: "about", title: "About", file: "legacy/about/index.html" },
+  { slug: "reach-more-customers", title: "Reach more customers", file: "legacy/reach-more-customers/index.html" },
+  { slug: "convert-more-inquiries", title: "Convert more inquiries", file: "legacy/convert-more-inquiries/index.html" },
+  { slug: "build-repeat-business", title: "Build repeat business", file: "legacy/build-repeat-business/index.html" },
+  { slug: "measure-and-improve", title: "Measure and improve", file: "legacy/measure-and-improve/index.html" },
+  { slug: "local-seo", title: "Local SEO", file: "legacy/local-seo/index.html" },
+  { slug: "websites", title: "Websites", file: "legacy/websites/index.html" },
+  { slug: "review", title: "Leave a review", file: "legacy/review/index.html" },
+  { slug: "privacy", title: "Privacy policy", file: "legacy/privacy/index.html" },
+  { slug: "thanks", title: "Thanks", file: "dist/client/thanks/index.html" },
+  { slug: "404", title: "404", file: "dist/client/404.html" },
+];
+
+const viewports = {
+  desktop: { w: 1440, h: 900 },
+  mobile: { w: 390, h: 844 },
+};
+
+const mime = {
+  ".woff2": "font/woff2", ".woff": "font/woff", ".png": "image/png", ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg", ".svg": "image/svg+xml", ".webp": "image/webp", ".css": "text/css",
+};
+
+/** Map a site URL to a file on disk across the three source trees. */
+function resolveAsset(url) {
+  const clean = url.replace(/^["']|["']$/g, "").split(/[?#]/)[0];
+  const path = clean.startsWith("/") ? clean : "/" + clean;
+  const candidates = [
+    join(root, "public", path),
+    join(root, "dist/client", path),
+    join(root, "legacy", path),
+  ];
+  return candidates.find((p) => existsSync(p));
+}
+
+function dataUri(url) {
+  const file = resolveAsset(url);
+  if (!file) return null;
+  const type = mime[extname(file).toLowerCase()];
+  if (!type) return null;
+  return `data:${type};base64,${readFileSync(file).toString("base64")}`;
+}
+
+/** Find the index of the brace that closes the block opened at `open`. */
+function closingBrace(css, open) {
+  let depth = 0;
+  for (let i = open; i < css.length; i++) {
+    if (css[i] === "{") depth++;
+    else if (css[i] === "}" && --depth === 0) return i;
+  }
+  return -1;
+}
+
+/** Resolve @media and @supports blocks for a fixed viewport width. */
+function resolveAtRules(css, w) {
+  let out = "";
+  let i = 0;
+  while (i < css.length) {
+    const at = css.indexOf("@", i);
+    if (at === -1) { out += css.slice(i); break; }
+    const m = /^@(media|supports)\b([^{]*)\{/.exec(css.slice(at));
+    if (!m) { out += css.slice(i, at + 1); i = at + 1; continue; }
+    out += css.slice(i, at);
+    const open = at + m[0].length - 1;
+    const close = closingBrace(css, open);
+    const inner = css.slice(open + 1, close);
+    const cond = m[2];
+    let keep;
+    if (m[1] === "supports") {
+      keep = !/animation-timeline/.test(cond) && !/animation-timeline/.test(inner);
+      if (keep) out += `@supports${cond}{${resolveAtRules(inner, w)}}`;
+    } else {
+      const max = /max-width\s*:\s*(\d+)px|width\s*<=\s*(\d+)px/.exec(cond);
+      const min = /min-width\s*:\s*(\d+)px|width\s*>=\s*(\d+)px/.exec(cond);
+      if (/prefers-reduced-motion|print/.test(cond)) keep = false;
+      else if (max) keep = w <= Number(max[1] ?? max[2]);
+      else if (min) keep = w >= Number(min[1] ?? min[2]);
+      else keep = true;
+      if (keep) out += resolveAtRules(inner, w);
+    }
+    i = close + 1;
+  }
+  return out;
+}
+
+function processCss(css, vp) {
+  css = css.replace(/url\(\s*([^)]+?)\s*\)/g, (whole, u) => {
+    if (/^["']?data:/.test(u)) return whole;
+    const d = dataUri(u);
+    return d ? `url("${d}")` : whole;
+  });
+  css = resolveAtRules(css, vp.w);
+  css = css.replace(/(\d*\.?\d+)vw\b/g, (_, n) => `${(Number(n) * vp.w) / 100}px`);
+  css = css.replace(/(\d*\.?\d+)(?:svh|dvh|vh)\b/g, (_, n) => `${(Number(n) * vp.h) / 100}px`);
+  css = resolveMath(css);
+  return css;
+}
+
+/** Collapse min()/max()/clamp() whose arguments are all px, which the Figma renderer leaves unresolved. */
+function resolveMath(css) {
+  const px = /^\s*(-?\d*\.?\d+)px\s*$/;
+  const fn = /\b(min|max|clamp)\(([^()]*)\)/g;
+  let prev;
+  do {
+    prev = css;
+    css = css.replace(fn, (whole, name, args) => {
+      const nums = args.split(",").map((a) => px.exec(a)?.[1]).map((v) => (v == null ? NaN : Number(v)));
+      if (nums.some(Number.isNaN)) return whole;
+      if (name === "min") return `${Math.min(...nums)}px`;
+      if (name === "max") return `${Math.max(...nums)}px`;
+      if (nums.length !== 3) return whole;
+      const [lo, mid, hi] = nums;
+      return `${Math.min(Math.max(mid, lo), hi)}px`;
+    });
+  } while (css !== prev);
+  return css;
+}
+
+function processHtml(html, vp) {
+  html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+  html = html.replace(/<meta[^>]+Content-Security-Policy[^>]*>/gi, "");
+  html = html.replace(/<link\b[^>]*>/gi, (tag) => {
+    const rel = /rel=["']?([^"' >]+)/i.exec(tag)?.[1];
+    const href = /href=["']?([^"' >]+)/i.exec(tag)?.[1];
+    if (rel !== "stylesheet" || !href) return "";
+    const file = resolveAsset(href);
+    if (!file) return "";
+    return `<style>${processCss(readFileSync(file, "utf8"), vp)}</style>`;
+  });
+  html = html.replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gi, (_, css) => `<style>${processCss(css, vp)}</style>`);
+  html = html.replace(/<img\b([^>]*?)\ssrc=["']([^"']+)["']/gi, (whole, attrs, src) => {
+    const d = dataUri(src);
+    return d ? `<img${attrs} src="${d}"` : whole;
+  });
+  // Fixed width, no scripts, and every entrance animation already finished
+  const override = `<style>
+html,body{width:${vp.w}px!important;min-width:${vp.w}px;max-width:${vp.w}px;margin:0;overflow-x:hidden}
+.ping,.reveal,.hero-island,.hero *{animation:none!important;transition:none!important;opacity:1!important}
+.ping,.reveal{transform:none!important}
+</style>`;
+  return html.replace(/<\/head>/i, `${override}</head>`);
+}
+
+const results = [];
+for (const page of pages) {
+  const src = readFileSync(join(root, page.file), "utf8");
+  for (const [name, vp] of Object.entries(viewports)) {
+    const out = processHtml(src, vp);
+    const file = join(outDir, `${page.slug}.${name}.html`);
+    writeFileSync(file, out);
+    results.push({ page: page.title, viewport: name, file, kb: Math.round(out.length / 1024) });
+  }
+}
+console.table(results);
