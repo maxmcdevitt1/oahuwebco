@@ -171,8 +171,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 }
 
 /* ---------- Photo bands: a window through to a picture fixed behind the page; the sheets slide over it ---------- */
-.pband{position:relative;z-index:0;height:calc(84vh + 2 * var(--radius));margin:calc(-1 * var(--radius)) 0;clip-path:inset(0);background:var(--navy-950)}
-.pband.short{height:calc(66vh + 2 * var(--radius))}
+.pband{position:relative;z-index:0;height:calc(130vh + 2 * var(--radius));margin:calc(-1 * var(--radius)) 0;clip-path:inset(0);background:var(--navy-950)}
+.pband.short{height:calc(100vh + 2 * var(--radius))}
 .pband .fixed{position:fixed;inset:0;z-index:-1;pointer-events:none}
 .pband img{width:100%;height:100%;object-fit:cover}
 
@@ -397,7 +397,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .divider{padding:32px 0}
   .bhead{gap:20px;padding:16px 0 32px}
   .section,.about,.review,.contact,.hookrow,.block,.changes{gap:32px;padding:32px 0}
-  .pband,.pband.short{height:calc(62vh + 2 * var(--radius))}
+  .pband,.pband.short{height:calc(90vh + 2 * var(--radius))}
   .hooktext{font-size:28px;line-height:1.2;letter-spacing:-.4px}
   .block .h2{margin-bottom:24px}
   .leak-list li{grid-template-columns:52px 1fr;gap:4px 14px;padding:22px 0 24px}
