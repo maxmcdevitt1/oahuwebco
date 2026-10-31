@@ -1,32 +1,50 @@
 ---
+// Dark footer: one giant serif line and a button over a fixed backdrop (the island as line art), then the
+// link card. Inner pages pass their own closing line; the default is the tagline.
+import Island from "./Island.astro";
 import { site, services } from "../lib/site";
+interface Props {
+  /** closing line; wrap one word in <em> for italics */
+  title?: string;
+  button?: string;
+  href?: string;
+}
+const { title = "The online side, <em>handled.</em>", button = "Get started free", href = "/#contact" } = Astro.props;
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
+  <div class="fixed" aria-hidden="true"><Island /></div>
   <div class="container">
-    <div class="fgrid">
-      <div class="fbrand">
-        <a class="logo" href="/"><img src="/logo-128.png" width="40" height="40" alt="">{site.name}</a>
-        <p class="tag">{site.tagline}</p>
-      </div>
-      <nav class="fcol" aria-label="What we do">
-        <p class="ft">What we do</p>
-        {services.map((s) => <a href={`/${s.slug}/`}>{s.name}</a>)}
-      </nav>
-      <nav class="fcol" aria-label="Company">
-        <p class="ft">Company</p>
-        <a href="/about/">Who’s behind it</a>
-        <a href="/review/">Leave a review</a>
-        <a href="/privacy/">Privacy policy</a>
-      </nav>
-      <div class="fcol">
-        <p class="ft">Contact</p>
-        <a href={site.phone.href}>{site.phone.display}</a>
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-        <a href={site.social.instagram} rel="me">Instagram @oahuwebco</a>
-        <a href={site.social.facebook} rel="me">Facebook</a>
-      </div>
+    <div class="fcta">
+      <h2 class="display-l" set:html={title} />
+      <a class="btn btn-accent" href={href}>{button}</a>
     </div>
-    <div class="fbot"><span>© {year} {site.name}</span><span>{site.town}, {site.island}</span></div>
+    <div class="fbody">
+      <div class="fgrid">
+        <div class="fbrand">
+          <a class="logo" href="/"><img src="/logo-128.png" width="36" height="36" alt="">{site.name}</a>
+          <p class="tag">{site.tagline}</p>
+        </div>
+        <nav class="fcol" aria-label="What we do">
+          <p class="ft">What we do</p>
+          {services.map((s) => <a href={`/${s.slug}/`}>{s.name}</a>)}
+        </nav>
+        <nav class="fcol" aria-label="Company">
+          <p class="ft">Company</p>
+          <a href="/about/">Who’s behind it</a>
+          <a href="/review/">Leave a review</a>
+          <a href="/privacy/">Privacy policy</a>
+        </nav>
+        <div class="fcol">
+          <p class="ft">Contact</p>
+          <a href={site.phone.href}>{site.phone.display}</a>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={site.social.instagram} rel="me">Instagram @oahuwebco</a>
+          <a href={site.social.facebook} rel="me">Facebook</a>
+        </div>
+      </div>
+      <div class="fbot"><span>© {year} {site.name}</span><span>{site.town}, {site.island}</span></div>
+    </div>
   </div>
 </footer>
+<button class="totop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>

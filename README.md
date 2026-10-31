@@ -6,7 +6,8 @@ The Oahu Web Co. website: Astro 7 with Tailwind CSS v4, built to static HTML and
 
 - `src/pages/` — one `.astro` file per URL, all twelve pages
 - `src/layouts/Base.astro` — `<head>`, Content-Security-Policy, Google Analytics, Lenis smooth scroll; `Service.astro` — the six service pages (hero, visual + numbered problems, questions, closing band, schema)
-- `src/components/` — `Header` (floating glass bar with the phone menu), `Hero`, `Island`, `Section`, `Faq`, `ServiceRows`, `Cta`, `Footer`, `ContactForm`, `Notice`
+- `src/components/` — `Header` (fixed bar that hides on the way down), `Hero` (full height, drifts under the first sheet), `Island`, `Divider` (hairline with the travelling accent), `Ticker` (auto-scrolling cards), `Asterisk`, `Section`, `Faq`, `ServiceRows`, `Footer` (closing serif line + link card), `ContactForm`, `Notice`
+- `src/scripts/motion.ts` — Lenis smoothing, header hide/show, hero and media parallax, divider in-view, scroller arrows, back-to-top
 - `src/lib/site.ts` — business facts (name, phone, email, social links, services) and the schema.org business node
 - `src/styles/global.css` — Tailwind v4 theme tokens plus the redesign stylesheet (newfront.com structure in navy and cream, Instrument Serif + Inter), ported from `design/redesign/theme.css`
 - `public/` — fonts, logos, verification files, `robots.txt`, `llms.txt`, `ga.js`, `CNAME`

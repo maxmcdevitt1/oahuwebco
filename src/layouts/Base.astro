@@ -60,15 +60,6 @@ const csp = [
 </head>
 <body>
 <slot />
-<script>
-  // Smoothed wheel scrolling. Touch stays native; reduced-motion users get the browser's own scroll.
-  import Lenis from "lenis";
-  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    // Anchor scrolls stop short of the fixed header (top offset + bar height + breathing room)
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: false, anchors: { offset: -120 } });
-    const raf = (t: number) => { lenis.raf(t); requestAnimationFrame(raf); };
-    requestAnimationFrame(raf);
-  }
-</script>
+<script src="../scripts/motion.ts"></script>
 </body>
 </html>

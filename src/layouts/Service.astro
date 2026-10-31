@@ -1,14 +1,15 @@
 ---
-// One service page: hero with the hook, a cream sheet holding the page's visual (slot) beside the
-// numbered problems, an optional "What changes" list, the questions, links to the other pages, then
-// the closing band. Schema: Service, WebPage, BreadcrumbList and FAQPage for the questions.
+// One service page: hero with the hook, then a light sheet holding the page's visual beside the problems
+// as an asterisk list, an optional "What changes" list, the questions, and links to the other pages; the
+// footer carries the closing line. Schema: Service, WebPage, BreadcrumbList and FAQPage.
 import Base from "./Base.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
+import Divider from "../components/Divider.astro";
+import Asterisk from "../components/Asterisk.astro";
 import Section from "../components/Section.astro";
 import Faq from "../components/Faq.astro";
 import ServiceRows from "../components/ServiceRows.astro";
-import Cta from "../components/Cta.astro";
 import Footer from "../components/Footer.astro";
 import { site, services, businessId, type ServiceSlug } from "../lib/site";
 
@@ -22,7 +23,7 @@ interface Props {
   serviceName: string;
   h1: string;
   hook: string;
-  /** hero and closing-band button; the href is a home-page form anchor */
+  /** hero and closing-line button; the href is a home-page form anchor */
   button: string;
   buttonHref: string;
   problemsTitle: string;
@@ -48,32 +49,37 @@ const schema = [
 <Base title={title} description={description} schema={schema}>
   <Header />
   <Hero eyebrow="What we do" title={h1} hook={hook}>
-    <a class="btn btn-cream" href={buttonHref}>{button}</a>
+    <a class="btn btn-accent" href={buttonHref}>{button}</a>
   </Hero>
   <main class="sheet">
     <div class="container">
+      <Divider />
       <section class="feature" aria-labelledby="problems-heading">
-        <slot />
-        <div class="stack">
-          <div class="head"><h2 class="h2" id="problems-heading" style="color:var(--navy-900)">{problemsTitle}</h2></div>
-          <ol class="num-list">
-            {problems.map(([t, p], i) => (
-              <li><span class="n">{String(i + 1).padStart(2, "0")}</span><h3 class="h3" set:html={t} /><p>{p}</p></li>
+        <div class="media" data-parallax="-60"><slot /></div>
+        <div class="text">
+          <h2 class="h2" id="problems-heading">{problemsTitle}</h2>
+          <ul class="alist">
+            {problems.map(([t, p]) => (
+              <li><Asterisk /><div><b set:html={t} /> <span>{p}</span></div></li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
       {changes && (
-        <Section title="What changes">
-          <ul class="dot-list">
-            {changes.map(([t, p]) => <li><span class="dot"></span><div><h3 class="h3">{t}</h3><p>{p}</p></div></li>)}
-          </ul>
-        </Section>
+        <>
+          <Divider />
+          <Section title="What changes">
+            <ul class="alist">
+              {changes.map(([t, p]) => <li><Asterisk /><div><b>{t}</b> <span>{p}</span></div></li>)}
+            </ul>
+          </Section>
+        </>
       )}
+      <Divider />
       <Section title="Questions"><Faq items={faq} /></Section>
+      <Divider />
       <Section title="More of what we do"><ServiceRows slugs={more} /></Section>
     </div>
   </main>
-  <Cta title={ctaTitle} button={button} href={buttonHref} />
-  <Footer />
+  <Footer title={ctaTitle} button={button} href={buttonHref} />
 </Base>

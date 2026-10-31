@@ -4,7 +4,6 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import ServiceRows from "../components/ServiceRows.astro";
-import Cta from "../components/Cta.astro";
 import Footer from "../components/Footer.astro";
 import { site, businessId } from "../lib/site";
 
@@ -40,6 +39,5 @@ const schema = [
       </Section>
     </div>
   </main>
-  <Cta title="Get a free review" text="Tell us about your business and we’ll show you where the room to grow is." button="Request my free review" href="/#free-review" />
-  <Footer />
+  <Footer title="Get a free review" button="Request my free review" href="/#free-review" />
 </Base>

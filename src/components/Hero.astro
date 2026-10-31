@@ -1,6 +1,7 @@
 ---
-// Navy gradient hero with the island and a warm glow behind the copy. `home` is the tallest with the
-// largest headline; `inner` is the service and company pages; `center` is for a single centred ask.
+// Full-height navy hero. The gradient backdrop and the island sit on their own layer so the hero can
+// drift down (and the backdrop up) as the first sheet scrolls over it. `home` fills the viewport;
+// `inner` is shorter for service and company pages; `center` centres a single ask.
 import Island from "./Island.astro";
 interface Props {
   variant?: "home" | "inner" | "center";
@@ -15,8 +16,10 @@ interface Props {
 const { variant = "inner", eyebrow, title, size = variant === "home" ? "display-xl" : "display-l", hook, id } = Astro.props;
 ---
 <section class:list={["hero", variant]} id={id}>
-  <div class="glow"></div>
-  <Island />
+  <div class="bg" aria-hidden="true">
+    <div class="glow"></div>
+    <Island />
+  </div>
   <div class="container">
     <div class="copy">
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
