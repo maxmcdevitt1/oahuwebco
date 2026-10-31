@@ -5,6 +5,8 @@ import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import ServiceRows from "../components/ServiceRows.astro";
 import Footer from "../components/Footer.astro";
+import Photo from "../components/Photo.astro";
+import bay from "../assets/photos/kaneohe-bay.jpg";
 import { site, businessId } from "../lib/site";
 
 const title = `Who’s Behind ${site.name} · ${site.town}, ${site.island}`;
@@ -34,6 +36,7 @@ const schema = [
           <p>That’s why I created Oahu Web Co.: to serve the small businesses of Oʻahu and assist them with their online presence, from searchability, to professional web pages, or to something else. I am here to assist you and your business in today’s digital world, and together we will convert your company into a top performer!</p>
         </div>
       </section>
+      <Photo src={bay} alt="Kāneʻohe Bay and the reef flats seen from the ridge above town" />
       <Section title="What we do">
         <ServiceRows slugs={["reach-more-customers", "convert-more-inquiries", "build-repeat-business", "measure-and-improve"]} />
       </Section>

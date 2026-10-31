@@ -1,5 +1,6 @@
 ---
 import Service from "../layouts/Service.astro";
+import tool_belt from "../assets/photos/tool-belt.jpg";
 import Section from "../components/Section.astro";
 // Example report with made-up numbers, as on the old page
 const months: [string, number][] = [["Apr", 19], ["May", 22], ["Jun", 21], ["Jul", 27], ["Aug", 30], ["Sep", 34]];
@@ -31,6 +32,8 @@ const path = months.map(([, v], i) => `${i ? "L" : "M"}${x(i)} ${y(v).toFixed(1)
   ]}
   more={["reach-more-customers", "convert-more-inquiries", "build-repeat-business"]}
   ctaTitle="Get a free review"
+  photo={tool_belt}
+  photoAlt="A tool belt with a tape measure and screwdrivers, on a job site"
 >
   <Section title="What a monthly report looks like" slot="after">
     <article class="report" aria-label="Example monthly report with made-up numbers">

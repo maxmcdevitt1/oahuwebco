@@ -6,6 +6,9 @@ import Divider from "../components/Divider.astro";
 import Ticker from "../components/Ticker.astro";
 import Island from "../components/Island.astro";
 import Footer from "../components/Footer.astro";
+import Photo from "../components/Photo.astro";
+import kualoa from "../assets/photos/kualoa.jpg";
+import framing from "../assets/photos/framing.jpg";
 import ContactForm, { formSubmitOrigin } from "../components/ContactForm.astro";
 import { site, services, businessSchema } from "../lib/site";
 
@@ -49,6 +52,7 @@ const Chevron = (dir: "prev" | "next") =>
     </div>
   </div>
   <Ticker />
+  <div class="container"><Photo src={kualoa} alt="Kualoa and Kāneʻohe Bay from the air, the Koʻolau cliffs over the reef" /></div>
 </main>
 
 <section class="band" id="pricing" aria-labelledby="pricing-heading">
@@ -73,6 +77,7 @@ const Chevron = (dir: "prev" | "next") =>
 
 <section class="sheet" id="contact" aria-labelledby="contact-heading">
   <div class="container">
+    <Photo src={framing} alt="A framer in a hard hat working on top of a wall of new studs against a blue sky" />
     <div class="contact">
       <div class="copy">
         <p class="eyebrow">Start free</p>
