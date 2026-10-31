@@ -1,8 +1,9 @@
 ---
 // One service page, laid out as the old site was: hero with the headline, then a light sheet holding the
-// hook sentence (beside the page's graphic when it has one), the problems as a numbered list, an optional
-// "What changes" check list, anything the page adds after that (the report on Measure and improve), the
-// questions, and links to the other pages; the footer carries the closing line.
+// hook sentence (beside the page's graphic when it has one) and the problems as a numbered list; a photo
+// the next sheet slides over; then an optional "What changes" check list, anything the page adds after
+// that (the report on Measure and improve), the questions, and links to the other pages; the footer
+// carries the closing line.
 // Schema: Service, WebPage, BreadcrumbList and FAQPage.
 import Base from "./Base.astro";
 import Header from "../components/Header.astro";
@@ -58,7 +59,8 @@ const schema = [
   <Hero eyebrow="What we do" title={h1}>
     <a class="btn btn-accent" href={buttonHref}>{button}</a>
   </Hero>
-  <main class="sheet">
+  <main>
+    <section class="sheet">
     <div class="container">
       <Divider />
       <section class:list={["hookrow", { media: hasMedia }]}>
@@ -72,29 +74,34 @@ const schema = [
           {problems.map(([t, p]) => <li class="reveal"><h3 class="h3" set:html={t} /><p class="muted">{p}</p></li>)}
         </ol>
       </section>
-      {photo && <Photo src={photo} alt={photoAlt} short />}
+    </div>
+    </section>
+    {photo && <Photo src={photo} alt={photoAlt} short />}
+    <section class="sheet">
+    <div class="container">
+      <Divider />
       {changes && (
         <>
-          <Divider />
           <section class="changes" aria-labelledby="changes-heading">
             <h2 class="h2" id="changes-heading">What changes</h2>
             <ul class="checks">
               {changes.map(([t, p]) => <li class="reveal"><h3 class="h3">{t}</h3><p class="muted">{p}</p></li>)}
             </ul>
           </section>
+          <Divider />
         </>
       )}
       {Astro.slots.has("after") && (
         <>
-          <Divider />
           <slot name="after" />
+          <Divider />
         </>
       )}
-      <Divider />
       <Section title="Questions"><Faq items={faq} /></Section>
       <Divider />
       <Section title="More of what we do"><ServiceRows slugs={more} /></Section>
     </div>
+    </section>
   </main>
   <Footer title={ctaTitle} button={button} href={buttonHref} />
 </Base>

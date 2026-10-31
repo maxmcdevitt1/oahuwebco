@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
+import Divider from "../components/Divider.astro";
 import Section from "../components/Section.astro";
 import ServiceRows from "../components/ServiceRows.astro";
 import Footer from "../components/Footer.astro";
@@ -24,7 +25,8 @@ const schema = [
 <Base title={title} description={description} schema={schema}>
   <Header />
   <Hero eyebrow="About" title="Who’s behind the scenes?" />
-  <main class="sheet">
+  <main>
+    <section class="sheet">
     <div class="container">
       <section class="about" aria-label="About Max">
         <figure class="portrait">
@@ -36,11 +38,17 @@ const schema = [
           <p>That’s why I created Oahu Web Co.: to serve the small businesses of Oʻahu and assist them with their online presence, from searchability, to professional web pages, or to something else. I am here to assist you and your business in today’s digital world, and together we will convert your company into a top performer!</p>
         </div>
       </section>
-      <Photo src={bay} alt="Kāneʻohe Bay and the reef flats seen from the ridge above town" />
+    </div>
+    </section>
+    <Photo src={bay} alt="Kāneʻohe Bay and the reef flats seen from the ridge above town" />
+    <section class="sheet">
+    <div class="container">
+      <Divider />
       <Section title="What we do">
         <ServiceRows slugs={["reach-more-customers", "convert-more-inquiries", "build-repeat-business", "measure-and-improve"]} />
       </Section>
     </div>
+    </section>
   </main>
   <Footer title="Get a free review" text="Tell us about your business and we’ll show you where the room to grow is." button="Request my free review" href="/#free-review" />
 </Base>

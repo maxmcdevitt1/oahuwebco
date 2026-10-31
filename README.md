@@ -6,7 +6,7 @@ The Oahu Web Co. website: Astro 7 with Tailwind CSS v4, built to static HTML and
 
 - `src/pages/` — one `.astro` file per URL, all twelve pages
 - `src/layouts/Base.astro` — `<head>`, Content-Security-Policy, Google Analytics, Lenis smooth scroll; `Service.astro` — the six service pages (hero, visual + numbered problems, questions, closing band, schema)
-- `src/components/` — `Header` (fixed bar that hides on the way down), `Hero` (full height, drifts under the first sheet), `Island`, `Divider` (hairline with the travelling accent), `Ticker` (auto-scrolling cards), `Photo` (full-width photo band; files and credits in `src/assets/photos/`), `Section`, `Faq`, `ServiceRows`, `Footer` (closing serif line + link card), `ContactForm`, `Notice`
+- `src/components/` — `Header` (fixed bar that hides on the way down), `Hero` (full height, drifts under the first sheet), `Island`, `Divider` (hairline with the travelling accent), `Ticker` (auto-scrolling cards), `Photo` (photo fixed behind the page, seen through a window the next sheet slides over; files and credits in `src/assets/photos/`), `Section`, `Faq`, `ServiceRows`, `Footer` (closing serif line + link card), `ContactForm`, `Notice`
 - `src/scripts/motion.ts` — Lenis smoothing, header hide/show, hero and media parallax, divider in-view, scroller arrows, back-to-top
 - `src/lib/site.ts` — business facts (name, phone, email, social links, services) and the schema.org business node
 - `src/styles/global.css` — Tailwind v4 theme tokens plus the redesign stylesheet (newfront.com structure in navy and cream, Instrument Serif + Inter), ported from `design/redesign/theme.css`
