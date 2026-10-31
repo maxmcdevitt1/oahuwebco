@@ -1,6 +1,6 @@
 # oahuwebco.com
 
-The Oahu Web Co. website, moving from hand-written HTML to Astro 7 with Tailwind CSS v4, served from a Cloudflare Worker.
+The Oahu Web Co. website: Astro 7 with Tailwind CSS v4, built to static HTML and served by GitHub Pages at oahuwebco.com. The redesign (October 2026) lives here; the hand-written pages it replaces are in `legacy/`.
 
 ## Layout
 
@@ -21,15 +21,14 @@ Sales-copy rules live in `AGENTS.md`.
 ```bash
 npm install
 npm run dev        # http://127.0.0.1:4321
-npm run build      # static output in dist/client
-npm run preview    # build, then serve through wrangler dev
+npm run build      # static output in dist/
+npm run preview    # build, then serve dist/ locally
 npm run check      # astro check (TypeScript)
-npm run deploy     # build, then wrangler deploy
 node tools/figma-export.mjs design/redesign/preview --design --preview   # redesign kit as HTML; serve the repo root to view
 node tools/figma-export.mjs <outDir> --design                            # redesign kit for Figma (desktop + mobile per page)
 node tools/figma-export.mjs <outDir>                                     # the built site (run npm run build first)
 ```
 
-## Still to do
+## Deploying
 
-Keystatic for news posts, the form handler on D1 + Turnstile + Resend, and Access-protected staff pages. The contact form still posts to FormSubmit until then.
+Pushes to `main` run `.github/workflows/deploy.yml`, which builds the site and publishes `dist/` to GitHub Pages (the repository's Pages source must be set to "GitHub Actions"). `public/CNAME` keeps the custom domain. The contact form posts to FormSubmit, so no server is needed.

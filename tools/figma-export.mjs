@@ -2,11 +2,11 @@
 // without network access: stylesheets, fonts and images inlined as data URIs, scripts and the CSP
 // removed, media queries resolved for a fixed width, and vw/vh units converted to pixels.
 //
-//   node tools/figma-export.mjs <outDir>                      the built site (dist/client)
+//   node tools/figma-export.mjs <outDir>                      the built site (dist)
 //   node tools/figma-export.mjs <outDir> --design             redesign kit (design/redesign/pages.mjs)
 //   node tools/figma-export.mjs <outDir> --design --preview   redesign kit as plain HTML for a browser
 //
-// Pages are read from dist/client (run `npm run build` first). Output: <outDir>/<slug>.<desktop|mobile>.html (preview: <outDir>/<slug>.html)
+// Pages are read from dist (run `npm run build` first). Output: <outDir>/<slug>.<desktop|mobile>.html (preview: <outDir>/<slug>.html)
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, extname, dirname } from "node:path";
@@ -21,18 +21,18 @@ if (!outDir) throw new Error("usage: node tools/figma-export.mjs <outDir> [--des
 mkdirSync(outDir, { recursive: true });
 
 const sitePages = [
-  { slug: "home", title: "Home", file: "dist/client/index.html" },
-  { slug: "about", title: "About", file: "dist/client/about/index.html" },
-  { slug: "reach-more-customers", title: "Reach more customers", file: "dist/client/reach-more-customers/index.html" },
-  { slug: "convert-more-inquiries", title: "Convert more inquiries", file: "dist/client/convert-more-inquiries/index.html" },
-  { slug: "build-repeat-business", title: "Build repeat business", file: "dist/client/build-repeat-business/index.html" },
-  { slug: "measure-and-improve", title: "Measure and improve", file: "dist/client/measure-and-improve/index.html" },
-  { slug: "local-seo", title: "Local SEO", file: "dist/client/local-seo/index.html" },
-  { slug: "websites", title: "Websites", file: "dist/client/websites/index.html" },
-  { slug: "review", title: "Leave a review", file: "dist/client/review/index.html" },
-  { slug: "privacy", title: "Privacy policy", file: "dist/client/privacy/index.html" },
-  { slug: "thanks", title: "Thanks", file: "dist/client/thanks/index.html" },
-  { slug: "404", title: "404", file: "dist/client/404.html" },
+  { slug: "home", title: "Home", file: "dist/index.html" },
+  { slug: "about", title: "About", file: "dist/about/index.html" },
+  { slug: "reach-more-customers", title: "Reach more customers", file: "dist/reach-more-customers/index.html" },
+  { slug: "convert-more-inquiries", title: "Convert more inquiries", file: "dist/convert-more-inquiries/index.html" },
+  { slug: "build-repeat-business", title: "Build repeat business", file: "dist/build-repeat-business/index.html" },
+  { slug: "measure-and-improve", title: "Measure and improve", file: "dist/measure-and-improve/index.html" },
+  { slug: "local-seo", title: "Local SEO", file: "dist/local-seo/index.html" },
+  { slug: "websites", title: "Websites", file: "dist/websites/index.html" },
+  { slug: "review", title: "Leave a review", file: "dist/review/index.html" },
+  { slug: "privacy", title: "Privacy policy", file: "dist/privacy/index.html" },
+  { slug: "thanks", title: "Thanks", file: "dist/thanks/index.html" },
+  { slug: "404", title: "404", file: "dist/404.html" },
 ];
 
 const viewports = {
@@ -51,7 +51,7 @@ function resolveAsset(url) {
   const path = clean.startsWith("/") ? clean : "/" + clean;
   const candidates = [
     join(root, "public", path),
-    join(root, "dist/client", path),
+    join(root, "dist", path),
     join(root, "legacy", path),
     join(root, path), // /design/… and /node_modules/… (redesign kit)
   ];
