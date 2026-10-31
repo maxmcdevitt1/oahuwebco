@@ -11,8 +11,11 @@ export default defineConfig({
   build: { format: 'directory' },
   vite: {
     plugins: [tailwindcss()],
-    // Let a cloudflared quick tunnel (random *.trycloudflare.com name) reach the dev server for phone checks
-    server: { allowedHosts: ['.trycloudflare.com'] },
+    build: {
+      // Never inline component scripts: the Content-Security-Policy allows scripts from 'self' only,
+      // so an inlined one (the phone menu, the form, Lenis) would be blocked on the live site
+      assetsInlineLimit: (file) => (file.endsWith('.js') ? false : undefined),
+    },
   },
   integrations: [
     sitemap({
