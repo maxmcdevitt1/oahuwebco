@@ -1,13 +1,13 @@
 ---
-// One service page: hero with the hook, then a light sheet holding the problems as an asterisk list
-// (beside the page's graphic when it has one), an optional "What changes" list, anything the page adds
-// after that (the report on Measure and improve), the questions, and links to the other pages; the
-// footer carries the closing line. Schema: Service, WebPage, BreadcrumbList and FAQPage.
+// One service page, laid out as the old site was: hero with the headline, then a light sheet holding the
+// hook sentence (beside the page's graphic when it has one), the problems as a numbered list, an optional
+// "What changes" check list, anything the page adds after that (the report on Measure and improve), the
+// questions, and links to the other pages; the footer carries the closing line.
+// Schema: Service, WebPage, BreadcrumbList and FAQPage.
 import Base from "./Base.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Divider from "../components/Divider.astro";
-import Asterisk from "../components/Asterisk.astro";
 import Section from "../components/Section.astro";
 import Faq from "../components/Faq.astro";
 import ServiceRows from "../components/ServiceRows.astro";
@@ -50,37 +50,32 @@ const schema = [
 ---
 <Base title={title} description={description} schema={schema}>
   <Header />
-  <Hero eyebrow="What we do" title={h1} hook={hook}>
+  <Hero eyebrow="What we do" title={h1}>
     <a class="btn btn-accent" href={buttonHref}>{button}</a>
   </Hero>
   <main class="sheet">
     <div class="container">
       <Divider />
-      {hasMedia ? (
-        <section class="feature" aria-labelledby="problems-heading">
-          <div class="media" data-parallax="-60"><slot /></div>
-          <div class="text">
-            <h2 class="h2" id="problems-heading">{problemsTitle}</h2>
-            <ul class="alist">
-              {problems.map(([t, p]) => <li><Asterisk /><div><b set:html={t} /> <span>{p}</span></div></li>)}
-            </ul>
-          </div>
-        </section>
-      ) : (
-        <Section title={problemsTitle} id="problems">
-          <ul class="alist">
-            {problems.map(([t, p]) => <li><Asterisk /><div><b set:html={t} /> <span>{p}</span></div></li>)}
-          </ul>
-        </Section>
-      )}
+      <section class:list={["hookrow", { media: hasMedia }]}>
+        <p class="hooktext">{hook}</p>
+        {hasMedia && <div class="media"><slot /></div>}
+      </section>
+      <Divider />
+      <section class="block" id="problems" aria-labelledby="problems-heading">
+        <h2 class="h2" id="problems-heading">{problemsTitle}</h2>
+        <ol class="leak-list">
+          {problems.map(([t, p]) => <li class="reveal"><h3 class="h3" set:html={t} /><p class="muted">{p}</p></li>)}
+        </ol>
+      </section>
       {changes && (
         <>
           <Divider />
-          <Section title="What changes">
-            <ul class="alist">
-              {changes.map(([t, p]) => <li><Asterisk /><div><b>{t}</b> <span>{p}</span></div></li>)}
+          <section class="changes" aria-labelledby="changes-heading">
+            <h2 class="h2" id="changes-heading">What changes</h2>
+            <ul class="checks">
+              {changes.map(([t, p]) => <li class="reveal"><h3 class="h3">{t}</h3><p class="muted">{p}</p></li>)}
             </ul>
-          </Section>
+          </section>
         </>
       )}
       {Astro.slots.has("after") && (

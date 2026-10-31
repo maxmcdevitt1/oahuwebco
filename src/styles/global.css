@@ -147,17 +147,28 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .tcard .go{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);align-self:flex-end;transition:background-color .2s var(--ease-out),color .2s var(--ease-out)}
 .tcard:hover .go{background:var(--navy-950);color:var(--white);border-color:var(--navy-950)}
 
-/* ---------- Feature: media beside a heading and an asterisk list ---------- */
-.feature{display:grid;grid-template-columns:1fr 1fr;gap:64px 96px;align-items:center;padding:48px 0}
-.feature .media{position:relative;border-radius:16px;overflow:hidden;background:var(--white);box-shadow:0 1px 2px rgba(16,40,80,.06)}
-.feature .text{display:flex;flex-direction:column;gap:24px}
-.feature .text .h2{color:var(--navy-950)}
-.alist li{display:grid;grid-template-columns:24px 1fr;gap:20px;padding:18px 0;border-top:.8px solid var(--line);font-size:17px;line-height:24px;letter-spacing:.3px}
-.alist li:last-child{border-bottom:.8px solid var(--line)}
-.alist .ast{width:24px;height:24px;color:var(--accent);margin-top:0}
-.alist b{font-weight:500;color:var(--navy-950)}
-.alist b a{text-decoration:underline;text-underline-offset:3px}
-.alist span{color:rgba(20,33,58,.74)}
+/* ---------- Service pages, as the old site laid them out: the hook sentence beside the graphic, the
+   numbered problem list, the check list under a sticky heading, each item rising into view ---------- */
+.hookrow{display:grid;grid-template-columns:1fr;gap:64px;align-items:center;padding:48px 0}
+.hookrow.media{grid-template-columns:minmax(0,1fr) minmax(0,420px)}
+.hooktext{max-width:22em;font-size:40px;line-height:1.15;letter-spacing:-.6px;font-weight:500;color:var(--navy-950)}
+.hookrow .media{display:flex;justify-content:center;width:100%}
+.block{padding:48px 0}
+.block .h2{margin-bottom:40px;color:var(--navy-950)}
+.leak-list{counter-reset:leak;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 56px}
+.leak-list li{counter-increment:leak;display:grid;align-content:start;grid-template-columns:64px 1fr;gap:4px 18px;padding:26px 0 30px;border-top:.8px solid var(--line)}
+.leak-list li::before{content:counter(leak,decimal-leading-zero);grid-row:span 2;font-family:var(--serif);font-size:64px;line-height:.9;letter-spacing:-2px;color:var(--navy-900);opacity:.35}
+.leak-list h3,.checks h3{color:var(--navy-950)}
+.leak-list .muted,.checks .muted{margin-top:6px;max-width:34em;color:rgba(20,33,58,.74)}
+.changes{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px 96px;align-items:start;padding:48px 0}
+.changes .h2{position:sticky;top:130px;color:var(--navy-950)}
+.checks li{display:grid;grid-template-columns:40px 1fr;gap:0 18px;padding:22px 0 24px;border-top:.8px solid var(--line)}
+.checks li:last-child{border-bottom:.8px solid var(--line)}
+.checks li::before{content:"";grid-row:span 2;width:40px;height:40px;border-radius:50%;background:var(--navy-900) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F9F6ED' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/22px no-repeat}
+@supports (animation-timeline:view()){
+  .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+  @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+}
 
 /* ---------- Dark band with a fixed backdrop, and the horizontal card scroller ---------- */
 .band{position:relative;z-index:0;background:var(--navy-950);color:var(--white);margin:calc(-1 * var(--radius)) 0;padding:calc(var(--block-y) + var(--radius)) 0;clip-path:inset(0)}
@@ -194,7 +205,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 /* ---------- Service-page graphics, as they were on the old site: the review loop, the phone with
    the three pings, the nearby search with the pin dropping on the island, the example report ---------- */
-.feature .media{background:none;box-shadow:none;overflow:visible;display:flex;justify-content:center}
 .cycle{position:relative;width:min(320px,100%);aspect-ratio:1}
 .cycle svg{display:block;width:100%;height:100%}
 .cycle-track{fill:none;stroke:var(--cloud);stroke-width:3}
@@ -332,8 +342,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .display-xl{font-size:80px;letter-spacing:-2.2px}
   .display-l{font-size:64px}
   .h2{font-size:40px}
-  .section,.feature,.bhead,.contact,.about,.review{grid-template-columns:1fr}
-  .section .head,.contact .copy{position:static}
+  .section,.bhead,.contact,.about,.review,.hookrow.media,.changes{grid-template-columns:1fr}
+  .section .head,.contact .copy,.changes .h2{position:static}
+  .hookrow{gap:40px}
+  .hooktext{font-size:34px}
   .bhead .tools{justify-self:start}
   .fgrid{grid-template-columns:1fr 1fr}
 }
@@ -373,7 +385,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .sheet{padding:24px 0 var(--block-y)}
   .divider{padding:32px 0}
   .bhead{gap:20px;padding:16px 0 32px}
-  .section,.feature,.about,.review,.contact{gap:32px;padding:32px 0}
+  .section,.about,.review,.contact,.hookrow,.block,.changes{gap:32px;padding:32px 0}
+  .hooktext{font-size:28px;line-height:1.2;letter-spacing:-.4px}
+  .block .h2{margin-bottom:24px}
+  .leak-list li{grid-template-columns:52px 1fr;gap:4px 14px;padding:22px 0 24px}
+  .leak-list li::before{font-size:52px}
   .ticker .track{gap:16px;animation-duration:36s}
   @keyframes ticker{to{transform:translateX(calc(-50% - 8px))}}
   .tcard{width:240px;height:220px;padding:22px}
