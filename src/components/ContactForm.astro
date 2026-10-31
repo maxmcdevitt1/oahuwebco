@@ -1,6 +1,6 @@
 ---
-// The home-page request form. Still posts to FormSubmit; the Worker + D1 + Resend handler replaces
-// the action when the forms database lands. The hash (#free-trial, #website, …) preselects a choice.
+// The home-page request form. Posts to FormSubmit, whose own captcha page runs before the message is
+// sent (so no _captcha=false here). The hash (#free-trial, #website, …) preselects a choice.
 import { site } from "../lib/site";
 export const formSubmitOrigin = "https://formsubmit.co";
 const action = `${formSubmitOrigin}/fb8cebd8c1539f62797a93bde36203e9`;
@@ -15,14 +15,13 @@ const choices = [
 <form method="POST" action={action} class="form contact-form">
   <input type="hidden" name="_subject" value="New request from oahuwebco.com">
   <input type="hidden" name="_next" value={`${site.url}/thanks/`}>
-  <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_template" value="table">
   <p style="display: none;"><label>Leave this empty <input name="_honey" tabindex="-1" autocomplete="off"></label></p>
   <fieldset>
-    <legend class="eyebrow">What do you need most?</legend>
-    <div class="chips">
+    <legend>What do you need most?</legend>
+    <div class="options">
       {choices.map((c) => (
-        <label class="chip" id={c.id}><input type="radio" name="offer" value={c.value} required={c.required}>{c.label}</label>
+        <label class="option" id={c.id}><input type="radio" name="offer" value={c.value} required={c.required}><i></i><span>{c.label}</span></label>
       ))}
     </div>
   </fieldset>
@@ -45,7 +44,7 @@ const choices = [
   <label class="field">Anything else we should know?
     <textarea name="message" rows="4"></textarea>
   </label>
-  <button type="submit" class="btn btn-navy btn-l">Get started free</button>
+  <button type="submit" class="btn btn-accent">Get started free</button>
   <p class="note">We use the information you send to respond to your inquiry. <a href="/privacy/">Privacy policy</a>.</p>
 </form>
 
