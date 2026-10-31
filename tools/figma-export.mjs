@@ -2,12 +2,11 @@
 // without network access: stylesheets, fonts and images inlined as data URIs, scripts and the CSP
 // removed, media queries resolved for a fixed width, and vw/vh units converted to pixels.
 //
-//   node tools/figma-export.mjs <outDir>                      current site (dist/client + legacy/)
+//   node tools/figma-export.mjs <outDir>                      the built site (dist/client)
 //   node tools/figma-export.mjs <outDir> --design             redesign kit (design/redesign/pages.mjs)
 //   node tools/figma-export.mjs <outDir> --design --preview   redesign kit as plain HTML for a browser
 //
-// Astro pages are read from dist/client (run `npm run build` first); pages not yet ported come
-// from legacy/. Output: <outDir>/<slug>.<desktop|mobile>.html (preview: <outDir>/<slug>.html)
+// Pages are read from dist/client (run `npm run build` first). Output: <outDir>/<slug>.<desktop|mobile>.html (preview: <outDir>/<slug>.html)
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, extname, dirname } from "node:path";
@@ -23,15 +22,15 @@ mkdirSync(outDir, { recursive: true });
 
 const sitePages = [
   { slug: "home", title: "Home", file: "dist/client/index.html" },
-  { slug: "about", title: "About", file: "legacy/about/index.html" },
-  { slug: "reach-more-customers", title: "Reach more customers", file: "legacy/reach-more-customers/index.html" },
-  { slug: "convert-more-inquiries", title: "Convert more inquiries", file: "legacy/convert-more-inquiries/index.html" },
-  { slug: "build-repeat-business", title: "Build repeat business", file: "legacy/build-repeat-business/index.html" },
-  { slug: "measure-and-improve", title: "Measure and improve", file: "legacy/measure-and-improve/index.html" },
-  { slug: "local-seo", title: "Local SEO", file: "legacy/local-seo/index.html" },
-  { slug: "websites", title: "Websites", file: "legacy/websites/index.html" },
-  { slug: "review", title: "Leave a review", file: "legacy/review/index.html" },
-  { slug: "privacy", title: "Privacy policy", file: "legacy/privacy/index.html" },
+  { slug: "about", title: "About", file: "dist/client/about/index.html" },
+  { slug: "reach-more-customers", title: "Reach more customers", file: "dist/client/reach-more-customers/index.html" },
+  { slug: "convert-more-inquiries", title: "Convert more inquiries", file: "dist/client/convert-more-inquiries/index.html" },
+  { slug: "build-repeat-business", title: "Build repeat business", file: "dist/client/build-repeat-business/index.html" },
+  { slug: "measure-and-improve", title: "Measure and improve", file: "dist/client/measure-and-improve/index.html" },
+  { slug: "local-seo", title: "Local SEO", file: "dist/client/local-seo/index.html" },
+  { slug: "websites", title: "Websites", file: "dist/client/websites/index.html" },
+  { slug: "review", title: "Leave a review", file: "dist/client/review/index.html" },
+  { slug: "privacy", title: "Privacy policy", file: "dist/client/privacy/index.html" },
   { slug: "thanks", title: "Thanks", file: "dist/client/thanks/index.html" },
   { slug: "404", title: "404", file: "dist/client/404.html" },
 ];
@@ -158,12 +157,9 @@ function processHtml(html, vp) {
     const d = dataUri(src);
     return d ? `<img${attrs} src="${d}"` : whole;
   });
-  // Fixed width and no scripts; the current site also needs every entrance animation finished
-  const legacy = design ? "" : `
-.ping,.reveal,.hero-island,.hero *{animation:none!important;transition:none!important;opacity:1!important}
-.ping,.reveal{transform:none!important}`;
+  // Fixed width, no scripts, and the phone menu stays closed
   const override = `<style>
-html,body{width:${vp.w}px!important;min-width:${vp.w}px;max-width:${vp.w}px;margin:0;overflow-x:hidden}${legacy}
+html,body{width:${vp.w}px!important;min-width:${vp.w}px;max-width:${vp.w}px;margin:0;overflow-x:hidden}
 </style>`;
   return html.replace(/<\/head>/i, `${override}</head>`);
 }

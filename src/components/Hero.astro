@@ -1,18 +1,28 @@
 ---
-// Navy hero with the island behind it. The home page passes `home`; inner pages get the shorter
-// variant with a breadcrumb back to the home page.
+// Navy gradient hero with the island and a warm glow behind the copy. `home` is the tallest with the
+// largest headline; `inner` is the service and company pages; `center` is for a single centred ask.
 import Island from "./Island.astro";
-import Brand from "./Brand.astro";
-interface Props { home?: boolean; id?: string }
-const { home = false, id } = Astro.props;
+interface Props {
+  variant?: "home" | "inner" | "center";
+  eyebrow?: string;
+  title: string;
+  /** Instrument Serif size class for the h1 */
+  size?: "display-xl" | "display-l" | "display-m";
+  /** the one-sentence hook under the headline */
+  hook?: string;
+  id?: string;
+}
+const { variant = "inner", eyebrow, title, size = variant === "home" ? "display-xl" : "display-l", hook, id } = Astro.props;
 ---
-<div class:list={["hero", { inner: !home }]}>
+<section class:list={["hero", variant]} id={id}>
+  <div class="glow"></div>
   <Island />
-  <div class="wrap">
-    <header><Brand href={home ? "#top" : "/"} /></header>
-    <section class="hero-body" id={id}>
-      {!home && <p class="crumb"><a href="/">Home</a></p>}
-      <slot />
-    </section>
+  <div class="container">
+    <div class="copy">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1 class={size}>{title}</h1>
+      {hook && <p class="hook">{hook}</p>}
+      {Astro.slots.has("default") && <div class="actions"><slot /></div>}
+    </div>
   </div>
-</div>
+</section>

@@ -1,9 +1,32 @@
 ---
-import { site } from "../lib/site";
+import { site, services } from "../lib/site";
+const year = new Date().getFullYear();
 ---
-<footer class="site wrap">
-  <span><strong>{site.name}</strong> {site.tagline}</span>
-  <span>{site.town}, {site.island} · <a class="tel" href={site.phone.href}>{site.phone.display}</a></span>
-  <span class="social"><a href="/about/">Who’s behind it</a> · <a href="/review/">Leave a review</a></span>
-  <span class="social"><a href={site.social.instagram} rel="me">Instagram @oahuwebco</a> · <a href={site.social.facebook} rel="me">Facebook</a> · <a href="/privacy/">Privacy policy</a></span>
+<footer class="footer">
+  <div class="container">
+    <div class="fgrid">
+      <div class="fbrand">
+        <a class="logo" href="/"><img src="/logo-128.png" width="40" height="40" alt="">{site.name}</a>
+        <p class="tag">{site.tagline}</p>
+      </div>
+      <nav class="fcol" aria-label="What we do">
+        <p class="ft">What we do</p>
+        {services.map((s) => <a href={`/${s.slug}/`}>{s.name}</a>)}
+      </nav>
+      <nav class="fcol" aria-label="Company">
+        <p class="ft">Company</p>
+        <a href="/about/">Who’s behind it</a>
+        <a href="/review/">Leave a review</a>
+        <a href="/privacy/">Privacy policy</a>
+      </nav>
+      <div class="fcol">
+        <p class="ft">Contact</p>
+        <a href={site.phone.href}>{site.phone.display}</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={site.social.instagram} rel="me">Instagram @oahuwebco</a>
+        <a href={site.social.facebook} rel="me">Facebook</a>
+      </div>
+    </div>
+    <div class="fbot"><span>© {year} {site.name}</span><span>{site.town}, {site.island}</span></div>
+  </div>
 </footer>

@@ -1,6 +1,8 @@
 ---
 import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
 import Footer from "../components/Footer.astro";
 import ContactForm, { formSubmitOrigin } from "../components/ContactForm.astro";
 import { site, services, businessSchema } from "../lib/site";
@@ -24,67 +26,78 @@ const schema = [
   },
   { "@type": "WebSite", "@id": `${site.url}/#website`, url: `${site.url}/`, name: site.name, alternateName: "Oahu Webco", publisher: { "@id": businessSchema["@id"] } },
 ];
+
+const cards = [
+  { slug: "reach-more-customers", name: "Reach more customers" },
+  { slug: "convert-more-inquiries", name: "Convert more inquiries", text: "Call handling, fast replies and estimate follow-up that turn interest into booked jobs." },
+  { slug: "build-repeat-business", name: "Build repeat business", text: "Reviews, service reminders and referrals that bring customers back and send new ones your way." },
+  { slug: "measure-and-improve", name: "Measure and improve", text: "Analytics, tracking and automation that show what’s working and where to invest next." },
+];
+const stats = [
+  ["$9,600", "a year, when two callers a month pick someone else"],
+  ["$1,700", "a month, from one missed call a week"],
+  ["$4,000", "a year, when ten past customers skip a yearly service"],
+];
 ---
 <Base title={title} schema={schema} formAction={[formSubmitOrigin]}>
 
-<Hero home id="top">
-  <h1 class="narrow">We take the online side off your hands.</h1>
-  <a class="btn" href="#free-trial">Try it free for 30 days</a>
+<Header />
+
+<Hero variant="home" id="top" eyebrow={`${site.town}, ${site.island}`} title="We take the online side off your hands.">
+  <a class="btn btn-cream" href="#free-trial">Try it free for 30 days</a>
+  <a class="btn btn-ghost" href="#what">See what we do</a>
 </Hero>
 
-<main>
+<main class="sheet" id="what">
+  <div class="container">
 
-  <section class="section wrap" aria-labelledby="what-heading">
-    <h2 class="label" id="what-heading">What we do</h2>
-    <p class="lead narrow">We help local businesses improve their online performance: more of the right customers finding you, more calls, more jobs.</p>
-    <ul class="services">
-      <li><h3><a href="/reach-more-customers/">Reach more customers</a></h3><p class="muted"><a href="/local-seo/">Local search</a>, Google Business Profiles, <a href="/websites/">websites</a> and ads that put you in front of the people looking for your work.</p></li>
-      <li><h3><a href="/convert-more-inquiries/">Convert more inquiries</a></h3><p class="muted">Call handling, fast replies and estimate follow-up that turn interest into booked jobs.</p></li>
-      <li><h3><a href="/build-repeat-business/">Build repeat business</a></h3><p class="muted">Reviews, service reminders and referrals that bring customers back and send new ones your way.</p></li>
-      <li><h3><a href="/measure-and-improve/">Measure and improve</a></h3><p class="muted">Analytics, tracking and automation that show what’s working and where to invest next.</p></li>
-    </ul>
-  </section>
+    <Section variant="half" eyebrow="What we do" title="We help local businesses improve their online performance: more of the right customers finding you, more calls, more jobs.">
+      <ul class="cards">
+        {cards.map((c) => (
+          <li class="card">
+            <h3 class="h3"><a href={`/${c.slug}/`}>{c.name}</a></h3>
+            {c.text
+              ? <p>{c.text}</p>
+              : <p><a href="/local-seo/">Local search</a>, Google Business Profiles, <a href="/websites/">websites</a> and ads that put you in front of the people looking for your work.</p>}
+            <span class="go" aria-hidden="true">→</span>
+          </li>
+        ))}
+      </ul>
+    </Section>
 
-  <section class="section wrap" aria-labelledby="pricing-heading">
-    <h2 class="label" id="pricing-heading">Pricing</h2>
-    <div class="prices">
-      <details>
-        <summary><span class="item">30-day missed-call trial</span><span class="price narrow">$0</span></summary>
-        <div class="price-body"><p class="muted">We catch the calls you can’t pick up and show you how many turned into jobs. Free for 30 days, then month to month from $300 a month, estimated. If your average job is $400, one caught call a month covers it. It stops on its own if you don’t continue.</p></div>
-      </details>
-      <details>
-        <summary><span class="item">Free review</span><span class="price narrow">$0</span></summary>
-        <div class="price-body"><p class="muted">Where your business stands online, and where the room to grow is.</p></div>
-      </details>
-      <details>
-        <summary><span class="item">Foundation</span><span class="price narrow">$750–$1,500<small>est.</small></span></summary>
-        <div class="price-body"><p class="muted">One-time. Close the gaps holding you back and set up what growth is built on. Done in ten business days, and you pay when it’s done. Estimated range; your exact price is quoted after the review.</p></div>
-      </details>
-      <details>
-        <summary><span class="item">Ongoing growth</span><span class="price narrow">$300–$750<small>/mo est.</small></span></summary>
-        <div class="price-body"><p class="muted">Steady monthly work on what grows your business. Month to month; you keep everything if you stop. Estimated range; your exact price is quoted after the review.</p></div>
-      </details>
-      <details>
-        <summary><span class="item">Websites</span><span class="price narrow">$500<small>est.</small></span></summary>
-        <div class="price-body"><p class="muted"><a href="/websites/">Built to bring in work.</a> Estimated price; your exact price is quoted after the review.</p></div>
-      </details>
-    </div>
-  </section>
+    <Section variant="stackd" eyebrow="At a $400 average job" title="What a missed customer costs.">
+      <ul class="stats">
+        {stats.map(([num, cap]) => <li class="stat"><span class="mark" aria-hidden="true"></span><span class="num">{num}</span><span class="cap">{cap}</span></li>)}
+      </ul>
+    </Section>
 
-  <section id="contact" class="dark">
-    <div class="section wrap contact">
-      <div class="contact-copy">
-        <h2 class="lead small narrow">Start free</h2>
-        <p class="sub">Aloha. Tell us about your business and we’ll get back to you.</p>
-        <p class="email-line">Or call, text or email directly:</p>
-        <p class="email narrow"><a class="tel" href={site.phone.href}>{site.phone.display}</a></p>
-        <p class="email narrow">{site.email}</p>
+    <Section variant="stackd" id="pricing" eyebrow="Pricing" title="Your exact price is quoted after a free review.">
+      <div class="prices">
+        <div class="price"><p class="name">30-day missed-call trial</p><p>We catch the calls you can’t pick up and show you how many turned into jobs. Free for 30 days, then month to month from $300 a month, estimated. If your average job is $400, one caught call a month covers it. It stops on its own if you don’t continue.</p><p class="amt">$0</p></div>
+        <div class="price"><p class="name">Free review</p><p>Where your business stands online, and where the room to grow is.</p><p class="amt">$0</p></div>
+        <div class="price"><p class="name">Foundation</p><p>One-time. Close the gaps holding you back and set up what growth is built on. Done in ten business days, and you pay when it’s done. Estimated range; your exact price is quoted after the review.</p><p class="amt">$750–$1,500<small>est.</small></p></div>
+        <div class="price"><p class="name">Ongoing growth</p><p>Steady monthly work on what grows your business. Month to month; you keep everything if you stop. Estimated range; your exact price is quoted after the review.</p><p class="amt">$300–$750<small>/mo est.</small></p></div>
+        <div class="price"><p class="name">Websites</p><p><a href="/websites/">Built to bring in work.</a> Estimated price; your exact price is quoted after the review.</p><p class="amt">$500<small>est.</small></p></div>
+      </div>
+    </Section>
+
+  </div>
+</main>
+
+<section class="sheet dark" id="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact">
+      <div class="copy">
+        <p class="eyebrow">Start free</p>
+        <h2 class="big" id="contact-heading">Aloha. Tell us about your business and we’ll get back to you.</h2>
+        <p class="muted">Or call, text or email directly:</p>
+        <p class="big"><a href={site.phone.href}>{site.phone.display}</a></p>
+        <p class="big"><a href={`mailto:${site.email}`}>{site.email}</a></p>
       </div>
       <ContactForm />
     </div>
-  </section>
-
-</main>
+  </div>
+</section>
 
 <Footer />
 

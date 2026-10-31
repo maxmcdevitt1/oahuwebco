@@ -1,0 +1,31 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../lib/site";
+
+const url = `${site.url}/review/`;
+const schema = [{ "@type": "WebPage", "@id": `${url}#page`, name: "Leave a Review", url, isPartOf: { "@id": `${site.url}/#website` } }];
+---
+<Base title={`Leave a Review · ${site.name}`} description="Worked with Oahu Web Co.? Leave us a Google review." schema={schema}>
+  <Header />
+  <Hero variant="center" eyebrow="Reviews" title="Leave us a review" hook="Worked with us? A short Google review helps other Oʻahu businesses find us. Mahalo.">
+    <a class="btn btn-cream" href={site.social.reviewLink} rel="noopener">Write a Google review</a>
+  </Hero>
+  <main class="sheet">
+    <div class="container">
+      <section class="review" aria-labelledby="qr-heading">
+        <div class="stack">
+          <h2 class="h2" id="qr-heading">On your phone, point the camera at the code.</h2>
+          <p class="lead">It opens our Google review page.</p>
+        </div>
+        <div class="qr">
+          <img src="/review/google-review-qr.svg" width="220" height="220" alt="QR code that opens our Google review page">
+          <p class="cap">Google review · {site.name}</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>

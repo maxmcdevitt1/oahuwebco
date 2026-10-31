@@ -1,0 +1,42 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../lib/site";
+
+const url = `${site.url}/privacy/`;
+const schema = [{ "@type": "WebPage", "@id": `${url}#page`, name: "Privacy Policy", url, isPartOf: { "@id": `${site.url}/#website` } }];
+---
+<Base title={`Privacy Policy · ${site.name}`} description="How Oahu Web Co. handles information sent through its website and contact form." schema={schema}>
+  <Header />
+  <Hero eyebrow="Legal" title="Privacy policy" hook="How we handle information you share through our website." />
+  <main class="sheet">
+    <div class="container">
+      <div class="section">
+        <div class="head"><p class="date">Effective October 15, 2026</p></div>
+        <div class="prose">
+          <h2>Information you send us</h2>
+          <p>When you request a free review through our contact form, we collect the name, business name, email address or phone number, and any message you choose to send. If you contact us directly by email, we receive the information you include in that message.</p>
+          <p>Please avoid submitting sensitive personal or financial information through the contact form.</p>
+          <h2>How we use your information</h2>
+          <p>We use what you send to respond to inquiries, discuss requested services, and keep normal business correspondence and records. We do not sell contact information submitted through the form.</p>
+          <h2>Contact form and email</h2>
+          <p>Our contact form uses <a href="https://formsubmit.co/" rel="noopener noreferrer">FormSubmit</a> to deliver submissions to our business email. FormSubmit states that it retains form submissions for 30 days. Messages delivered to our email account may be kept longer for correspondence, business records, or legal obligations.</p>
+          <h2>Website hosting, fonts and analytics</h2>
+          <p>Our website is hosted using GitHub Pages. GitHub states that it logs visitors’ IP addresses for security purposes. Our typefaces are served from our own website, so loading them does not connect your browser to a third party.</p>
+          <p>We use Google Analytics to understand how visitors find and use this website, such as which pages are viewed and how visitors arrived. Google Analytics sets cookies and collects information about your device, browser and activity on this site. Google processes this information as described in <a href="https://policies.google.com/technologies/partner-sites" rel="noopener noreferrer">How Google uses information from sites that use its services</a>. You can block these cookies in your browser settings or with the <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener noreferrer">Google Analytics opt-out browser add-on</a>.</p>
+          <p>This website does not use advertising pixels.</p>
+          <h2>Other websites</h2>
+          <p>We link to services such as Instagram and Facebook. If you follow those links, their privacy practices apply to your activity there.</p>
+          <h2>Keeping information and your choices</h2>
+          <p>We keep correspondence as long as reasonably necessary to handle an inquiry, maintain business records, or meet legal requirements. You can ask us about information you have sent, request a correction, or ask us to delete it, subject to any applicable recordkeeping obligations.</p>
+          <p>For privacy questions or requests, email us at <strong>{site.email}</strong>.</p>
+          <h2>Changes to this policy</h2>
+          <p>We may update this policy when our website or practices change. The effective date at the top will show when it was last updated.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

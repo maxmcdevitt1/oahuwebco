@@ -12,35 +12,41 @@ const choices = [
   { id: "not-sure", value: "Not sure", label: "Not sure yet, let’s talk", required: false },
 ];
 ---
-<form method="POST" action={action} class="contact-form">
+<form method="POST" action={action} class="form contact-form">
   <input type="hidden" name="_subject" value="New request from oahuwebco.com">
   <input type="hidden" name="_next" value={`${site.url}/thanks/`}>
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_template" value="table">
   <p style="display: none;"><label>Leave this empty <input name="_honey" tabindex="-1" autocomplete="off"></label></p>
-  <fieldset class="offer">
-    <legend>What do you need most?</legend>
-    {choices.map((c) => (
-      <label class="choice" id={c.id}><input type="radio" name="offer" value={c.value} required={c.required}>{c.label}</label>
-    ))}
+  <fieldset>
+    <legend class="eyebrow">What do you need most?</legend>
+    <div class="chips">
+      {choices.map((c) => (
+        <label class="chip" id={c.id}><input type="radio" name="offer" value={c.value} required={c.required}>{c.label}</label>
+      ))}
+    </div>
   </fieldset>
-  <label class="field">Your name
-    <input type="text" name="name" autocomplete="name" required>
-  </label>
-  <label class="field">Business name
-    <input type="text" name="business" autocomplete="organization" required>
-  </label>
-  <label class="field">Email or phone
-    <input type="text" name="contact" required>
-  </label>
-  <label class="field">The phone number customers call
-    <input type="tel" name="business_line" autocomplete="tel">
-  </label>
+  <div class="fields">
+    <label class="field">Your name
+      <input type="text" name="name" autocomplete="name" required>
+    </label>
+    <label class="field">Business name
+      <input type="text" name="business" autocomplete="organization" required>
+    </label>
+  </div>
+  <div class="fields">
+    <label class="field">Email or phone
+      <input type="text" name="contact" required>
+    </label>
+    <label class="field">The phone number customers call
+      <input type="tel" name="business_line" autocomplete="tel">
+    </label>
+  </div>
   <label class="field">Anything else we should know?
-    <textarea name="message" rows="5"></textarea>
+    <textarea name="message" rows="4"></textarea>
   </label>
-  <button type="submit" class="solid-btn">Get started free</button>
-  <p class="privacy-note">We use the information you send to respond to your inquiry. <a href="/privacy/">Privacy policy</a>.</p>
+  <button type="submit" class="btn btn-navy btn-l">Get started free</button>
+  <p class="note">We use the information you send to respond to your inquiry. <a href="/privacy/">Privacy policy</a>.</p>
 </form>
 
 <script>

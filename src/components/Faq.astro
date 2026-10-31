@@ -1,0 +1,13 @@
+---
+// Question list: native <details>, closed by default, with the plus turning into a cross when open.
+interface Props { items: readonly (readonly [string, string])[] }
+const { items } = Astro.props;
+---
+<div class="faq">
+  {items.map(([q, a]) => (
+    <details>
+      <summary><span class="q">{q}</span><span class="plus" aria-hidden="true"></span></summary>
+      <p class="a">{a}</p>
+    </details>
+  ))}
+</div>

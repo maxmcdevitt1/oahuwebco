@@ -1,0 +1,46 @@
+---
+// The floating glass bar that sits over every hero: logo, section links, phone and the free-review
+// button. On a phone the links collapse into a menu under the bar, with a Call pill kept in view.
+import { site } from "../lib/site";
+const links = [
+  { href: "/#what", label: "What we do" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/about/", label: "About" },
+  { href: "/review/", label: "Leave a review" },
+];
+---
+<div class="header">
+  <div class="container">
+    <div class="bar">
+      <a class="logo" href="/"><img src="/logo-128.png" width="40" height="40" alt="">{site.name}</a>
+      <nav class="nav" aria-label="Site">
+        {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+      <div class="right">
+        <a class="lnk" href={site.phone.href}>{site.phone.display}</a>
+        <a class="btn btn-cream btn-sm" href="/#free-review">Get a free review</a>
+        <a class="call" href={site.phone.href}>Call</a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><i></i><i></i><i></i></button>
+      </div>
+    </div>
+    <nav class="menu" id="menu" hidden aria-label="Site">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href={site.phone.href}>{site.phone.display}</a>
+      <a class="btn btn-cream" href="/#free-review">Get a free review</a>
+    </nav>
+  </div>
+</div>
+
+<script>
+  const burger = document.querySelector<HTMLButtonElement>(".burger");
+  const menu = document.getElementById("menu");
+  if (burger && menu) {
+    const setOpen = (open: boolean) => {
+      burger.setAttribute("aria-expanded", String(open));
+      menu.hidden = !open;
+    };
+    burger.addEventListener("click", () => setOpen(menu.hidden));
+    menu.addEventListener("click", (e) => { if ((e.target as HTMLElement).closest("a")) setOpen(false); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
+  }
+</script>

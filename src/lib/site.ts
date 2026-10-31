@@ -28,6 +28,7 @@ export const services = [
   { slug: "local-seo", name: "Local SEO" },
   { slug: "websites", name: "Websites" },
 ] as const;
+export type ServiceSlug = (typeof services)[number]["slug"];
 
 /** Schema.org node for the business, referenced from every page's graph by @id. */
 export const businessId = `${site.url}/#business`;

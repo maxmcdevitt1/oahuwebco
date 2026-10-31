@@ -1,0 +1,14 @@
+---
+// The closing navy band on inner pages: one headline, one button, back to the home-page form.
+interface Props { title: string; button: string; href: string; text?: string }
+const { title, button, href, text } = Astro.props;
+---
+<section class="cta" aria-label={title}>
+  <div class="container">
+    <div class="copy">
+      <h2 class="display-l">{title}</h2>
+      {text && <p class="lead">{text}</p>}
+      <a class="btn btn-cream btn-l" href={href}>{button}</a>
+    </div>
+  </div>
+</section>

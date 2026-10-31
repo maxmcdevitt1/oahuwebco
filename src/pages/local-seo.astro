@@ -1,0 +1,39 @@
+---
+import Service from "../layouts/Service.astro";
+---
+<Service
+  slug="local-seo"
+  title="Local SEO for Oʻahu Small Businesses · Oahu Web Co."
+  description="Local SEO and Google Business Profile help for Oʻahu small businesses, so more nearby customers find you and call. Based in Kāneʻohe. Free review."
+  serviceName="Local SEO and Google Business Profile management for Oʻahu small businesses"
+  h1="Local SEO for Oʻahu businesses"
+  hook="If you’re not on the map, you’re not on the list."
+  button="Request my free review"
+  buttonHref="/#free-review"
+  problemsTitle="Where local search loses you calls"
+  problems={[
+    ["Missing from the map", "People searching nearby choose from the map. If you’re not there, they never know you exist."],
+    ["Out-of-date listing", "Wrong hours or a missing phone number send calls to a competitor. At $400 a job, one lost call a week is about $20,000 a year."],
+    ["Few or old reviews", "Customers compare reviews before they call. A thin record makes the choice for them."],
+    ["A website that doesn’t back you up", "Google looks at your site too. If it doesn’t say what you do and where, you’re harder to find."],
+  ]}
+  faq={[
+    ["What is local SEO?", "Showing up when people nearby search for what you do, on Google Search and Maps."],
+    ["How long does it take?", "It takes time and varies by trade and town. We don’t promise rankings."],
+    ["Who owns my Google Business Profile?", "You do. Your profile and accounts stay yours."],
+    ["Do you work outside Kāneʻohe?", "Yes. We work with businesses across Oʻahu, from Kailua to Kapolei."],
+  ]}
+  more={["websites", "reach-more-customers", "build-repeat-business"]}
+  ctaTitle="Get a free review"
+>
+  <div class="visual" aria-hidden="true">
+    <p class="vt">Nearby results</p>
+    <div class="map">
+      <span class="rd" style="left:-5%;top:38%;width:110%;transform:rotate(-8deg)"></span>
+      <span class="rd" style="left:60%;top:-10%;height:120%;width:10px;transform:rotate(14deg)"></span>
+      <span class="pin" style="left:18%;top:22%"></span><span class="lbl" style="left:14%;top:38%">Competitor A</span>
+      <span class="pin" style="left:68%;top:56%"></span><span class="lbl" style="left:60%;top:72%">Competitor B</span>
+      <span class="pin ghost" style="left:42%;top:40%"></span><span class="lbl ghost" style="left:36%;top:56%">Your business</span>
+    </div>
+  </div>
+</Service>

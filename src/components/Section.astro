@@ -1,0 +1,20 @@
+---
+// A titled band inside a sheet: heading column on the left, content on the right. `stackd` puts the
+// heading above full-width content (stats, pricing); `half` splits the band evenly.
+interface Props {
+  title: string;
+  eyebrow?: string;
+  id?: string;
+  variant?: "half" | "stackd";
+}
+const { title, eyebrow, id, variant } = Astro.props;
+const headingId = `${id ?? title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}-heading`;
+---
+<section class:list={["section", variant]} id={id} aria-labelledby={headingId}>
+  <div class="head">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h2 class="h2" id={headingId}>{title}</h2>
+    <slot name="head" />
+  </div>
+  <div class="stack"><slot /></div>
+</section>

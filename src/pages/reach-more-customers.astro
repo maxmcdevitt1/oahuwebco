@@ -1,0 +1,38 @@
+---
+import Service from "../layouts/Service.astro";
+import { site } from "../lib/site";
+---
+<Service
+  slug="reach-more-customers"
+  title="Get Found by More Customers on Oʻahu · Oahu Web Co."
+  description="When customers can’t find you, they call someone else. We help Oʻahu businesses get found and get the call. Based in Kāneʻohe. Free review."
+  serviceName="Getting found by more customers on Oʻahu"
+  h1="Reach more customers"
+  hook="If customers can’t find you, they’ll call someone else."
+  button="Request my free review"
+  buttonHref="/#free-review"
+  problemsTitle="The work"
+  problems={[
+    ["Google Business Profile", "A weak first impression can send customers to a competitor. At $400 a job, two callers a month who pick someone else is $9,600 a year. We help make your business the one they want to call."],
+    ['<a href="/local-seo/">Local search</a>', "Customers can’t hire you if they can’t find you. We help your business get noticed when people need your work."],
+    ['<a href="/websites/">Websites</a>', "A confusing website can lose customers before they call. We make it easier for them to choose your business."],
+    ["Online ads", "Reach customers who are ready to hire, without spending on an audience you don’t want."],
+  ]}
+  faq={[
+    ["How long does it take to show up higher on Google?", "Results take time and vary. We help make your business easier to find without promising rankings."],
+    ["Do I need a new website?", "Not necessarily. If your current site is costing you customers, we can improve what you already have."],
+    ["Who owns the accounts?", "You do. Your accounts and finished work stay yours."],
+  ]}
+  more={["convert-more-inquiries", "build-repeat-business", "measure-and-improve"]}
+  ctaTitle="Get a free review"
+>
+  <div class="visual" aria-hidden="true">
+    <p class="vt">Nearby search</p>
+    <div class="search"><span class="mag"></span>plumber near me</div>
+    <ul class="res">
+      <li class="you"><span class="rn">Your business</span><span class="rm">Open now · {site.town}</span></li>
+      <li><span class="ph"></span><span class="ph s"></span></li>
+      <li><span class="ph"></span><span class="ph s"></span></li>
+    </ul>
+  </div>
+</Service>

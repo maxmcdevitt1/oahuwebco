@@ -1,0 +1,79 @@
+---
+// One service page: hero with the hook, a cream sheet holding the page's visual (slot) beside the
+// numbered problems, an optional "What changes" list, the questions, links to the other pages, then
+// the closing band. Schema: Service, WebPage, BreadcrumbList and FAQPage for the questions.
+import Base from "./Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Faq from "../components/Faq.astro";
+import ServiceRows from "../components/ServiceRows.astro";
+import Cta from "../components/Cta.astro";
+import Footer from "../components/Footer.astro";
+import { site, services, businessId, type ServiceSlug } from "../lib/site";
+
+type Pair = readonly [string, string];
+interface Props {
+  slug: ServiceSlug;
+  /** <title> */
+  title: string;
+  description: string;
+  /** schema.org Service name */
+  serviceName: string;
+  h1: string;
+  hook: string;
+  /** hero and closing-band button; the href is a home-page form anchor */
+  button: string;
+  buttonHref: string;
+  problemsTitle: string;
+  problems: readonly Pair[];
+  changes?: readonly Pair[];
+  faq: readonly Pair[];
+  more: readonly ServiceSlug[];
+  ctaTitle: string;
+}
+const { slug, title, description, serviceName, h1, hook, button, buttonHref, problemsTitle, problems, changes, faq, more, ctaTitle } = Astro.props;
+const url = `${site.url}/${slug}/`;
+const name = services.find((s) => s.slug === slug)!.name;
+const schema = [
+  { "@type": "Service", "@id": `${url}#service`, name: serviceName, serviceType: serviceName, description, url, provider: { "@id": businessId }, areaServed: { "@type": "Place", name: "Oʻahu, Hawaii" } },
+  { "@type": "WebPage", "@id": `${url}#webpage`, url, name: title, description, isPartOf: { "@id": `${site.url}/#website` }, about: { "@id": `${url}#service` }, breadcrumb: { "@id": `${url}#breadcrumb` } },
+  { "@type": "BreadcrumbList", "@id": `${url}#breadcrumb`, itemListElement: [
+    { "@type": "ListItem", position: 1, name: site.name, item: `${site.url}/` },
+    { "@type": "ListItem", position: 2, name, item: url },
+  ] },
+  { "@type": "FAQPage", "@id": `${url}#faq`, mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) },
+];
+---
+<Base title={title} description={description} schema={schema}>
+  <Header />
+  <Hero eyebrow="What we do" title={h1} hook={hook}>
+    <a class="btn btn-cream" href={buttonHref}>{button}</a>
+  </Hero>
+  <main class="sheet">
+    <div class="container">
+      <section class="feature" aria-labelledby="problems-heading">
+        <slot />
+        <div class="stack">
+          <div class="head"><h2 class="h2" id="problems-heading" style="color:var(--navy-900)">{problemsTitle}</h2></div>
+          <ol class="num-list">
+            {problems.map(([t, p], i) => (
+              <li><span class="n">{String(i + 1).padStart(2, "0")}</span><h3 class="h3" set:html={t} /><p>{p}</p></li>
+            ))}
+          </ol>
+        </div>
+      </section>
+      {changes && (
+        <Section title="What changes">
+          <ul class="dot-list">
+            {changes.map(([t, p]) => <li><span class="dot"></span><div><h3 class="h3">{t}</h3><p>{p}</p></div></li>)}
+          </ul>
+        </Section>
+      )}
+      <Section title="Questions"><Faq items={faq} /></Section>
+      <Section title="More of what we do"><ServiceRows slugs={more} /></Section>
+    </div>
+  </main>
+  <Cta title={ctaTitle} button={button} href={buttonHref} />
+  <Footer />
+</Base>

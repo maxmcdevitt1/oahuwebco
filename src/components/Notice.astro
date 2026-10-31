@@ -1,21 +1,27 @@
 ---
-// Full-screen navy page used by 404 and the post-submit thank-you page.
+// Full-screen gradient page used by 404 and the post-submit thank-you page.
 import Base from "../layouts/Base.astro";
 import Island from "./Island.astro";
-import Brand from "./Brand.astro";
 import { site } from "../lib/site";
 interface Props { title: string; heading: string }
 const { title, heading } = Astro.props;
 ---
-<Base title={title} noindex bodyClass="notice">
-  <Island />
-  <header class="wrap"><Brand /></header>
-  <main class="wrap">
-    <h1 class="narrow">{heading}</h1>
-    <slot />
-    <a class="btn" href="/">Back to the home page</a>
-  </main>
-  <footer class="wrap">
-    <strong>{site.name}</strong> {site.tagline} {site.town}, {site.island}.
-  </footer>
+<Base title={title} noindex>
+  <section class="notice">
+    <div class="glow"></div>
+    <Island />
+    <header class="container top">
+      <a class="logo" href="/"><img src="/logo-128.png" width="40" height="40" alt="">{site.name}</a>
+    </header>
+    <main class="container">
+      <div class="mid">
+        <h1 class="display-xl">{heading}</h1>
+        <slot />
+        <div class="actions"><a class="btn btn-cream btn-l" href="/">Back to the home page</a></div>
+      </div>
+    </main>
+    <footer class="container bot">
+      <strong>{site.name}</strong> {site.tagline} {site.town}, {site.island}.
+    </footer>
+  </section>
 </Base>

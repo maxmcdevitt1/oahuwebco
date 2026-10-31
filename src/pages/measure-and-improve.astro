@@ -1,0 +1,48 @@
+---
+import Service from "../layouts/Service.astro";
+// Example report with made-up numbers, as on the old page
+const months: [string, number][] = [["Apr", 19], ["May", 22], ["Jun", 21], ["Jul", 27], ["Aug", 30], ["Sep", 34]];
+const sources: [string, number][] = [["Google listing", 7], ["Referrals", 4], ["Website", 3], ["Repeat customers", 2], ["Google ads", 1]];
+---
+<Service
+  slug="measure-and-improve"
+  title="Marketing Analytics and Call Tracking on Oʻahu · Oahu Web Co."
+  description="Analytics, call and form tracking, automation and a plain monthly report for Oʻahu businesses. See which work brings in jobs. Based in Kāneʻohe."
+  serviceName="Marketing analytics, call and form tracking, automation and reporting"
+  h1="Measure and improve"
+  hook="Stop guessing which marketing brings in your jobs."
+  button="Request my free review"
+  buttonHref="/#free-review"
+  problemsTitle="The work"
+  problems={[
+    ["Know where jobs come from", "You’ll know which listing, ad or referral brought in each call, form and message."],
+    ["Monthly report", "One page each month in plain words: how many inquiries and jobs came in, where they came from, and what comes next."],
+    ["Nothing forgotten", "The tasks that keep slipping through the cracks happen on time, without anyone having to remember."],
+    ["Your accounts, your data", "Your numbers live in your own accounts, so they stay yours."],
+  ]}
+  faq={[
+    ["What will I actually see?", "A one-page report each month and a short call to go over it if you want one. No dashboards you have to learn."],
+    ["Do you need access to my finances?", "No. Job counts and, if you’re willing to share it, your average job value are enough to show which channels pay."],
+  ]}
+  more={["reach-more-customers", "convert-more-inquiries", "build-repeat-business"]}
+  ctaTitle="Get a free review"
+>
+  <div class="visual" aria-label="Example monthly report with made-up numbers">
+    <p class="vt">Monthly report · September</p>
+    <div class="rep">
+      <div class="rh"><b>Example Roofing Co.</b><span>One page</span></div>
+      <div class="kpis">
+        <div class="kpi"><p class="v">34</p><p class="l">Inquiries · up 4 from August</p></div>
+        <div class="kpi"><p class="v">17</p><p class="l">Booked jobs · up 3 from August</p></div>
+        <div class="kpi"><p class="v">12 min</p><p class="l">Typical reply time · was about 3 hours</p></div>
+      </div>
+      <div class="chart" role="img" aria-label="Inquiries per month rose from 19 in April to 34 in September">
+        {months.map(([m, v]) => <div class="b"><span class="bar" style={`height:${Math.round((v / 34) * 84)}px`}></span><span class="m">{m}</span></div>)}
+      </div>
+      <ul class="src">
+        <li><b>Booked jobs by source</b><span></span></li>
+        {sources.map(([s, n]) => <li><span>{s}</span><b>{n}</b></li>)}
+      </ul>
+    </div>
+  </div>
+</Service>

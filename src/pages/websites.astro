@@ -1,0 +1,41 @@
+---
+import Service from "../layouts/Service.astro";
+---
+<Service
+  slug="websites"
+  title="Web Design for Oʻahu Small Businesses · Oahu Web Co."
+  description="Websites for Oʻahu small businesses that make it easy for customers to call, book or ask for a quote. Based in Kāneʻohe. Start with a free review."
+  serviceName="Website design for Oʻahu small businesses"
+  h1="Websites for Oʻahu businesses"
+  hook="A website that doesn’t get calls is just a brochure."
+  button="Request my free review"
+  buttonHref="/#website"
+  problemsTitle="Where websites lose customers"
+  problems={[
+    ["Hard to use on a phone", "Most customers find you on their phone. If your number is hard to tap, they call the next business."],
+    ["Slow to load", "People don’t wait. A slow page sends them back to the search results."],
+    ["No clear next step", "If it isn’t obvious how to call, book or get a quote, many people leave without asking. If that’s two $400 jobs a month, it’s $9,600 a year."],
+    ["Invisible on Google", "A site Google can’t make sense of won’t help anyone find you."],
+  ]}
+  faq={[
+    ["What does a website cost?", "About $500, estimated. Your exact price is quoted after a free review."],
+    ["Can you fix my current site instead?", "Yes. If your site can be improved instead of replaced, we’ll tell you."],
+    ["Who owns the website?", "You do. Your domain and content stay yours."],
+    ["Do you work outside Kāneʻohe?", "Yes. We work with businesses across Oʻahu, from Kailua to Kapolei."],
+  ]}
+  more={["local-seo", "reach-more-customers", "convert-more-inquiries"]}
+  ctaTitle="Get a free review"
+>
+  <div class="visual" aria-hidden="true">
+    <p class="vt">On a phone</p>
+    <div class="phone">
+      <div class="scr">
+        <span class="ph s"></span>
+        <p class="pt">Your business, easy to call.</p>
+        <span class="ph"></span>
+        <span class="ph w"></span>
+        <span class="tap">Tap to call</span>
+      </div>
+    </div>
+  </div>
+</Service>

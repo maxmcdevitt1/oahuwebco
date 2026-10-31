@@ -18,7 +18,6 @@ export default defineConfig({
   // Pages prerender to static HTML; the Worker only serves assets until forms and staff pages land
   adapter: cloudflare({ imageService: 'compile' }),
   // No sessions yet: without this the adapter adds a SESSION KV binding that has no namespace to deploy to
-  // @ts-expect-error `false` is accepted by the adapter though the config type omits it
   session: false,
   integrations: [
     sitemap({

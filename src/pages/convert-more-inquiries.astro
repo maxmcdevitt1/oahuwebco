@@ -1,0 +1,43 @@
+---
+import Service from "../layouts/Service.astro";
+---
+<Service
+  slug="convert-more-inquiries"
+  title="Turn More Calls and Inquiries Into Booked Jobs on Oʻahu · Oahu Web Co."
+  description="Missed calls, slow replies and forgotten estimates cost Oʻahu businesses work. We help more of your inquiries become booked jobs. Based in Kāneʻohe."
+  serviceName="Inquiry conversion for local businesses"
+  h1="Turn more inquiries into booked jobs"
+  hook="Every missed call is a job for someone else."
+  button="Try it free for 30 days"
+  buttonHref="/#free-trial"
+  problemsTitle="Where jobs slip away"
+  problems={[
+    ["Missed calls", "Many people who reach voicemail don’t leave a message. They just call the next business on the list. If your average job is $400, one missed call a week is about $1,700 a month."],
+    ["Slow replies", "A website form or message that waits until evening can lose to a competitor who answered in minutes."],
+    ["Forgotten estimates", "Plenty of quotes aren’t turned down. They’re forgotten, and the job goes to whoever checked in. Two forgotten $1,500 estimates a month is $3,000 of work."],
+    ["Hard-to-use forms", "If asking for a quote feels slow or confusing, customers give up before you ever hear from them."],
+  ]}
+  changes={[
+    ["Every customer hears back", "Callers and messages get a timely answer, even when you’re on a job, so fewer go elsewhere."],
+    ["More quotes turn into a yes", "Open estimates get a friendly follow-up at the right time instead of going quiet."],
+    ["Less chasing for you", "You spend your day on the work, not keeping track of who still needs a callback."],
+    ["You can see the difference", "You’ll know how many inquiries came in, how fast they were answered and how many became jobs."],
+  ]}
+  faq={[
+    ["I’m on a job all day. How can I answer every call?", "You don’t have to. We make sure customers aren’t left waiting, even when you can’t pick up."],
+    ["Can I try it first?", "Yes. For 30 days we catch the calls you can’t pick up, free, and show you how many became jobs. It stops on its own if you don’t continue."],
+    ["Do I need new software?", "Usually not. We start with what you already use, and nothing that adds cost happens without your approval."],
+    ["Can you guarantee more jobs?", "No one can honestly promise that. Our goal is that fewer of the inquiries you already get slip away, and we show you the numbers."],
+  ]}
+  more={["reach-more-customers", "build-repeat-business", "measure-and-improve"]}
+  ctaTitle="See how many calls you’re missing"
+>
+  <div class="visual" aria-hidden="true">
+    <p class="vt">This morning</p>
+    <ul class="tl">
+      <li><span class="d miss"></span><span class="s">Missed call</span><span class="t">7:42 AM</span></li>
+      <li><span class="d"></span><span class="s">Replied to customer</span><span class="t">7:43 AM</span></li>
+      <li><span class="d"></span><span class="s">Job booked</span><span class="t">7:51 AM</span></li>
+    </ul>
+  </div>
+</Service>

@@ -11,10 +11,8 @@ interface Props {
   noindex?: boolean;
   /** extra form-action origins for the Content-Security-Policy (the contact form posts off-site) */
   formAction?: string[];
-  /** body class, e.g. "notice" for the full-screen 404 and thanks pages */
-  bodyClass?: string;
 }
-const { title, description = site.description, schema, noindex = false, formAction = [], bodyClass } = Astro.props;
+const { title, description = site.description, schema, noindex = false, formAction = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 const ogImage = `${site.url}/og-image.jpg`;
 
@@ -58,16 +56,16 @@ const csp = [
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href={canonical}>
 {schema && <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": schema })} />}
-<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <slot name="head" />
 </head>
-<body class={bodyClass}>
+<body>
 <slot />
 <script>
   // Smoothed wheel scrolling. Touch stays native; reduced-motion users get the browser's own scroll.
   import Lenis from "lenis";
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: false, anchors: true });
+    // Anchor scrolls stop short of the fixed header (top offset + bar height + breathing room)
+    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: false, anchors: { offset: -120 } });
     const raf = (t: number) => { lenis.raf(t); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
   }
