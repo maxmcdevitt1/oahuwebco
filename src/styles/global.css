@@ -184,13 +184,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .band .lead{color:rgba(255,255,255,.72)}
 .scroller{display:flex;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--gutter) 24px;margin:0 calc(-1 * var(--gutter));scrollbar-width:none;overscroll-behavior-x:contain}
 .scroller::-webkit-scrollbar{display:none}
-.pcard{flex:0 0 400px;min-height:420px;display:flex;flex-direction:column;gap:16px;padding:28px 28px 32px;border-radius:16px;background:var(--cream);color:var(--ink);scroll-snap-align:start}
+.pcard{flex:0 0 400px;min-height:340px;display:flex;flex-direction:column;gap:16px;padding:28px 28px 32px;border-radius:16px;background:var(--cream);color:var(--ink);scroll-snap-align:start}
 .pcard .pill{align-self:flex-start;border-radius:100px;padding:10px 16px;background:var(--white);color:var(--navy-950);font-size:13px;line-height:1;font-weight:500;letter-spacing:.9px;text-transform:uppercase}
-.pcard .amt{margin:12px 0 8px;font-size:52px;line-height:1;letter-spacing:-1.8px;white-space:nowrap;color:var(--navy-950)}
-.pcard .amt small{display:block;margin-top:10px;font-size:14px;line-height:1;letter-spacing:.3px;color:var(--slate)}
-.pcard .what{font-size:22px;line-height:30px;letter-spacing:-.2px;font-weight:500;color:var(--navy-950)}
+.pcard .amt{margin:12px 0 4px;font-size:52px;line-height:1;letter-spacing:-1.8px;white-space:nowrap;color:var(--navy-950)}
+.pcard .amt small{display:block;margin-top:12px;font-size:14px;line-height:18px;letter-spacing:.2px;white-space:normal;color:var(--slate)}
+.pcard .what{margin-top:auto;padding-top:20px;border-top:.8px solid var(--line);font-size:24px;line-height:32px;letter-spacing:-.3px;font-weight:500;color:var(--navy-950)}
 .pcard .what a{text-decoration:underline;text-underline-offset:4px}
-.pcard .terms{margin-top:auto;padding-top:20px;border-top:.8px solid var(--line);font-size:15px;line-height:22px;color:rgba(20,33,58,.7)}
+.pnote{margin-top:8px;font-size:15px;line-height:22px;color:rgba(255,255,255,.64)}
 
 /* ---------- Lists on inner pages ---------- */
 .faq{display:flex;flex-direction:column}
@@ -409,7 +409,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   .scroller{gap:16px;padding-bottom:16px}
   .pcard{flex-basis:300px;min-height:0;padding:24px}
   .pcard .amt{font-size:44px;letter-spacing:-1.4px}
-  .pcard .what{font-size:19px;line-height:26px}
+  .pcard .what{font-size:20px;line-height:27px}
   .options{grid-template-columns:1fr}
   .option:last-child:nth-child(odd){grid-column:auto}
   .fields{grid-template-columns:1fr}
