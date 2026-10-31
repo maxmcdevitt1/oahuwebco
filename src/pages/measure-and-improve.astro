@@ -1,8 +1,13 @@
 ---
 import Service from "../layouts/Service.astro";
+import Section from "../components/Section.astro";
 // Example report with made-up numbers, as on the old page
 const months: [string, number][] = [["Apr", 19], ["May", 22], ["Jun", 21], ["Jul", 27], ["Aug", 30], ["Sep", 34]];
 const sources: [string, number][] = [["Google listing", 7], ["Referrals", 4], ["Website", 3], ["Repeat customers", 2], ["Google ads", 1]];
+// line chart geometry (520×220 box, 0–40 scale)
+const x = (i: number) => 36 + i * 92;
+const y = (v: number) => 186 - (v / 40) * 166;
+const path = months.map(([, v], i) => `${i ? "L" : "M"}${x(i)} ${y(v).toFixed(1)}`).join(" ");
 ---
 <Service
   slug="measure-and-improve"
@@ -27,22 +32,35 @@ const sources: [string, number][] = [["Google listing", 7], ["Referrals", 4], ["
   more={["reach-more-customers", "convert-more-inquiries", "build-repeat-business"]}
   ctaTitle="Get a free review"
 >
-  <div class="visual" aria-label="Example monthly report with made-up numbers">
-    <p class="vt">Monthly report · September</p>
-    <div class="rep">
-      <div class="rh"><b>Example Roofing Co.</b><span>One page</span></div>
-      <div class="kpis">
-        <div class="kpi"><p class="v">34</p><p class="l">Inquiries · up 4 from August</p></div>
-        <div class="kpi"><p class="v">17</p><p class="l">Booked jobs · up 3 from August</p></div>
-        <div class="kpi"><p class="v">12 min</p><p class="l">Typical reply time · was about 3 hours</p></div>
-      </div>
-      <div class="chart" role="img" aria-label="Inquiries per month rose from 19 in April to 34 in September">
-        {months.map(([m, v]) => <div class="b"><span class="bar" style={`height:${Math.round((v / 34) * 84)}px`}></span><span class="m">{m}</span></div>)}
-      </div>
-      <ul class="src">
-        <li><b>Booked jobs by source</b><span></span></li>
-        {sources.map(([s, n]) => <li><span>{s}</span><b>{n}</b></li>)}
+  <Section title="What a monthly report looks like" slot="after">
+    <article class="report" aria-label="Example monthly report with made-up numbers">
+      <header class="rg-head">
+        <div><p class="rg-kicker">Monthly report · September</p><h3>Example Roofing Co.</h3></div>
+      </header>
+      <ul class="rg-tiles">
+        <li><span class="rg-big">34</span><span class="rg-lbl">Inquiries</span><span class="rg-chg">Up 4 from August</span></li>
+        <li><span class="rg-big">17</span><span class="rg-lbl">Booked jobs</span><span class="rg-chg">Up 3 from August</span></li>
+        <li><span class="rg-big">12 min</span><span class="rg-lbl">Typical reply time</span><span class="rg-chg">Was about 3 hours</span></li>
       </ul>
-    </div>
-  </div>
+      <div class="rg-charts">
+        <figure>
+          <figcaption>Booked jobs by source</figcaption>
+          <ul class="rg-bars">
+            {sources.map(([s, n]) => <li><span class="rg-name">{s}</span><span class="rg-track"><span class="rg-bar" style={`width:${Math.round((n / 7) * 100)}%`}></span></span><span class="rg-num">{n}</span></li>)}
+          </ul>
+        </figure>
+        <figure>
+          <figcaption>Inquiries per month</figcaption>
+          <svg class="rg-line" viewBox="0 0 520 220" role="img" aria-label="Example: inquiries per month rose from 19 in April to 34 in September">
+            {[0, 10, 20, 30, 40].map((t) => <><line x1="36" x2="496" y1={y(t)} y2={y(t)} class="rg-grid"/><text x="28" y={y(t) + 4} class="rg-tick" text-anchor="end">{t}</text></>)}
+            {months.map(([m], i) => <text x={x(i)} y="210" class="rg-tick" text-anchor="middle">{m}</text>)}
+            <path d={path} class="rg-path"/>
+            {months.map(([m, v], i) => <circle cx={x(i)} cy={y(v)} r="4.5" class="rg-dot"><title>{m}: {v} inquiries</title></circle>)}
+            <text x={x(5) - 10} y={y(34) - 12} class="rg-val" text-anchor="end">34</text>
+            <text x={x(0) + 10} y={y(19) - 12} class="rg-val">19</text>
+          </svg>
+        </figure>
+      </div>
+    </article>
+  </Section>
 </Service>

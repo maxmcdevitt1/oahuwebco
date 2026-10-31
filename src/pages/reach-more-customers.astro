@@ -1,6 +1,6 @@
 ---
 import Service from "../layouts/Service.astro";
-import { site } from "../lib/site";
+import { islandPath, islandViewBox } from "../lib/island";
 ---
 <Service
   slug="reach-more-customers"
@@ -26,13 +26,8 @@ import { site } from "../lib/site";
   more={["convert-more-inquiries", "build-repeat-business", "measure-and-improve"]}
   ctaTitle="Get a free review"
 >
-  <div class="visual" aria-hidden="true">
-    <p class="vt">Nearby search</p>
-    <div class="search"><span class="mag"></span>plumber near me</div>
-    <ul class="res">
-      <li class="you"><span class="rn">Your business</span><span class="rm">Open now · {site.town}</span></li>
-      <li><span class="ph"></span><span class="ph s"></span></li>
-      <li><span class="ph"></span><span class="ph s"></span></li>
-    </ul>
+  <div class="find" aria-hidden="true">
+    <div class="find-search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="#4B5A6E" stroke-width="2.2"/><path d="M15 15l5 5" stroke="#4B5A6E" stroke-width="2.4" stroke-linecap="round"/></svg><span class="find-q">plumber near me</span></div>
+    <svg class="find-map" viewBox={islandViewBox}><path d={islandPath} class="find-land"/><circle cx="52" cy="-2" r="6" class="find-ring"/><g class="find-pin"><path d="M52 -2c0 0-14-15-14-25a14 14 0 0 1 28 0c0 10-14 25-14 25z"/><circle cx="52" cy="-27" r="5.5" fill="#F9F6ED"/></g></svg>
   </div>
 </Service>

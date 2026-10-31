@@ -1,6 +1,7 @@
 ---
-// One service page: hero with the hook, then a light sheet holding the page's visual beside the problems
-// as an asterisk list, an optional "What changes" list, the questions, and links to the other pages; the
+// One service page: hero with the hook, then a light sheet holding the problems as an asterisk list
+// (beside the page's graphic when it has one), an optional "What changes" list, anything the page adds
+// after that (the report on Measure and improve), the questions, and links to the other pages; the
 // footer carries the closing line. Schema: Service, WebPage, BreadcrumbList and FAQPage.
 import Base from "./Base.astro";
 import Header from "../components/Header.astro";
@@ -34,6 +35,7 @@ interface Props {
   ctaTitle: string;
 }
 const { slug, title, description, serviceName, h1, hook, button, buttonHref, problemsTitle, problems, changes, faq, more, ctaTitle } = Astro.props;
+const hasMedia = Astro.slots.has("default");
 const url = `${site.url}/${slug}/`;
 const name = services.find((s) => s.slug === slug)!.name;
 const schema = [
@@ -54,17 +56,23 @@ const schema = [
   <main class="sheet">
     <div class="container">
       <Divider />
-      <section class="feature" aria-labelledby="problems-heading">
-        <div class="media" data-parallax="-60"><slot /></div>
-        <div class="text">
-          <h2 class="h2" id="problems-heading">{problemsTitle}</h2>
+      {hasMedia ? (
+        <section class="feature" aria-labelledby="problems-heading">
+          <div class="media" data-parallax="-60"><slot /></div>
+          <div class="text">
+            <h2 class="h2" id="problems-heading">{problemsTitle}</h2>
+            <ul class="alist">
+              {problems.map(([t, p]) => <li><Asterisk /><div><b set:html={t} /> <span>{p}</span></div></li>)}
+            </ul>
+          </div>
+        </section>
+      ) : (
+        <Section title={problemsTitle} id="problems">
           <ul class="alist">
-            {problems.map(([t, p]) => (
-              <li><Asterisk /><div><b set:html={t} /> <span>{p}</span></div></li>
-            ))}
+            {problems.map(([t, p]) => <li><Asterisk /><div><b set:html={t} /> <span>{p}</span></div></li>)}
           </ul>
-        </div>
-      </section>
+        </Section>
+      )}
       {changes && (
         <>
           <Divider />
@@ -73,6 +81,12 @@ const schema = [
               {changes.map(([t, p]) => <li><Asterisk /><div><b>{t}</b> <span>{p}</span></div></li>)}
             </ul>
           </Section>
+        </>
+      )}
+      {Astro.slots.has("after") && (
+        <>
+          <Divider />
+          <slot name="after" />
         </>
       )}
       <Divider />

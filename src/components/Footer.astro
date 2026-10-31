@@ -8,8 +8,10 @@ interface Props {
   title?: string;
   button?: string;
   href?: string;
+  /** one sentence under the closing line (the About page has one) */
+  text?: string;
 }
-const { title = "The online side, <em>handled.</em>", button = "Get started free", href = "/#contact" } = Astro.props;
+const { title = "The online side, <em>handled.</em>", button = "Get started free", href = "/#contact", text } = Astro.props;
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
@@ -17,6 +19,7 @@ const year = new Date().getFullYear();
   <div class="container">
     <div class="fcta">
       <h2 class="display-l" set:html={title} />
+      {text && <p class="lead">{text}</p>}
       <a class="btn btn-accent" href={href}>{button}</a>
     </div>
     <div class="fbody">

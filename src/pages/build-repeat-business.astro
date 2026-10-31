@@ -4,8 +4,8 @@ import Service from "../layouts/Service.astro";
 <Service
   slug="build-repeat-business"
   title="Repeat Customers, Reviews and Referrals on Oʻahu · Oahu Web Co."
-  description="Past customers forget, reviews go stale and referrals are left to chance. We help Oʻahu businesses win repeat work and word of mouth. Based in Kāneʻohe."
-  serviceName="Customer retention, reviews and referrals for local businesses"
+  description="Reviews, service reminders and referrals that bring Oʻahu customers back and send new ones your way. Based in Kāneʻohe. Start with a free review."
+  serviceName="Reviews, repeat business and referrals for Oʻahu small businesses"
   h1="Bring customers back and earn more referrals"
   hook="Your next job could come from a customer you already have."
   button="Request my free review"
@@ -32,14 +32,10 @@ import Service from "../layouts/Service.astro";
   more={["reach-more-customers", "convert-more-inquiries", "measure-and-improve"]}
   ctaTitle="Keep your customers coming back"
 >
-  <div class="visual" aria-hidden="true">
-    <p class="vt">The loop</p>
-    <div class="steps">
-      <div class="st"><span class="ic"></span>Job done</div>
-      <span class="ar">→</span>
-      <div class="st hot"><span class="ic"></span>Review</div>
-      <span class="ar">→</span>
-      <div class="st"><span class="ic"></span>Back again</div>
-    </div>
+  <div class="cycle" aria-hidden="true">
+    <svg viewBox="0 0 300 300"><circle cx="150" cy="150" r="110" class="cycle-track"/><circle cx="150" cy="150" r="110" class="cycle-arc"/></svg>
+    <span class="cycle-node n1">Job done</span>
+    <span class="cycle-node n2">Review</span>
+    <span class="cycle-node n3">Back again</span>
   </div>
 </Service>
